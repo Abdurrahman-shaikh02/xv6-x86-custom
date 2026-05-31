@@ -1,0 +1,44 @@
+\doxysection{user.\+h}
+\hypertarget{user_8h_source}{}\label{user_8h_source}\mbox{\hyperlink{user_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structstat}{stat}};}
+\DoxyCodeLine{00002\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structrtcdate}{rtcdate}};}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ system\ calls}}
+\DoxyCodeLine{00005\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_acd2e1ded4bb6fce4500438bf928330f4}{fork}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00006\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_ab3db880e623854a39a18d618e360323d}{exit}}(\textcolor{keywordtype}{void})\ \mbox{\hyperlink{main_8c_a08f0b7c20a38fda2383d4f70bb78dc3e}{\_\_attribute\_\_}}((noreturn));}
+\DoxyCodeLine{00007\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_af6f31822f7e737b4e414bdac1ccb59a4}{wait}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00008\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structpipe}{pipe}}(\textcolor{keywordtype}{int}*);}
+\DoxyCodeLine{00009\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_ae57e95d717eb7386cd8b935a0c136abe}{write}}(\textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00010\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a2d73522d6354b8a141ecfaa9585a0c77}{read}}(\textcolor{keywordtype}{int},\ \textcolor{keywordtype}{void}*,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00011\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_ae152484c890a24e4d9b4980e7b965be0}{close}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00012\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_ab893e9671d6bfe2b2604002a50639f21}{kill}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00013\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_aa7b4aae4a12acd187e23396214aeca47}{exec}}(\textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{char}**);}
+\DoxyCodeLine{00014\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a2c4414339f388561554c2deab11a1a07}{open}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00015\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a3b9ff823fbf509b3d200bd3d5c238365}{mknod}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{short},\ \textcolor{keywordtype}{short});}
+\DoxyCodeLine{00016\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a4ade26dbdb332f64c44daf49ba949ff4}{unlink}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00017\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a649aa32ddc94f9b64c3fa27dc9724459}{fstat}}(\textcolor{keywordtype}{int}\ fd,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structstat}{stat}}*);}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a9f0ffa429d1a466322fb9b5bb084f828}{link}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00019\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a034fad25eff1c559bf33767e574d1d62}{mkdir}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00020\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_aebe305544f2eb0cf2c4a4f8b4c12bc0f}{chdir}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00021\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a530ea95b243a1bf148adaf399e2a6292}{dup}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00022\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a939cb25a305fe68aad9b365077f1a8c7}{getpid}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00023\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{user_8h_af9b02dd9eafa02f44aa5e354a5260bc9}{sbrk}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00024\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a4c9ea5126314b1eedbe1f6c94996878a}{sleep}}(\textcolor{keywordtype}{int});}
+\DoxyCodeLine{00025\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_ab637d1dd2fecad1cb0c91a42597a8dbc}{uptime}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{comment}{//\ ulib.c}}
+\DoxyCodeLine{00028\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{mkfs_8c_a149da0702b060478da4d59ffe807adac}{stat}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keyword}{struct}\ \mbox{\hyperlink{structstat}{stat}}*);}
+\DoxyCodeLine{00029\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{user_8h_a54e4f23104fa6f722f9459d2673a1eba}{strcpy}}(\textcolor{keywordtype}{char}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00030\ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{user_8h_ab0cb468c5236ca7d15ec8f455a9dbdc4}{memmove}}(\textcolor{keywordtype}{void}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}*,\ \textcolor{keywordtype}{int});}
+\DoxyCodeLine{00031\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{user_8h_a58f5d6c37e537e6c632e81e8ef4bc78d}{strchr}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{char}\ c);}
+\DoxyCodeLine{00032\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a21e4788b4a0ae39b11aa32e9a1079f98}{strcmp}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00033\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{user_8h_a7126977808ae8dcc78624cdebda293a0}{printf}}(\textcolor{keywordtype}{int},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*,\ ...);}
+\DoxyCodeLine{00034\ \textcolor{keywordtype}{char}*\ \mbox{\hyperlink{user_8h_a7dc53f126f9818785d5824bbb155f7a4}{gets}}(\textcolor{keywordtype}{char}*,\ \textcolor{keywordtype}{int}\ max);}
+\DoxyCodeLine{00035\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{user_8h_ac4294f6d83e8839487693627b738a429}{strlen}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+\DoxyCodeLine{00036\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{user_8h_a0098886a849eef10803e9f35ceec61b9}{memset}}(\textcolor{keywordtype}{void}*,\ \textcolor{keywordtype}{int},\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}});}
+\DoxyCodeLine{00037\ \textcolor{keywordtype}{void}*\ \mbox{\hyperlink{user_8h_a6ce12ff2e91d62ac939f6cad0788501f}{malloc}}(\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}});}
+\DoxyCodeLine{00038\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{user_8h_af07d89f5ceaea0c7c8252cc41fd75f37}{free}}(\textcolor{keywordtype}{void}*);}
+\DoxyCodeLine{00039\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{user_8h_a4e157d18591ba54c92e4da99a3d1ccae}{atoi}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}*);}
+
+\end{DoxyCode}

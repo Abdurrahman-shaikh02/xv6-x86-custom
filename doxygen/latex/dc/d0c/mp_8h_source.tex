@@ -1,0 +1,61 @@
+\doxysection{mp.\+h}
+\hypertarget{mp_8h_source}{}\label{mp_8h_source}\mbox{\hyperlink{mp_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ See\ MultiProcessor\ Specification\ Version\ 1.[14]}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmp}{mp}}\ \{\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ floating\ pointer}}
+\DoxyCodeLine{00004\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_af2bfc400b8e6edae4c0e6ff437a2a1f4}{signature}}[4];\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}\_MP\_"{}}}
+\DoxyCodeLine{00005\ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structmp_a3333bff25a42470efb69b3b01f08d6ce}{physaddr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ phys\ addr\ of\ MP\ config\ table}}
+\DoxyCodeLine{00006\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_a46a03e7ef27f7290a5fb49bcb4c3c507}{length}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 1}}
+\DoxyCodeLine{00007\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_a0be99b736e3c6fb1f405944868674063}{specrev}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [14]}}
+\DoxyCodeLine{00008\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_a0d403ddb2898b8cadf31f9f75d31163a}{checksum}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ bytes\ must\ add\ up\ to\ 0}}
+\DoxyCodeLine{00009\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_a08cf79f94b4dcfce588ccb41f90cbe0e}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ MP\ system\ config\ type}}
+\DoxyCodeLine{00010\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_ae2157bc407a7423c57bdb078b70cd6e5}{imcrp}};}
+\DoxyCodeLine{00011\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmp_a7a87ebdff0db6123f294d93ee98c42ab}{reserved}}[3];}
+\DoxyCodeLine{00012\ \};}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmpconf}{mpconf}}\ \{\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ configuration\ table\ header}}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpconf_a7bf26b6b2b09d4265ffcbdb362bc5c8b}{signature}}[4];\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ "{}PCMP"{}}}
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structmpconf_a6b7583180c78b6a2e490d6c72779d8dd}{length}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ total\ table\ length}}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpconf_ade1055584605c76f4e1134d6631e0afa}{version}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ [14]}}
+\DoxyCodeLine{00018\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpconf_aac54c4c7710b90574416a945cdcd3b9e}{checksum}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ all\ bytes\ must\ add\ up\ to\ 0}}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpconf_ac4e4d4d150aac8ea0bba92ff2cfae557}{product}}[20];\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ product\ id}}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structmpconf_a1b3e44d3639e8f3117e6bca9626d680b}{oemtable}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OEM\ table\ pointer}}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structmpconf_a5aaf9c7afa2f1be645b8e633f6ff43a1}{oemlength}};\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OEM\ table\ length}}
+\DoxyCodeLine{00022\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structmpconf_a75f67295a180d1f72b93be82e09ecc2a}{entry}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ entry\ count}}
+\DoxyCodeLine{00023\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structmpconf_a087fac7e9dc4ca1fdfe142b3adf96c99}{lapicaddr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ address\ of\ local\ APIC}}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structmpconf_adbda8ec5a43970662e7eab8f8da11817}{xlength}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ extended\ table\ length}}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpconf_a499447fb50cb158a848f66f124dd8f8d}{xchecksum}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ extended\ table\ checksum}}
+\DoxyCodeLine{00026\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpconf_ab7ce4c5b90a538f41baefef6714d1a23}{reserved}};}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmpproc}{mpproc}}\ \{\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ processor\ table\ entry}}
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpproc_acd7371100bf5624c8eafe1280826f358}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ entry\ type\ (0)}}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpproc_a935db2a1561da721c867f4b82c51d04d}{apicid}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ local\ APIC\ id}}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpproc_a6d7948bc046404527c0eec71e3e93209}{version}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ local\ APIC\ verison}}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpproc_abac8cdeb6e601ce8e5bf343c8efb3680}{flags}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CPU\ flags}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\ \ \ \ \#define\ MPBOOT\ 0x02\ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ This\ proc\ is\ the\ bootstrap\ processor.}}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpproc_a2e18fc2c01b252da2c0d671fdce95eb5}{signature}}[4];\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ CPU\ signature}}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structmpproc_a62dc15542eee0797a4636b701439b6d9}{feature}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ feature\ flags\ from\ CPUID\ instruction}}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpproc_a94bbb1f4794bcf6126fb36520f668134}{reserved}}[8];}
+\DoxyCodeLine{00038\ \};}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structmpioapic}{mpioapic}}\ \{\ \ \ \ \ \ \ \textcolor{comment}{//\ I/O\ APIC\ table\ entry}}
+\DoxyCodeLine{00041\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpioapic_a8d7527bad798d6f8a59a21df06879f0f}{type}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ entry\ type\ (2)}}
+\DoxyCodeLine{00042\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpioapic_a9a975b41f6af43937d67c3b63235dd7d}{apicno}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I/O\ APIC\ id}}
+\DoxyCodeLine{00043\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpioapic_a7c6f3d950f89e2b982fd53f7c59681e7}{version}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I/O\ APIC\ version}}
+\DoxyCodeLine{00044\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structmpioapic_a9cc0f4c76312b7d074c558cbcad38a12}{flags}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I/O\ APIC\ flags}}
+\DoxyCodeLine{00045\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structmpioapic_a364bbba1df7846f9c6d271c7c85a7aaa}{addr}};\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ I/O\ APIC\ address}}
+\DoxyCodeLine{00046\ \};}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ Table\ entry\ types}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ MPPROC\ \ \ \ 0x00\ \ }\textcolor{comment}{//\ One\ per\ processor}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ MPBUS\ \ \ \ \ 0x01\ \ }\textcolor{comment}{//\ One\ per\ bus}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ MPIOAPIC\ \ 0x02\ \ }\textcolor{comment}{//\ One\ per\ I/O\ APIC}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ MPIOINTR\ \ 0x03\ \ }\textcolor{comment}{//\ One\ per\ bus\ interrupt\ source}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ MPLINTR\ \ \ 0x04\ \ }\textcolor{comment}{//\ One\ per\ system\ interrupt\ source}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//PAGEBREAK!}}
+\DoxyCodeLine{00056\ \textcolor{comment}{//\ Blank\ page.}}
+
+\end{DoxyCode}

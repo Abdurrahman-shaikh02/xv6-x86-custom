@@ -1,0 +1,178 @@
+\doxysection{kalloc.\+c File Reference}
+\hypertarget{kalloc_8c}{}\label{kalloc_8c}\index{kalloc.c@{kalloc.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+Include dependency graph for kalloc.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d16/kalloc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structrun}{run}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{kalloc_8c_adeb1e621acdd949dffd5a054a43d1d89}{freerange}} (void \texorpdfstring{$\ast$}{*}vstart, void \texorpdfstring{$\ast$}{*}vend)
+\item 
+void \mbox{\hyperlink{kalloc_8c_a596c07f040e83fd8ea1857f36ffab4fb}{kinit1}} (void \texorpdfstring{$\ast$}{*}vstart, void \texorpdfstring{$\ast$}{*}vend)
+\item 
+void \mbox{\hyperlink{kalloc_8c_a8efe9094969255a41fbdaaee820bd478}{kinit2}} (void \texorpdfstring{$\ast$}{*}vstart, void \texorpdfstring{$\ast$}{*}vend)
+\item 
+void \mbox{\hyperlink{kalloc_8c_aced59ecf8411235f6dffc065236711a5}{kfree}} (char \texorpdfstring{$\ast$}{*}v)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kalloc_8c_a5e965f6365c721b5b23c12d16d45c3dc}{kalloc}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+char \mbox{\hyperlink{kalloc_8c_af4f810c521bcfd87215d3007005a8325}{end}} \mbox{[}$\,$\mbox{]}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structspinlock}{spinlock}} \mbox{\hyperlink{kalloc_8c_ab28e82cd5dda7d960095706a3ea20572}{lock}}\\
+\>int \mbox{\hyperlink{kalloc_8c_a37d4eb2590728645fea0e2da2b94e210}{use\_lock}}\\
+\>struct \mbox{\hyperlink{structrun}{run}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{kalloc_8c_a25f1f0e27ad1cafebbde0b8b7455afb4}{freelist}}\\
+\} \mbox{\hyperlink{kalloc_8c_a1580ee3446c9d9d159d9b57ec68b66c5}{kmem}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{kalloc_8c_adeb1e621acdd949dffd5a054a43d1d89}\label{kalloc_8c_adeb1e621acdd949dffd5a054a43d1d89} 
+\index{kalloc.c@{kalloc.c}!freerange@{freerange}}
+\index{freerange@{freerange}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{freerange()}{freerange()}}
+{\footnotesize\ttfamily void freerange (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{vstart,  }\item[{void \texorpdfstring{$\ast$}{*}}]{vend }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_adeb1e621acdd949dffd5a054a43d1d89_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=224pt]{d4/def/kalloc_8c_adeb1e621acdd949dffd5a054a43d1d89_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{kalloc_8c_a5e965f6365c721b5b23c12d16d45c3dc}\label{kalloc_8c_a5e965f6365c721b5b23c12d16d45c3dc} 
+\index{kalloc.c@{kalloc.c}!kalloc@{kalloc}}
+\index{kalloc@{kalloc}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{kalloc()}{kalloc()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} kalloc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_a5e965f6365c721b5b23c12d16d45c3dc_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_a5e965f6365c721b5b23c12d16d45c3dc_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{kalloc_8c_aced59ecf8411235f6dffc065236711a5}\label{kalloc_8c_aced59ecf8411235f6dffc065236711a5} 
+\index{kalloc.c@{kalloc.c}!kfree@{kfree}}
+\index{kfree@{kfree}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{kfree()}{kfree()}}
+{\footnotesize\ttfamily void kfree (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{v }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_aced59ecf8411235f6dffc065236711a5_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_aced59ecf8411235f6dffc065236711a5_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{kalloc_8c_a596c07f040e83fd8ea1857f36ffab4fb}\label{kalloc_8c_a596c07f040e83fd8ea1857f36ffab4fb} 
+\index{kalloc.c@{kalloc.c}!kinit1@{kinit1}}
+\index{kinit1@{kinit1}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{kinit1()}{kinit1()}}
+{\footnotesize\ttfamily void kinit1 (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{vstart,  }\item[{void \texorpdfstring{$\ast$}{*}}]{vend }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_a596c07f040e83fd8ea1857f36ffab4fb_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{kalloc_8c_a8efe9094969255a41fbdaaee820bd478}\label{kalloc_8c_a8efe9094969255a41fbdaaee820bd478} 
+\index{kalloc.c@{kalloc.c}!kinit2@{kinit2}}
+\index{kinit2@{kinit2}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{kinit2()}{kinit2()}}
+{\footnotesize\ttfamily void kinit2 (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{vstart,  }\item[{void \texorpdfstring{$\ast$}{*}}]{vend }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/def/kalloc_8c_a8efe9094969255a41fbdaaee820bd478_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{kalloc_8c_af4f810c521bcfd87215d3007005a8325}\label{kalloc_8c_af4f810c521bcfd87215d3007005a8325} 
+\index{kalloc.c@{kalloc.c}!end@{end}}
+\index{end@{end}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{end}{end}}
+{\footnotesize\ttfamily char end\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{kalloc_8c_a25f1f0e27ad1cafebbde0b8b7455afb4}\label{kalloc_8c_a25f1f0e27ad1cafebbde0b8b7455afb4} 
+\index{kalloc.c@{kalloc.c}!freelist@{freelist}}
+\index{freelist@{freelist}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{freelist}{freelist}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structrun}{run}}\texorpdfstring{$\ast$}{*} freelist}
+
+\Hypertarget{kalloc_8c_a1580ee3446c9d9d159d9b57ec68b66c5}\label{kalloc_8c_a1580ee3446c9d9d159d9b57ec68b66c5} 
+\index{kalloc.c@{kalloc.c}!kmem@{kmem}}
+\index{kmem@{kmem}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily struct  \{ ... \}  kmem}
+
+\Hypertarget{kalloc_8c_ab28e82cd5dda7d960095706a3ea20572}\label{kalloc_8c_ab28e82cd5dda7d960095706a3ea20572} 
+\index{kalloc.c@{kalloc.c}!lock@{lock}}
+\index{lock@{lock}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} lock}
+
+\Hypertarget{kalloc_8c_a37d4eb2590728645fea0e2da2b94e210}\label{kalloc_8c_a37d4eb2590728645fea0e2da2b94e210} 
+\index{kalloc.c@{kalloc.c}!use\_lock@{use\_lock}}
+\index{use\_lock@{use\_lock}!kalloc.c@{kalloc.c}}
+\doxysubsubsection{\texorpdfstring{use\_lock}{use\_lock}}
+{\footnotesize\ttfamily int use\+\_\+lock}
+

@@ -165,9 +165,12 @@ struct gatedesc {
 // - dpl: Descriptor Privilege Level -
 //        the privilege level required for software to invoke
 //        this interrupt/trap gate explicitly using an int instruction.
+
+// NOTE: COOOOOL this is how you write a multiline macro in C...
+
 #define SETGATE(gate, istrap, sel, off, d)                \
 {                                                         \
-  (gate).off_15_0 = (uint)(off) & 0xffff;                \
+  (gate).off_15_0 = (uint)(off) & 0xffff;                 \
   (gate).cs = (sel);                                      \
   (gate).args = 0;                                        \
   (gate).rsv1 = 0;                                        \
@@ -175,7 +178,23 @@ struct gatedesc {
   (gate).s = 0;                                           \
   (gate).dpl = (d);                                       \
   (gate).p = 1;                                           \
-  (gate).off_31_16 = (uint)(off) >> 16;                  \
+  (gate).off_31_16 = (uint)(off) >> 16;                   \
 }
 
+/*  A better way to write it is as follows    (from google gemini)
+#define SETGATE(gate, istrap, sel, off, d)                \
+do {                                                      \
+  (gate).off_15_0 = (uint)(off) & 0xffff;                 \
+  (gate).cs = (sel);                                      \
+  (gate).args = 0;                                        \
+  (gate).rsv1 = 0;                                        \
+  (gate).type = (istrap) ? STS_TG32 : STS_IG32;           \
+  (gate).s = 0;                                           \
+  (gate).dpl = (d);                                       \
+  (gate).p = 1;                                           \
+  (gate).off_31_16 = (uint)(off) >> 16;                   \
+} while(0)
+
+Why ? hint : try opening if() SETGATE(...); else{...} ... you will see why this is buggy without using the do while loop
+*/
 #endif

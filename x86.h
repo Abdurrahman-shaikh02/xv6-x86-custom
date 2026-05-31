@@ -83,6 +83,8 @@ lidt(struct gatedesc *p, int size)
   pd[2] = (uint)p >> 16;
 
   asm volatile("lidt (%0)" : : "r" (pd));
+  //IMPORTANT: This is where we say that the setting up of the idt is over...
+  //Here we made the idtr register(heard of this reg before ?? nope lol) to point to the interrupt descriptor table...
 }
 
 static inline void

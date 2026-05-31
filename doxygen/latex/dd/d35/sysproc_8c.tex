@@ -1,0 +1,152 @@
+\doxysection{sysproc.\+c File Reference}
+\hypertarget{sysproc_8c}{}\label{sysproc_8c}\index{sysproc.c@{sysproc.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}date.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+Include dependency graph for sysproc.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/db6/sysproc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sysproc_8c_a3b05102e512b34446a54334f916ba5cd}{sys\+\_\+fork}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_aee72faa31a0c32b410aba558ef1d59f2}{sys\+\_\+exit}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_ad202e06addda05ba6fe60f05d3f61913}{sys\+\_\+wait}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_ad766b54842470b464a6497bb5c514e59}{sys\+\_\+kill}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_ac81965412a0725574b8c72afda11243e}{sys\+\_\+getpid}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_ab21d46be776cf6075a997af525a1a628}{sys\+\_\+sbrk}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_a59778ec9bfa6b6f2100b43fbba000573}{sys\+\_\+sleep}} (void)
+\item 
+int \mbox{\hyperlink{sysproc_8c_aaf8553903ba8f2776247679d4db0d121}{sys\+\_\+uptime}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sysproc_8c_aee72faa31a0c32b410aba558ef1d59f2}\label{sysproc_8c_aee72faa31a0c32b410aba558ef1d59f2} 
+\index{sysproc.c@{sysproc.c}!sys\_exit@{sys\_exit}}
+\index{sys\_exit@{sys\_exit}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_exit()}{sys\_exit()}}
+{\footnotesize\ttfamily int sys\+\_\+exit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_aee72faa31a0c32b410aba558ef1d59f2_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_a3b05102e512b34446a54334f916ba5cd}\label{sysproc_8c_a3b05102e512b34446a54334f916ba5cd} 
+\index{sysproc.c@{sysproc.c}!sys\_fork@{sys\_fork}}
+\index{sys\_fork@{sys\_fork}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_fork()}{sys\_fork()}}
+{\footnotesize\ttfamily int sys\+\_\+fork (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_a3b05102e512b34446a54334f916ba5cd_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_ac81965412a0725574b8c72afda11243e}\label{sysproc_8c_ac81965412a0725574b8c72afda11243e} 
+\index{sysproc.c@{sysproc.c}!sys\_getpid@{sys\_getpid}}
+\index{sys\_getpid@{sys\_getpid}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_getpid()}{sys\_getpid()}}
+{\footnotesize\ttfamily int sys\+\_\+getpid (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_ac81965412a0725574b8c72afda11243e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_ad766b54842470b464a6497bb5c514e59}\label{sysproc_8c_ad766b54842470b464a6497bb5c514e59} 
+\index{sysproc.c@{sysproc.c}!sys\_kill@{sys\_kill}}
+\index{sys\_kill@{sys\_kill}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_kill()}{sys\_kill()}}
+{\footnotesize\ttfamily int sys\+\_\+kill (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_ad766b54842470b464a6497bb5c514e59_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_ab21d46be776cf6075a997af525a1a628}\label{sysproc_8c_ab21d46be776cf6075a997af525a1a628} 
+\index{sysproc.c@{sysproc.c}!sys\_sbrk@{sys\_sbrk}}
+\index{sys\_sbrk@{sys\_sbrk}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_sbrk()}{sys\_sbrk()}}
+{\footnotesize\ttfamily int sys\+\_\+sbrk (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_ab21d46be776cf6075a997af525a1a628_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_a59778ec9bfa6b6f2100b43fbba000573}\label{sysproc_8c_a59778ec9bfa6b6f2100b43fbba000573} 
+\index{sysproc.c@{sysproc.c}!sys\_sleep@{sys\_sleep}}
+\index{sys\_sleep@{sys\_sleep}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_sleep()}{sys\_sleep()}}
+{\footnotesize\ttfamily int sys\+\_\+sleep (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_a59778ec9bfa6b6f2100b43fbba000573_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_aaf8553903ba8f2776247679d4db0d121}\label{sysproc_8c_aaf8553903ba8f2776247679d4db0d121} 
+\index{sysproc.c@{sysproc.c}!sys\_uptime@{sys\_uptime}}
+\index{sys\_uptime@{sys\_uptime}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_uptime()}{sys\_uptime()}}
+{\footnotesize\ttfamily int sys\+\_\+uptime (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_aaf8553903ba8f2776247679d4db0d121_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysproc_8c_ad202e06addda05ba6fe60f05d3f61913}\label{sysproc_8c_ad202e06addda05ba6fe60f05d3f61913} 
+\index{sysproc.c@{sysproc.c}!sys\_wait@{sys\_wait}}
+\index{sys\_wait@{sys\_wait}!sysproc.c@{sysproc.c}}
+\doxysubsubsection{\texorpdfstring{sys\_wait()}{sys\_wait()}}
+{\footnotesize\ttfamily int sys\+\_\+wait (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d35/sysproc_8c_ad202e06addda05ba6fe60f05d3f61913_cgraph}
+\end{center}
+\end{figure}

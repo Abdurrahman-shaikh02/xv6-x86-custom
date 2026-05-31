@@ -1,0 +1,11 @@
+<map id="bootmain.c" name="bootmain.c">
+<area shape="rect" id="Node000001" title=" " alt="" coords="117,5,212,31"/>
+<area shape="rect" id="Node000002" href="$d9/d49/types_8h.html" title=" " alt="" coords="5,79,76,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="146,33,74,74,71,69,143,28"/>
+<area shape="rect" id="Node000003" href="$d1/d9e/elf_8h.html" title=" " alt="" coords="101,79,151,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="161,32,141,68,136,65,156,30"/>
+<area shape="rect" id="Node000004" href="$d5/d39/x86_8h.html" title=" " alt="" coords="175,79,234,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="174,30,194,65,189,68,169,32"/>
+<area shape="rect" id="Node000005" href="$d8/da9/memlayout_8h.html" title=" " alt="" coords="258,79,367,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="190,28,277,70,275,75,187,33"/>
+</map>

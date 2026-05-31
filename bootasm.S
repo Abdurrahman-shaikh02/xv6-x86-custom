@@ -8,6 +8,9 @@
 # with %cs=0 %ip=7c00.
 
 .code16                       # Assemble for 16-bit mode
+# WHY: Why assemble for 16 bit mode ? Because due to compatibility reasons intel maintained this rule that initially,
+# the processor will run in 16 bit REAL mode. (the BIOS was built for 16 bit proc. but then larger processors came and old software
+# which was assembled for 16 bit also had to be compatible... hence this rule
 .globl start
 start:
   cli                         # BIOS enabled interrupts; disable
@@ -39,6 +42,8 @@ seta20.2:
   # Switch from real to protected mode.  Use a bootstrap GDT that makes
   # virtual addresses map directly to physical addresses so that the
   # effective memory map doesn't change during the transition.
+
+# NOTE: Below is the mode to convert from real mode (16 bit) to protected (32 bit) mode
   lgdt    gdtdesc
   movl    %cr0, %eax
   orl     $CR0_PE, %eax
@@ -62,6 +67,7 @@ start32:
   movw    %ax, %gs                # -> GS
 
   # Set up the stack pointer and call into C.
+# NOTE: the code is above 0x7C00 and the stack grows below it... hence esp = 0x7C00
   movl    $start, %esp
   call    bootmain
 

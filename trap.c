@@ -11,6 +11,8 @@
 // Interrupt descriptor table (shared by all CPUs).
 struct gatedesc idt[256];
 extern uint vectors[];  // in vectors.S: array of 256 entry pointers
+                        // NOTE: The array vectors is an array (4bytes each) which contains addresses to some corresponding code
+                        // I recommend you see the way it is declared (in vectors.S) in assembly...
 struct spinlock tickslock;
 uint ticks;
 
@@ -19,11 +21,20 @@ tvinit(void)
 {
   int i;
 
+// NOTE: it initializes the idt (interrupt descriptor table)(or the interrupt vector table)...
+// Go to vectors.S to see what the code looks like... and also see how the vectors[i] are actually used in the SET_GATE macro
+
+// NOTE: The SETGATE macro INITIALIZES the gate descriptor in the interrupt descriptor table
+
   for(i = 0; i < 256; i++)
     SETGATE(idt[i], 0, SEG_KCODE<<3, vectors[i], 0);
   SETGATE(idt[T_SYSCALL], 1, SEG_KCODE<<3, vectors[T_SYSCALL], DPL_USER);
 
+// QUESTION: the system call is getting set up specially...Why ?
+
   initlock(&tickslock, "time");
+
+// IMPORTANT: The Interrupt Descriptor Table is ready but... the IDTR register is yet to be loaded... HINT: it is loaded in the idtinit function below..
 }
 
 void

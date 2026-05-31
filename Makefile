@@ -76,7 +76,7 @@ AS = $(TOOLPREFIX)gas
 LD = $(TOOLPREFIX)ld
 OBJCOPY = $(TOOLPREFIX)objcopy
 OBJDUMP = $(TOOLPREFIX)objdump
-CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -O2 -Wall -MD -ggdb -m32 -Werror -fno-omit-frame-pointer
+CFLAGS = -fno-pic -static -fno-builtin -fno-strict-aliasing -O2 -Wall -MD -ggdb -m32 -fno-omit-frame-pointer 
 CFLAGS += $(shell $(CC) -fno-stack-protector -E -x c /dev/null >/dev/null 2>&1 && echo -fno-stack-protector)
 ASFLAGS = -m32 -gdwarf-2 -Wa,-divide
 # FreeBSD ld wants ``elf_i386_fbsd''
@@ -92,8 +92,11 @@ endif
 
 xv6.img: bootblock kernel
 	dd if=/dev/zero of=xv6.img count=10000
+	# NOTE: dd copies from an infite source of zeros to the file xv6.img, 10000 blocks
 	dd if=bootblock of=xv6.img conv=notrunc
+	# NOTE: then the first bootblock gets copied to the inital sector of the file
 	dd if=kernel of=xv6.img seek=1 conv=notrunc
+	# NOTE: skip the first block and load the kernel executable
 
 xv6memfs.img: bootblock kernelmemfs
 	dd if=/dev/zero of=xv6memfs.img count=10000
@@ -104,6 +107,9 @@ bootblock: bootasm.S bootmain.c
 	$(CC) $(CFLAGS) -fno-pic -O -nostdinc -I. -c bootmain.c
 	$(CC) $(CFLAGS) -fno-pic -nostdinc -I. -c bootasm.S
 	$(LD) $(LDFLAGS) -N -e start -Ttext 0x7C00 -o bootblock.o bootasm.o bootmain.o
+	# NOTE: compile the bootmain and bootasm files into machine code
+	# Then link the two files into bootblock.o and do so while assuming that it is loaded at the address 0x7C00
+	# Why ? The BIOS from the manufacturer will load the bootloader at 0x7C00 of the RAM... (x86)
 	$(OBJDUMP) -S bootblock.o > bootblock.asm
 	$(OBJCOPY) -S -O binary -j .text bootblock.o bootblock
 	./sign.pl bootblock
@@ -284,3 +290,10 @@ tar:
 	(cd /tmp; tar cf - xv6) | gzip >xv6-rev10.tar.gz  # the next one will be 10 (9/17)
 
 .PHONY: dist-test dist
+
+tags:
+	ctags -R \
+	--languages=C,Asm \
+	--langmap=C:+.h.S \
+	--langmap=Asm:.s.asm \
+	--kinds-C=+dp

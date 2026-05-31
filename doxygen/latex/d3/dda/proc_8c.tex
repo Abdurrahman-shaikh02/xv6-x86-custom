@@ -1,0 +1,456 @@
+\doxysection{proc.\+c File Reference}
+\hypertarget{proc_8c}{}\label{proc_8c}\index{proc.c@{proc.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+Include dependency graph for proc.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d6a/proc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{proc_8c_a11c5d62d28e8121e75235d361158156e}{forkret}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_a6c085102b25a17b9a1a78db5a8be16f9}{trapret}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_a9d293f913985937ee7a266fe5ddbfc77}{pinit}} (void)
+\item 
+int \mbox{\hyperlink{proc_8c_a414dda255ed3c1e43e7922d10f9d2c6d}{cpuid}} ()
+\item 
+struct \mbox{\hyperlink{structcpu}{cpu}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{proc_8c_ad427959ad025dabd8cd393b27ec39160}{mycpu}} (void)
+\item 
+struct \mbox{\hyperlink{structproc}{proc}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{proc_8c_a41af0935f3989aae450cf8988cd9c3a9}{myproc}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_a81c8a6a0cae413bc81aa223f7f7b7205}{userinit}} (void)
+\item 
+int \mbox{\hyperlink{proc_8c_a9c16214741f4fcd088e5eea468709328}{growproc}} (int n)
+\item 
+int \mbox{\hyperlink{proc_8c_acd2e1ded4bb6fce4500438bf928330f4}{fork}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_aaf98ef7cdde3a0dfb2e49919de3298b1}{exit}} (void)
+\item 
+int \mbox{\hyperlink{proc_8c_af6f31822f7e737b4e414bdac1ccb59a4}{wait}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_a9fa00b0be5d3c4781048861e2506eb63}{scheduler}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_ad788da91743c333b5bed7c4a0dd12365}{sched}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_a7cb51f5c2b5cad3766f19eb69c92793b}{yield}} (void)
+\item 
+void \mbox{\hyperlink{proc_8c_ae70cc0370342e46f6db3bec367232457}{sleep}} (void \texorpdfstring{$\ast$}{*}chan, struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}lk)
+\item 
+void \mbox{\hyperlink{proc_8c_a4a34d9f03e436cfa09b88f735f6ee952}{wakeup}} (void \texorpdfstring{$\ast$}{*}chan)
+\item 
+int \mbox{\hyperlink{proc_8c_a650cf0caaaa8b75f653c1c92818d03a4}{kill}} (int pid)
+\item 
+void \mbox{\hyperlink{proc_8c_a7f185044294ebb57521c73f723990164}{procdump}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structspinlock}{spinlock}} \mbox{\hyperlink{proc_8c_ab28e82cd5dda7d960095706a3ea20572}{lock}}\\
+\>struct \mbox{\hyperlink{structproc}{proc}} \mbox{\hyperlink{proc_8c_a5780b0050ca664736fd1cc9696624ce5}{proc}} \mbox{[}\mbox{\hyperlink{param_8h_a810c5b751df5bb30588613ed91095129}{NPROC}}\mbox{]}\\
+\} \mbox{\hyperlink{proc_8c_addf39d613ca9a58e7e6080a2e454421a}{ptable}}\\
+
+\end{tabbing}\item 
+int \mbox{\hyperlink{proc_8c_aec016216766697de7529c7b9cb5beda9}{nextpid}} = 1
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{proc_8c_a414dda255ed3c1e43e7922d10f9d2c6d}\label{proc_8c_a414dda255ed3c1e43e7922d10f9d2c6d} 
+\index{proc.c@{proc.c}!cpuid@{cpuid}}
+\index{cpuid@{cpuid}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{cpuid()}{cpuid()}}
+{\footnotesize\ttfamily int cpuid (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a414dda255ed3c1e43e7922d10f9d2c6d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=209pt]{d3/dda/proc_8c_a414dda255ed3c1e43e7922d10f9d2c6d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_aaf98ef7cdde3a0dfb2e49919de3298b1}\label{proc_8c_aaf98ef7cdde3a0dfb2e49919de3298b1} 
+\index{proc.c@{proc.c}!exit@{exit}}
+\index{exit@{exit}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{exit()}{exit()}}
+{\footnotesize\ttfamily void exit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_aaf98ef7cdde3a0dfb2e49919de3298b1_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_aaf98ef7cdde3a0dfb2e49919de3298b1_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_acd2e1ded4bb6fce4500438bf928330f4}\label{proc_8c_acd2e1ded4bb6fce4500438bf928330f4} 
+\index{proc.c@{proc.c}!fork@{fork}}
+\index{fork@{fork}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{fork()}{fork()}}
+{\footnotesize\ttfamily int fork (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_acd2e1ded4bb6fce4500438bf928330f4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=287pt]{d3/dda/proc_8c_acd2e1ded4bb6fce4500438bf928330f4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a11c5d62d28e8121e75235d361158156e}\label{proc_8c_a11c5d62d28e8121e75235d361158156e} 
+\index{proc.c@{proc.c}!forkret@{forkret}}
+\index{forkret@{forkret}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{forkret()}{forkret()}}
+{\footnotesize\ttfamily void forkret (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a11c5d62d28e8121e75235d361158156e_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a9c16214741f4fcd088e5eea468709328}\label{proc_8c_a9c16214741f4fcd088e5eea468709328} 
+\index{proc.c@{proc.c}!growproc@{growproc}}
+\index{growproc@{growproc}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{growproc()}{growproc()}}
+{\footnotesize\ttfamily int growproc (\begin{DoxyParamCaption}\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a9c16214741f4fcd088e5eea468709328_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{d3/dda/proc_8c_a9c16214741f4fcd088e5eea468709328_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a650cf0caaaa8b75f653c1c92818d03a4}\label{proc_8c_a650cf0caaaa8b75f653c1c92818d03a4} 
+\index{proc.c@{proc.c}!kill@{kill}}
+\index{kill@{kill}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily int kill (\begin{DoxyParamCaption}\item[{int}]{pid }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a650cf0caaaa8b75f653c1c92818d03a4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{d3/dda/proc_8c_a650cf0caaaa8b75f653c1c92818d03a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_ad427959ad025dabd8cd393b27ec39160}\label{proc_8c_ad427959ad025dabd8cd393b27ec39160} 
+\index{proc.c@{proc.c}!mycpu@{mycpu}}
+\index{mycpu@{mycpu}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{mycpu()}{mycpu()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structcpu}{cpu}} \texorpdfstring{$\ast$}{*} mycpu (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_ad427959ad025dabd8cd393b27ec39160_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/dda/proc_8c_ad427959ad025dabd8cd393b27ec39160_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a41af0935f3989aae450cf8988cd9c3a9}\label{proc_8c_a41af0935f3989aae450cf8988cd9c3a9} 
+\index{proc.c@{proc.c}!myproc@{myproc}}
+\index{myproc@{myproc}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{myproc()}{myproc()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structproc}{proc}} \texorpdfstring{$\ast$}{*} myproc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a41af0935f3989aae450cf8988cd9c3a9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a41af0935f3989aae450cf8988cd9c3a9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a9d293f913985937ee7a266fe5ddbfc77}\label{proc_8c_a9d293f913985937ee7a266fe5ddbfc77} 
+\index{proc.c@{proc.c}!pinit@{pinit}}
+\index{pinit@{pinit}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{pinit()}{pinit()}}
+{\footnotesize\ttfamily void pinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{d3/dda/proc_8c_a9d293f913985937ee7a266fe5ddbfc77_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a7f185044294ebb57521c73f723990164}\label{proc_8c_a7f185044294ebb57521c73f723990164} 
+\index{proc.c@{proc.c}!procdump@{procdump}}
+\index{procdump@{procdump}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{procdump()}{procdump()}}
+{\footnotesize\ttfamily void procdump (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a7f185044294ebb57521c73f723990164_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a7f185044294ebb57521c73f723990164_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_ad788da91743c333b5bed7c4a0dd12365}\label{proc_8c_ad788da91743c333b5bed7c4a0dd12365} 
+\index{proc.c@{proc.c}!sched@{sched}}
+\index{sched@{sched}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{sched()}{sched()}}
+{\footnotesize\ttfamily void sched (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_ad788da91743c333b5bed7c4a0dd12365_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_ad788da91743c333b5bed7c4a0dd12365_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a9fa00b0be5d3c4781048861e2506eb63}\label{proc_8c_a9fa00b0be5d3c4781048861e2506eb63} 
+\index{proc.c@{proc.c}!scheduler@{scheduler}}
+\index{scheduler@{scheduler}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{scheduler()}{scheduler()}}
+{\footnotesize\ttfamily void scheduler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a9fa00b0be5d3c4781048861e2506eb63_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a9fa00b0be5d3c4781048861e2506eb63_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_ae70cc0370342e46f6db3bec367232457}\label{proc_8c_ae70cc0370342e46f6db3bec367232457} 
+\index{proc.c@{proc.c}!sleep@{sleep}}
+\index{sleep@{sleep}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{sleep()}{sleep()}}
+{\footnotesize\ttfamily void sleep (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{chan,  }\item[{struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}}]{lk }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_ae70cc0370342e46f6db3bec367232457_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_ae70cc0370342e46f6db3bec367232457_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a6c085102b25a17b9a1a78db5a8be16f9}\label{proc_8c_a6c085102b25a17b9a1a78db5a8be16f9} 
+\index{proc.c@{proc.c}!trapret@{trapret}}
+\index{trapret@{trapret}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{trapret()}{trapret()}}
+{\footnotesize\ttfamily void trapret (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [extern]}}
+
+\Hypertarget{proc_8c_a81c8a6a0cae413bc81aa223f7f7b7205}\label{proc_8c_a81c8a6a0cae413bc81aa223f7f7b7205} 
+\index{proc.c@{proc.c}!userinit@{userinit}}
+\index{userinit@{userinit}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{userinit()}{userinit()}}
+{\footnotesize\ttfamily void userinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a81c8a6a0cae413bc81aa223f7f7b7205_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_af6f31822f7e737b4e414bdac1ccb59a4}\label{proc_8c_af6f31822f7e737b4e414bdac1ccb59a4} 
+\index{proc.c@{proc.c}!wait@{wait}}
+\index{wait@{wait}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily int wait (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_af6f31822f7e737b4e414bdac1ccb59a4_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=290pt]{d3/dda/proc_8c_af6f31822f7e737b4e414bdac1ccb59a4_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a4a34d9f03e436cfa09b88f735f6ee952}\label{proc_8c_a4a34d9f03e436cfa09b88f735f6ee952} 
+\index{proc.c@{proc.c}!wakeup@{wakeup}}
+\index{wakeup@{wakeup}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{wakeup()}{wakeup()}}
+{\footnotesize\ttfamily void wakeup (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{chan }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a4a34d9f03e436cfa09b88f735f6ee952_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a4a34d9f03e436cfa09b88f735f6ee952_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{proc_8c_a7cb51f5c2b5cad3766f19eb69c92793b}\label{proc_8c_a7cb51f5c2b5cad3766f19eb69c92793b} 
+\index{proc.c@{proc.c}!yield@{yield}}
+\index{yield@{yield}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{yield()}{yield()}}
+{\footnotesize\ttfamily void yield (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/dda/proc_8c_a7cb51f5c2b5cad3766f19eb69c92793b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{d3/dda/proc_8c_a7cb51f5c2b5cad3766f19eb69c92793b_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{proc_8c_ab28e82cd5dda7d960095706a3ea20572}\label{proc_8c_ab28e82cd5dda7d960095706a3ea20572} 
+\index{proc.c@{proc.c}!lock@{lock}}
+\index{lock@{lock}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} lock}
+
+\Hypertarget{proc_8c_aec016216766697de7529c7b9cb5beda9}\label{proc_8c_aec016216766697de7529c7b9cb5beda9} 
+\index{proc.c@{proc.c}!nextpid@{nextpid}}
+\index{nextpid@{nextpid}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{nextpid}{nextpid}}
+{\footnotesize\ttfamily int nextpid = 1}
+
+\Hypertarget{proc_8c_a5780b0050ca664736fd1cc9696624ce5}\label{proc_8c_a5780b0050ca664736fd1cc9696624ce5} 
+\index{proc.c@{proc.c}!proc@{proc}}
+\index{proc@{proc}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{proc}{proc}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structproc}{proc}} \mbox{\hyperlink{structproc}{proc}}\mbox{[}\mbox{\hyperlink{param_8h_a810c5b751df5bb30588613ed91095129}{NPROC}}\mbox{]}}
+
+\Hypertarget{proc_8c_addf39d613ca9a58e7e6080a2e454421a}\label{proc_8c_addf39d613ca9a58e7e6080a2e454421a} 
+\index{proc.c@{proc.c}!ptable@{ptable}}
+\index{ptable@{ptable}!proc.c@{proc.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily struct  \{ ... \}  ptable}
+

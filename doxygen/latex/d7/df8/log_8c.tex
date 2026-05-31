@@ -1,0 +1,140 @@
+\doxysection{log.\+c File Reference}
+\hypertarget{log_8c}{}\label{log_8c}\index{log.c@{log.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}buf.\+h"{}}\newline
+Include dependency graph for log.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d6f/log_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlogheader}{logheader}}
+\item 
+struct \mbox{\hyperlink{structlog}{log}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{log_8c_ad5e79aaefb91f41b9ef6aeae7ecf4708}{initlog}} (int dev)
+\item 
+void \mbox{\hyperlink{log_8c_ac96aa31ffc0500e749c62c4d377c21c9}{begin\+\_\+op}} (void)
+\item 
+void \mbox{\hyperlink{log_8c_ac0f12be0ca0de555e60b27b06a57a65b}{end\+\_\+op}} (void)
+\item 
+void \mbox{\hyperlink{log_8c_a7eacb0fbebe5ce4c7d3ddea15908b13d}{log\+\_\+write}} (struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}b)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structlog}{log}} \mbox{\hyperlink{log_8c_a3583f58fafd1ed3c2dba9d6dfc67c597}{log}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{log_8c_ac96aa31ffc0500e749c62c4d377c21c9}\label{log_8c_ac96aa31ffc0500e749c62c4d377c21c9} 
+\index{log.c@{log.c}!begin\_op@{begin\_op}}
+\index{begin\_op@{begin\_op}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{begin\_op()}{begin\_op()}}
+{\footnotesize\ttfamily void begin\+\_\+op (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_ac96aa31ffc0500e749c62c4d377c21c9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_ac96aa31ffc0500e749c62c4d377c21c9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{log_8c_ac0f12be0ca0de555e60b27b06a57a65b}\label{log_8c_ac0f12be0ca0de555e60b27b06a57a65b} 
+\index{log.c@{log.c}!end\_op@{end\_op}}
+\index{end\_op@{end\_op}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{end\_op()}{end\_op()}}
+{\footnotesize\ttfamily void end\+\_\+op (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_ac0f12be0ca0de555e60b27b06a57a65b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_ac0f12be0ca0de555e60b27b06a57a65b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{log_8c_ad5e79aaefb91f41b9ef6aeae7ecf4708}\label{log_8c_ad5e79aaefb91f41b9ef6aeae7ecf4708} 
+\index{log.c@{log.c}!initlog@{initlog}}
+\index{initlog@{initlog}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{initlog()}{initlog()}}
+{\footnotesize\ttfamily void initlog (\begin{DoxyParamCaption}\item[{int}]{dev }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_ad5e79aaefb91f41b9ef6aeae7ecf4708_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{d7/df8/log_8c_ad5e79aaefb91f41b9ef6aeae7ecf4708_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{log_8c_a7eacb0fbebe5ce4c7d3ddea15908b13d}\label{log_8c_a7eacb0fbebe5ce4c7d3ddea15908b13d} 
+\index{log.c@{log.c}!log\_write@{log\_write}}
+\index{log\_write@{log\_write}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log\_write()}{log\_write()}}
+{\footnotesize\ttfamily void log\+\_\+write (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}}]{b }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_a7eacb0fbebe5ce4c7d3ddea15908b13d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/df8/log_8c_a7eacb0fbebe5ce4c7d3ddea15908b13d_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{log_8c_a3583f58fafd1ed3c2dba9d6dfc67c597}\label{log_8c_a3583f58fafd1ed3c2dba9d6dfc67c597} 
+\index{log.c@{log.c}!log@{log}}
+\index{log@{log}!log.c@{log.c}}
+\doxysubsubsection{\texorpdfstring{log}{log}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structlog}{log}} \mbox{\hyperlink{structlog}{log}}}
+

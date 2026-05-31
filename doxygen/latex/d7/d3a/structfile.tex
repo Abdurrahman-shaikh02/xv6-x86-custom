@@ -1,0 +1,112 @@
+\doxysection{file Struct Reference}
+\hypertarget{structfile}{}\label{structfile}\index{file@{file}}
+
+
+{\ttfamily \#include $<$file.\+h$>$}
+
+
+
+Collaboration diagram for file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/da3/structfile__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+enum \{ \mbox{\hyperlink{structfile_a4aeeba6a286e58966d853aa1f510d3d5a224e095442d50a6bd1058fd742fb68c7}{FD\+\_\+\+NONE}}
+, \mbox{\hyperlink{structfile_a4aeeba6a286e58966d853aa1f510d3d5a59fcf59caf6e70c3cc3cc48291b89752}{FD\+\_\+\+PIPE}}
+, \mbox{\hyperlink{structfile_a4aeeba6a286e58966d853aa1f510d3d5aa5d8c5e0d95ed88367e96ecebfdf326d}{FD\+\_\+\+INODE}}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+enum file\+:: \{ ... \}  \mbox{\hyperlink{structfile_a3a28c808a8dcd4acf45087ac30c075e7}{type}}
+\item 
+int \mbox{\hyperlink{structfile_a41c818f828adea488058bca63e4df23f}{ref}}
+\item 
+char \mbox{\hyperlink{structfile_a0c5c8eced8bc562dbbecc8d450a6b646}{readable}}
+\item 
+char \mbox{\hyperlink{structfile_a6e1b641ea1551ac4316a0c11a683df45}{writable}}
+\item 
+struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structfile_a19d83a8d6cb47902fe8c762d2798c198}{pipe}}
+\item 
+struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structfile_a4fd095f927715574dc2a4f243690e508}{ip}}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{structfile_a94a911be6cc1b1326728392d8b40150d}{off}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Enumeration Documentation}
+\Hypertarget{structfile_a4aeeba6a286e58966d853aa1f510d3d5}\label{structfile_a4aeeba6a286e58966d853aa1f510d3d5} 
+\doxysubsubsection{\texorpdfstring{anonymous enum}{anonymous enum}}
+{\footnotesize\ttfamily anonymous enum}
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FD\_NONE@{FD\_NONE}!file@{file}}\index{file@{file}!FD\_NONE@{FD\_NONE}}}\Hypertarget{structfile_a4aeeba6a286e58966d853aa1f510d3d5a224e095442d50a6bd1058fd742fb68c7}\label{structfile_a4aeeba6a286e58966d853aa1f510d3d5a224e095442d50a6bd1058fd742fb68c7} 
+FD\+\_\+\+NONE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FD\_PIPE@{FD\_PIPE}!file@{file}}\index{file@{file}!FD\_PIPE@{FD\_PIPE}}}\Hypertarget{structfile_a4aeeba6a286e58966d853aa1f510d3d5a59fcf59caf6e70c3cc3cc48291b89752}\label{structfile_a4aeeba6a286e58966d853aa1f510d3d5a59fcf59caf6e70c3cc3cc48291b89752} 
+FD\+\_\+\+PIPE&\\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{FD\_INODE@{FD\_INODE}!file@{file}}\index{file@{file}!FD\_INODE@{FD\_INODE}}}\Hypertarget{structfile_a4aeeba6a286e58966d853aa1f510d3d5aa5d8c5e0d95ed88367e96ecebfdf326d}\label{structfile_a4aeeba6a286e58966d853aa1f510d3d5aa5d8c5e0d95ed88367e96ecebfdf326d} 
+FD\+\_\+\+INODE&\\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structfile_a4fd095f927715574dc2a4f243690e508}\label{structfile_a4fd095f927715574dc2a4f243690e508} 
+\index{file@{file}!ip@{ip}}
+\index{ip@{ip}!file@{file}}
+\doxysubsubsection{\texorpdfstring{ip}{ip}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}}\texorpdfstring{$\ast$}{*} file\+::ip}
+
+\Hypertarget{structfile_a94a911be6cc1b1326728392d8b40150d}\label{structfile_a94a911be6cc1b1326728392d8b40150d} 
+\index{file@{file}!off@{off}}
+\index{off@{off}!file@{file}}
+\doxysubsubsection{\texorpdfstring{off}{off}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} file\+::off}
+
+\Hypertarget{structfile_a19d83a8d6cb47902fe8c762d2798c198}\label{structfile_a19d83a8d6cb47902fe8c762d2798c198} 
+\index{file@{file}!pipe@{pipe}}
+\index{pipe@{pipe}!file@{file}}
+\doxysubsubsection{\texorpdfstring{pipe}{pipe}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structpipe}{pipe}}\texorpdfstring{$\ast$}{*} file\+::pipe}
+
+\Hypertarget{structfile_a0c5c8eced8bc562dbbecc8d450a6b646}\label{structfile_a0c5c8eced8bc562dbbecc8d450a6b646} 
+\index{file@{file}!readable@{readable}}
+\index{readable@{readable}!file@{file}}
+\doxysubsubsection{\texorpdfstring{readable}{readable}}
+{\footnotesize\ttfamily char file\+::readable}
+
+\Hypertarget{structfile_a41c818f828adea488058bca63e4df23f}\label{structfile_a41c818f828adea488058bca63e4df23f} 
+\index{file@{file}!ref@{ref}}
+\index{ref@{ref}!file@{file}}
+\doxysubsubsection{\texorpdfstring{ref}{ref}}
+{\footnotesize\ttfamily int file\+::ref}
+
+\Hypertarget{structfile_a3a28c808a8dcd4acf45087ac30c075e7}\label{structfile_a3a28c808a8dcd4acf45087ac30c075e7} 
+\index{file@{file}!type@{type}}
+\index{type@{type}!file@{file}}
+\doxysubsubsection{\texorpdfstring{[]}{[]}}
+{\footnotesize\ttfamily enum  \{ ... \}  file\+::type}
+
+\Hypertarget{structfile_a6e1b641ea1551ac4316a0c11a683df45}\label{structfile_a6e1b641ea1551ac4316a0c11a683df45} 
+\index{file@{file}!writable@{writable}}
+\index{writable@{writable}!file@{file}}
+\doxysubsubsection{\texorpdfstring{writable}{writable}}
+{\footnotesize\ttfamily char file\+::writable}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{file_8h}{file.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,260 @@
+\doxysection{console.\+c File Reference}
+\hypertarget{console_8c}{}\label{console_8c}\index{console.c@{console.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}traps.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}file.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+Include dependency graph for console.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{df/d7f/console_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{console_8c_a629568514359445d2fbda71d70eeb1ce}{BACKSPACE}}~0x100
+\item 
+\#define \mbox{\hyperlink{console_8c_a2e3959df0a0c54f50f20d4776b14487f}{CRTPORT}}~0x3d4
+\item 
+\#define \mbox{\hyperlink{console_8c_a5d85434f2a29f6c3048aeac34d0ce41d}{INPUT\+\_\+\+BUF}}~128
+\item 
+\#define \mbox{\hyperlink{console_8c_ac54ae397901fe700628cafadea3c5208}{C}}(x)~((x)-\/\textquotesingle{}@\textquotesingle{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{console_8c_a90f0742d846503e4ed1804f1df421ec6}{cprintf}} (char \texorpdfstring{$\ast$}{*}fmt,...)
+\item 
+void \mbox{\hyperlink{console_8c_a95c0aca5d6d7487933984f08b189917a}{panic}} (char \texorpdfstring{$\ast$}{*}s)
+\item 
+void \mbox{\hyperlink{console_8c_aad3d6ca39f23bb6d2686d2967e415193}{consoleintr}} (int(\texorpdfstring{$\ast$}{*}getc)(void))
+\item 
+int \mbox{\hyperlink{console_8c_a28ac85a90987662e306ca8efbfe16074}{consoleread}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip, char \texorpdfstring{$\ast$}{*}dst, int n)
+\item 
+int \mbox{\hyperlink{console_8c_a6af7eb39268127d389792cec37785666}{consolewrite}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip, char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structbuf}{buf}}, int n)
+\item 
+void \mbox{\hyperlink{console_8c_ab508ff0f4db26fe35cd25fa648f9ee75}{consoleinit}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>char \mbox{\hyperlink{console_8c_aa427837782b05b05204809dfba33c8f5}{buf}} \mbox{[}\mbox{\hyperlink{console_8c_a5d85434f2a29f6c3048aeac34d0ce41d}{INPUT\_BUF}}\mbox{]}\\
+\>\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{console_8c_af10fa12dd785c91e29528fbdc50cf9af}{r}}\\
+\>\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{console_8c_afdeff54db9a334718662b709641fdfe1}{w}}\\
+\>\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{console_8c_ab56fa7c992b725d84916b987c3d532ea}{e}}\\
+\} \mbox{\hyperlink{console_8c_ad4135e5cfd2abbf73cba6fe6cdf2e949}{input}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{console_8c_a629568514359445d2fbda71d70eeb1ce}\label{console_8c_a629568514359445d2fbda71d70eeb1ce} 
+\index{console.c@{console.c}!BACKSPACE@{BACKSPACE}}
+\index{BACKSPACE@{BACKSPACE}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{BACKSPACE}{BACKSPACE}}
+{\footnotesize\ttfamily \#define BACKSPACE~0x100}
+
+\Hypertarget{console_8c_ac54ae397901fe700628cafadea3c5208}\label{console_8c_ac54ae397901fe700628cafadea3c5208} 
+\index{console.c@{console.c}!C@{C}}
+\index{C@{C}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{C}{C}}
+{\footnotesize\ttfamily \#define C(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~((x)-\/\textquotesingle{}@\textquotesingle{})}
+
+\Hypertarget{console_8c_a2e3959df0a0c54f50f20d4776b14487f}\label{console_8c_a2e3959df0a0c54f50f20d4776b14487f} 
+\index{console.c@{console.c}!CRTPORT@{CRTPORT}}
+\index{CRTPORT@{CRTPORT}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{CRTPORT}{CRTPORT}}
+{\footnotesize\ttfamily \#define CRTPORT~0x3d4}
+
+\Hypertarget{console_8c_a5d85434f2a29f6c3048aeac34d0ce41d}\label{console_8c_a5d85434f2a29f6c3048aeac34d0ce41d} 
+\index{console.c@{console.c}!INPUT\_BUF@{INPUT\_BUF}}
+\index{INPUT\_BUF@{INPUT\_BUF}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{INPUT\_BUF}{INPUT\_BUF}}
+{\footnotesize\ttfamily \#define INPUT\+\_\+\+BUF~128}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{console_8c_ab508ff0f4db26fe35cd25fa648f9ee75}\label{console_8c_ab508ff0f4db26fe35cd25fa648f9ee75} 
+\index{console.c@{console.c}!consoleinit@{consoleinit}}
+\index{consoleinit@{consoleinit}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{consoleinit()}{consoleinit()}}
+{\footnotesize\ttfamily void consoleinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/console_8c_ab508ff0f4db26fe35cd25fa648f9ee75_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{console_8c_aad3d6ca39f23bb6d2686d2967e415193}\label{console_8c_aad3d6ca39f23bb6d2686d2967e415193} 
+\index{console.c@{console.c}!consoleintr@{consoleintr}}
+\index{consoleintr@{consoleintr}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{consoleintr()}{consoleintr()}}
+{\footnotesize\ttfamily void consoleintr (\begin{DoxyParamCaption}\item[{int(\texorpdfstring{$\ast$}{*})(void)}]{getc }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/console_8c_aad3d6ca39f23bb6d2686d2967e415193_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=312pt]{d0/d56/console_8c_aad3d6ca39f23bb6d2686d2967e415193_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{console_8c_a28ac85a90987662e306ca8efbfe16074}\label{console_8c_a28ac85a90987662e306ca8efbfe16074} 
+\index{console.c@{console.c}!consoleread@{consoleread}}
+\index{consoleread@{consoleread}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{consoleread()}{consoleread()}}
+{\footnotesize\ttfamily int consoleread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip,  }\item[{char \texorpdfstring{$\ast$}{*}}]{dst,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/console_8c_a28ac85a90987662e306ca8efbfe16074_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=262pt]{d0/d56/console_8c_a28ac85a90987662e306ca8efbfe16074_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{console_8c_a6af7eb39268127d389792cec37785666}\label{console_8c_a6af7eb39268127d389792cec37785666} 
+\index{console.c@{console.c}!consolewrite@{consolewrite}}
+\index{consolewrite@{consolewrite}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{consolewrite()}{consolewrite()}}
+{\footnotesize\ttfamily int consolewrite (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip,  }\item[{char \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/console_8c_a6af7eb39268127d389792cec37785666_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{d0/d56/console_8c_a6af7eb39268127d389792cec37785666_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{console_8c_a90f0742d846503e4ed1804f1df421ec6}\label{console_8c_a90f0742d846503e4ed1804f1df421ec6} 
+\index{console.c@{console.c}!cprintf@{cprintf}}
+\index{cprintf@{cprintf}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{cprintf()}{cprintf()}}
+{\footnotesize\ttfamily void cprintf (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{fmt,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/console_8c_a90f0742d846503e4ed1804f1df421ec6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/d56/console_8c_a90f0742d846503e4ed1804f1df421ec6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{console_8c_a95c0aca5d6d7487933984f08b189917a}\label{console_8c_a95c0aca5d6d7487933984f08b189917a} 
+\index{console.c@{console.c}!panic@{panic}}
+\index{panic@{panic}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{panic()}{panic()}}
+{\footnotesize\ttfamily void panic (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/console_8c_a95c0aca5d6d7487933984f08b189917a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d0/d56/console_8c_a95c0aca5d6d7487933984f08b189917a_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{console_8c_aa427837782b05b05204809dfba33c8f5}\label{console_8c_aa427837782b05b05204809dfba33c8f5} 
+\index{console.c@{console.c}!buf@{buf}}
+\index{buf@{buf}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily char \mbox{\hyperlink{structbuf}{buf}}\mbox{[}\mbox{\hyperlink{console_8c_a5d85434f2a29f6c3048aeac34d0ce41d}{INPUT\+\_\+\+BUF}}\mbox{]}}
+
+\Hypertarget{console_8c_ab56fa7c992b725d84916b987c3d532ea}\label{console_8c_ab56fa7c992b725d84916b987c3d532ea} 
+\index{console.c@{console.c}!e@{e}}
+\index{e@{e}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{e}{e}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} e}
+
+\Hypertarget{console_8c_ad4135e5cfd2abbf73cba6fe6cdf2e949}\label{console_8c_ad4135e5cfd2abbf73cba6fe6cdf2e949} 
+\index{console.c@{console.c}!input@{input}}
+\index{input@{input}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily struct  \{ ... \}  input}
+
+\Hypertarget{console_8c_ab28e82cd5dda7d960095706a3ea20572}\label{console_8c_ab28e82cd5dda7d960095706a3ea20572} 
+\index{console.c@{console.c}!lock@{lock}}
+\index{lock@{lock}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} lock}
+
+\Hypertarget{console_8c_ae51110da3bc13ef49e32d1e2cda5d55c}\label{console_8c_ae51110da3bc13ef49e32d1e2cda5d55c} 
+\index{console.c@{console.c}!locking@{locking}}
+\index{locking@{locking}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{locking}{locking}}
+{\footnotesize\ttfamily int locking}
+
+\Hypertarget{console_8c_af10fa12dd785c91e29528fbdc50cf9af}\label{console_8c_af10fa12dd785c91e29528fbdc50cf9af} 
+\index{console.c@{console.c}!r@{r}}
+\index{r@{r}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{r}{r}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} r}
+
+\Hypertarget{console_8c_afdeff54db9a334718662b709641fdfe1}\label{console_8c_afdeff54db9a334718662b709641fdfe1} 
+\index{console.c@{console.c}!w@{w}}
+\index{w@{w}!console.c@{console.c}}
+\doxysubsubsection{\texorpdfstring{w}{w}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} w}
+

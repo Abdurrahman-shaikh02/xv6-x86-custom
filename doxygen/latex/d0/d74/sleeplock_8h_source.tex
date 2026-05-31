@@ -1,0 +1,15 @@
+\doxysection{sleeplock.\+h}
+\hypertarget{sleeplock_8h_source}{}\label{sleeplock_8h_source}\mbox{\hyperlink{sleeplock_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Long-\/term\ locks\ for\ processes}}
+\DoxyCodeLine{00002\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsleeplock}{sleeplock}}\ \{}
+\DoxyCodeLine{00003\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsleeplock_ac5cfe608994a41b24cb1c0fd722910c3}{locked}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Is\ the\ lock\ held?}}
+\DoxyCodeLine{00004\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structspinlock}{spinlock}}\ \mbox{\hyperlink{structsleeplock_a077241ea0e720d228d853208444c4c9d}{lk}};\ \textcolor{comment}{//\ spinlock\ protecting\ this\ sleep\ lock}}
+\DoxyCodeLine{00005\ \ \ }
+\DoxyCodeLine{00006\ \ \ \textcolor{comment}{//\ For\ debugging:}}
+\DoxyCodeLine{00007\ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structsleeplock_a40f1db61da688063cd5ac4f72d839590}{name}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Name\ of\ lock.}}
+\DoxyCodeLine{00008\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structsleeplock_a99a4c6a784956ab1c391a12af475a55e}{pid}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Process\ holding\ lock}}
+\DoxyCodeLine{00009\ \};}
+\DoxyCodeLine{00010\ }
+
+\end{DoxyCode}

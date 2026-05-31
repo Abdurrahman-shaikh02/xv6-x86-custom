@@ -1,0 +1,121 @@
+\doxysection{sleeplock.\+c File Reference}
+\hypertarget{sleeplock_8c}{}\label{sleeplock_8c}\index{sleeplock.c@{sleeplock.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+Include dependency graph for sleeplock.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d21/sleeplock_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{sleeplock_8c_aaa5746f0a7ae0071b2916be5fdedf4ab}{initsleeplock}} (struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}lk, char \texorpdfstring{$\ast$}{*}name)
+\item 
+void \mbox{\hyperlink{sleeplock_8c_aaad2d7a86d4859982dd9a132f5128ff2}{acquiresleep}} (struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}lk)
+\item 
+void \mbox{\hyperlink{sleeplock_8c_aa997067c2c9bfef15af6fa0a10c20f4a}{releasesleep}} (struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}lk)
+\item 
+int \mbox{\hyperlink{sleeplock_8c_a6fdbe54cbecd8fc67d74793b27adcf05}{holdingsleep}} (struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}lk)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sleeplock_8c_aaad2d7a86d4859982dd9a132f5128ff2}\label{sleeplock_8c_aaad2d7a86d4859982dd9a132f5128ff2} 
+\index{sleeplock.c@{sleeplock.c}!acquiresleep@{acquiresleep}}
+\index{acquiresleep@{acquiresleep}!sleeplock.c@{sleeplock.c}}
+\doxysubsubsection{\texorpdfstring{acquiresleep()}{acquiresleep()}}
+{\footnotesize\ttfamily void acquiresleep (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}}]{lk }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dd1/sleeplock_8c_aaad2d7a86d4859982dd9a132f5128ff2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dd1/sleeplock_8c_aaad2d7a86d4859982dd9a132f5128ff2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sleeplock_8c_a6fdbe54cbecd8fc67d74793b27adcf05}\label{sleeplock_8c_a6fdbe54cbecd8fc67d74793b27adcf05} 
+\index{sleeplock.c@{sleeplock.c}!holdingsleep@{holdingsleep}}
+\index{holdingsleep@{holdingsleep}!sleeplock.c@{sleeplock.c}}
+\doxysubsubsection{\texorpdfstring{holdingsleep()}{holdingsleep()}}
+{\footnotesize\ttfamily int holdingsleep (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}}]{lk }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dd1/sleeplock_8c_a6fdbe54cbecd8fc67d74793b27adcf05_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dd1/sleeplock_8c_a6fdbe54cbecd8fc67d74793b27adcf05_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sleeplock_8c_aaa5746f0a7ae0071b2916be5fdedf4ab}\label{sleeplock_8c_aaa5746f0a7ae0071b2916be5fdedf4ab} 
+\index{sleeplock.c@{sleeplock.c}!initsleeplock@{initsleeplock}}
+\index{initsleeplock@{initsleeplock}!sleeplock.c@{sleeplock.c}}
+\doxysubsubsection{\texorpdfstring{initsleeplock()}{initsleeplock()}}
+{\footnotesize\ttfamily void initsleeplock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}}]{lk,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=248pt]{d8/dd1/sleeplock_8c_aaa5746f0a7ae0071b2916be5fdedf4ab_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=319pt]{d8/dd1/sleeplock_8c_aaa5746f0a7ae0071b2916be5fdedf4ab_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sleeplock_8c_aa997067c2c9bfef15af6fa0a10c20f4a}\label{sleeplock_8c_aa997067c2c9bfef15af6fa0a10c20f4a} 
+\index{sleeplock.c@{sleeplock.c}!releasesleep@{releasesleep}}
+\index{releasesleep@{releasesleep}!sleeplock.c@{sleeplock.c}}
+\doxysubsubsection{\texorpdfstring{releasesleep()}{releasesleep()}}
+{\footnotesize\ttfamily void releasesleep (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \texorpdfstring{$\ast$}{*}}]{lk }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dd1/sleeplock_8c_aa997067c2c9bfef15af6fa0a10c20f4a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dd1/sleeplock_8c_aa997067c2c9bfef15af6fa0a10c20f4a_icgraph}
+\end{center}
+\end{figure}

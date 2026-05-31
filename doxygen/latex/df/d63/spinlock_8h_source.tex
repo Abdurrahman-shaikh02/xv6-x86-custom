@@ -1,0 +1,16 @@
+\doxysection{spinlock.\+h}
+\hypertarget{spinlock_8h_source}{}\label{spinlock_8h_source}\mbox{\hyperlink{spinlock_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Mutual\ exclusion\ lock.}}
+\DoxyCodeLine{00002\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structspinlock}{spinlock}}\ \{}
+\DoxyCodeLine{00003\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structspinlock_a48f3007579f644934d9aba91e5378c03}{locked}};\ \ \ \ \ \ \ \textcolor{comment}{//\ Is\ the\ lock\ held?}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \ \ \textcolor{comment}{//\ For\ debugging:}}
+\DoxyCodeLine{00006\ \ \ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{structspinlock_afbec3274bf8ad9c421695a22f8d9d584}{name}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Name\ of\ lock.}}
+\DoxyCodeLine{00007\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structcpu}{cpu}}\ *\mbox{\hyperlink{structspinlock_a290ae772c8ccb9e8c1580204c31a7f88}{cpu}};\ \ \ \textcolor{comment}{//\ The\ cpu\ holding\ the\ lock.}}
+\DoxyCodeLine{00008\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structspinlock_ac9ef3f16f664094198af0b9063e23fe0}{pcs}}[10];\ \ \ \ \ \ \textcolor{comment}{//\ The\ call\ stack\ (an\ array\ of\ program\ counters)}}
+\DoxyCodeLine{00009\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ that\ locked\ the\ lock.}}
+\DoxyCodeLine{00010\ \};}
+\DoxyCodeLine{00011\ }
+
+\end{DoxyCode}

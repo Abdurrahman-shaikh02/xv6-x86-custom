@@ -1,0 +1,457 @@
+\doxysection{fs.\+c File Reference}
+\hypertarget{fs_8c}{}\label{fs_8c}\index{fs.c@{fs.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}stat.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}buf.\+h"{}}\newline
+{\ttfamily \#include "{}file.\+h"{}}\newline
+Include dependency graph for fs.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d4f/fs_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fs_8c_ac6afabdc09a49a433ee19d8a9486056d}{min}}(a,  b)~((a) $<$ (b) ? (a) \+: (b))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{fs_8c_aff0080b2133027be2e525ca088b40e78}{readsb}} (int dev, struct \mbox{\hyperlink{structsuperblock}{superblock}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}})
+\item 
+void \mbox{\hyperlink{fs_8c_a301761a27cf266e0bad483272fb31a3c}{iinit}} (int dev)
+\item 
+struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fs_8c_af95049367381647bc9487af49724b869}{ialloc}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} dev, short type)
+\item 
+void \mbox{\hyperlink{fs_8c_a7220afa8e5f4bea540eb95879ea7df6e}{iupdate}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fs_8c_a24a91383ab80b4b8a1ef1f4df896035c}{idup}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+void \mbox{\hyperlink{fs_8c_aed28187406d84a3aa71f10c6235a03ec}{ilock}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+void \mbox{\hyperlink{fs_8c_ae4e29916219b9293b37f9c34220694fe}{iunlock}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+void \mbox{\hyperlink{fs_8c_ab3c447f135c68e4c3c1f8d5866f6e77b}{iput}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+void \mbox{\hyperlink{fs_8c_a207b3008bae35596c55ec7c4fc6875eb}{iunlockput}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+void \mbox{\hyperlink{fs_8c_a4ccff0bd4d9802e709d0af8d71a59861}{stati}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip, struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}st)
+\item 
+int \mbox{\hyperlink{fs_8c_a3aba1fa9f6789d09356aec5b96d91fa8}{readi}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip, char \texorpdfstring{$\ast$}{*}dst, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} off, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} n)
+\item 
+int \mbox{\hyperlink{fs_8c_a15858f4d8a4cc1def3d84d03c312836b}{writei}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}ip, char \texorpdfstring{$\ast$}{*}src, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} off, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} n)
+\item 
+int \mbox{\hyperlink{fs_8c_ae74f6e5b19a4e7f3e72807ee67141819}{namecmp}} (const char \texorpdfstring{$\ast$}{*}s, const char \texorpdfstring{$\ast$}{*}t)
+\item 
+struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fs_8c_a5341068f021beac8cf0032b97d231e6f}{dirlookup}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}dp, char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \texorpdfstring{$\ast$}{*}poff)
+\item 
+int \mbox{\hyperlink{fs_8c_a69a135a0e8a06d9f306d77ebc0c1f7a0}{dirlink}} (struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}dp, char \texorpdfstring{$\ast$}{*}name, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} inum)
+\item 
+struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fs_8c_a35c52ecf358097c17dcbbd5594acb41a}{namei}} (char \texorpdfstring{$\ast$}{*}path)
+\item 
+struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{fs_8c_ade44726f2aed2af27fa0df5f63f9e688}{nameiparent}} (char \texorpdfstring{$\ast$}{*}path, char \texorpdfstring{$\ast$}{*}name)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsuperblock}{superblock}} \mbox{\hyperlink{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structspinlock}{spinlock}} \mbox{\hyperlink{fs_8c_ab28e82cd5dda7d960095706a3ea20572}{lock}}\\
+\>struct \mbox{\hyperlink{structinode}{inode}} \mbox{\hyperlink{fs_8c_a6baaf26dd83b71b8d684c5d54a709e31}{inode}} \mbox{[}\mbox{\hyperlink{param_8h_adabafa10c7951be7c875cd2ee212be85}{NINODE}}\mbox{]}\\
+\} \mbox{\hyperlink{fs_8c_a5a78db4f7c856337d906f0606b19bff5}{icache}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{fs_8c_ac6afabdc09a49a433ee19d8a9486056d}\label{fs_8c_ac6afabdc09a49a433ee19d8a9486056d} 
+\index{fs.c@{fs.c}!min@{min}}
+\index{min@{min}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~((a) $<$ (b) ? (a) \+: (b))}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{fs_8c_a69a135a0e8a06d9f306d77ebc0c1f7a0}\label{fs_8c_a69a135a0e8a06d9f306d77ebc0c1f7a0} 
+\index{fs.c@{fs.c}!dirlink@{dirlink}}
+\index{dirlink@{dirlink}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{dirlink()}{dirlink()}}
+{\footnotesize\ttfamily int dirlink (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{dp,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{inum }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a69a135a0e8a06d9f306d77ebc0c1f7a0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=219pt]{d2/d5a/fs_8c_a69a135a0e8a06d9f306d77ebc0c1f7a0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a5341068f021beac8cf0032b97d231e6f}\label{fs_8c_a5341068f021beac8cf0032b97d231e6f} 
+\index{fs.c@{fs.c}!dirlookup@{dirlookup}}
+\index{dirlookup@{dirlookup}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{dirlookup()}{dirlookup()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} dirlookup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{dp,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \texorpdfstring{$\ast$}{*}}]{poff }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a5341068f021beac8cf0032b97d231e6f_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=338pt]{d2/d5a/fs_8c_a5341068f021beac8cf0032b97d231e6f_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_af95049367381647bc9487af49724b869}\label{fs_8c_af95049367381647bc9487af49724b869} 
+\index{fs.c@{fs.c}!ialloc@{ialloc}}
+\index{ialloc@{ialloc}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{ialloc()}{ialloc()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} ialloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{dev,  }\item[{short}]{type }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_af95049367381647bc9487af49724b869_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a24a91383ab80b4b8a1ef1f4df896035c}\label{fs_8c_a24a91383ab80b4b8a1ef1f4df896035c} 
+\index{fs.c@{fs.c}!idup@{idup}}
+\index{idup@{idup}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{idup()}{idup()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} idup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a24a91383ab80b4b8a1ef1f4df896035c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a24a91383ab80b4b8a1ef1f4df896035c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a301761a27cf266e0bad483272fb31a3c}\label{fs_8c_a301761a27cf266e0bad483272fb31a3c} 
+\index{fs.c@{fs.c}!iinit@{iinit}}
+\index{iinit@{iinit}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{iinit()}{iinit()}}
+{\footnotesize\ttfamily void iinit (\begin{DoxyParamCaption}\item[{int}]{dev }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a301761a27cf266e0bad483272fb31a3c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=201pt]{d2/d5a/fs_8c_a301761a27cf266e0bad483272fb31a3c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_aed28187406d84a3aa71f10c6235a03ec}\label{fs_8c_aed28187406d84a3aa71f10c6235a03ec} 
+\index{fs.c@{fs.c}!ilock@{ilock}}
+\index{ilock@{ilock}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{ilock()}{ilock()}}
+{\footnotesize\ttfamily void ilock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_aed28187406d84a3aa71f10c6235a03ec_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=341pt]{d2/d5a/fs_8c_aed28187406d84a3aa71f10c6235a03ec_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_ab3c447f135c68e4c3c1f8d5866f6e77b}\label{fs_8c_ab3c447f135c68e4c3c1f8d5866f6e77b} 
+\index{fs.c@{fs.c}!iput@{iput}}
+\index{iput@{iput}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{iput()}{iput()}}
+{\footnotesize\ttfamily void iput (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_ab3c447f135c68e4c3c1f8d5866f6e77b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_ab3c447f135c68e4c3c1f8d5866f6e77b_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_ae4e29916219b9293b37f9c34220694fe}\label{fs_8c_ae4e29916219b9293b37f9c34220694fe} 
+\index{fs.c@{fs.c}!iunlock@{iunlock}}
+\index{iunlock@{iunlock}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{iunlock()}{iunlock()}}
+{\footnotesize\ttfamily void iunlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_ae4e29916219b9293b37f9c34220694fe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_ae4e29916219b9293b37f9c34220694fe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a207b3008bae35596c55ec7c4fc6875eb}\label{fs_8c_a207b3008bae35596c55ec7c4fc6875eb} 
+\index{fs.c@{fs.c}!iunlockput@{iunlockput}}
+\index{iunlockput@{iunlockput}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{iunlockput()}{iunlockput()}}
+{\footnotesize\ttfamily void iunlockput (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a207b3008bae35596c55ec7c4fc6875eb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a207b3008bae35596c55ec7c4fc6875eb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a7220afa8e5f4bea540eb95879ea7df6e}\label{fs_8c_a7220afa8e5f4bea540eb95879ea7df6e} 
+\index{fs.c@{fs.c}!iupdate@{iupdate}}
+\index{iupdate@{iupdate}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{iupdate()}{iupdate()}}
+{\footnotesize\ttfamily void iupdate (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a7220afa8e5f4bea540eb95879ea7df6e_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a7220afa8e5f4bea540eb95879ea7df6e_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_ae74f6e5b19a4e7f3e72807ee67141819}\label{fs_8c_ae74f6e5b19a4e7f3e72807ee67141819} 
+\index{fs.c@{fs.c}!namecmp@{namecmp}}
+\index{namecmp@{namecmp}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{namecmp()}{namecmp()}}
+{\footnotesize\ttfamily int namecmp (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{t }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=237pt]{d2/d5a/fs_8c_ae74f6e5b19a4e7f3e72807ee67141819_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_ae74f6e5b19a4e7f3e72807ee67141819_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a35c52ecf358097c17dcbbd5594acb41a}\label{fs_8c_a35c52ecf358097c17dcbbd5594acb41a} 
+\index{fs.c@{fs.c}!namei@{namei}}
+\index{namei@{namei}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{namei()}{namei()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} namei (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{path }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{d2/d5a/fs_8c_a35c52ecf358097c17dcbbd5594acb41a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_ade44726f2aed2af27fa0df5f63f9e688}\label{fs_8c_ade44726f2aed2af27fa0df5f63f9e688} 
+\index{fs.c@{fs.c}!nameiparent@{nameiparent}}
+\index{nameiparent@{nameiparent}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{nameiparent()}{nameiparent()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*} nameiparent (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=263pt]{d2/d5a/fs_8c_ade44726f2aed2af27fa0df5f63f9e688_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a3aba1fa9f6789d09356aec5b96d91fa8}\label{fs_8c_a3aba1fa9f6789d09356aec5b96d91fa8} 
+\index{fs.c@{fs.c}!readi@{readi}}
+\index{readi@{readi}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{readi()}{readi()}}
+{\footnotesize\ttfamily int readi (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip,  }\item[{char \texorpdfstring{$\ast$}{*}}]{dst,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{off,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a3aba1fa9f6789d09356aec5b96d91fa8_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a3aba1fa9f6789d09356aec5b96d91fa8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_aff0080b2133027be2e525ca088b40e78}\label{fs_8c_aff0080b2133027be2e525ca088b40e78} 
+\index{fs.c@{fs.c}!readsb@{readsb}}
+\index{readsb@{readsb}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{readsb()}{readsb()}}
+{\footnotesize\ttfamily void readsb (\begin{DoxyParamCaption}\item[{int}]{dev,  }\item[{struct \mbox{\hyperlink{structsuperblock}{superblock}} \texorpdfstring{$\ast$}{*}}]{sb }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_aff0080b2133027be2e525ca088b40e78_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=299pt]{d2/d5a/fs_8c_aff0080b2133027be2e525ca088b40e78_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a4ccff0bd4d9802e709d0af8d71a59861}\label{fs_8c_a4ccff0bd4d9802e709d0af8d71a59861} 
+\index{fs.c@{fs.c}!stati@{stati}}
+\index{stati@{stati}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{stati()}{stati()}}
+{\footnotesize\ttfamily void stati (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip,  }\item[{struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}}]{st }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{d2/d5a/fs_8c_a4ccff0bd4d9802e709d0af8d71a59861_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{fs_8c_a15858f4d8a4cc1def3d84d03c312836b}\label{fs_8c_a15858f4d8a4cc1def3d84d03c312836b} 
+\index{fs.c@{fs.c}!writei@{writei}}
+\index{writei@{writei}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{writei()}{writei()}}
+{\footnotesize\ttfamily int writei (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structinode}{inode}} \texorpdfstring{$\ast$}{*}}]{ip,  }\item[{char \texorpdfstring{$\ast$}{*}}]{src,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{off,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d2/d5a/fs_8c_a15858f4d8a4cc1def3d84d03c312836b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=327pt]{d2/d5a/fs_8c_a15858f4d8a4cc1def3d84d03c312836b_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{fs_8c_a5a78db4f7c856337d906f0606b19bff5}\label{fs_8c_a5a78db4f7c856337d906f0606b19bff5} 
+\index{fs.c@{fs.c}!icache@{icache}}
+\index{icache@{icache}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily struct  \{ ... \}  icache}
+
+\Hypertarget{fs_8c_a6baaf26dd83b71b8d684c5d54a709e31}\label{fs_8c_a6baaf26dd83b71b8d684c5d54a709e31} 
+\index{fs.c@{fs.c}!inode@{inode}}
+\index{inode@{inode}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{inode}{inode}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structinode}{inode}} \mbox{\hyperlink{structinode}{inode}}\mbox{[}\mbox{\hyperlink{param_8h_adabafa10c7951be7c875cd2ee212be85}{NINODE}}\mbox{]}}
+
+\Hypertarget{fs_8c_ab28e82cd5dda7d960095706a3ea20572}\label{fs_8c_ab28e82cd5dda7d960095706a3ea20572} 
+\index{fs.c@{fs.c}!lock@{lock}}
+\index{lock@{lock}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} lock}
+
+\Hypertarget{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}\label{fs_8c_a0248d0bac625de5a1415f2f8c91f3343} 
+\index{fs.c@{fs.c}!sb@{sb}}
+\index{sb@{sb}!fs.c@{fs.c}}
+\doxysubsubsection{\texorpdfstring{sb}{sb}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsuperblock}{superblock}} sb}
+

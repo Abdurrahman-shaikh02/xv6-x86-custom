@@ -1,0 +1,51 @@
+<map id="param.h" name="param.h">
+<area shape="rect" id="Node000001" title=" " alt="" coords="1003,5,1079,31"/>
+<area shape="rect" id="Node000002" href="$dc/de6/bio_8c.html" title=" " alt="" coords="5,79,59,104"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="989,21,833,21,606,28,340,46,204,61,71,81,59,84,58,79,70,76,203,56,340,41,605,23,833,16,989,16"/>
+<area shape="rect" id="Node000003" href="$d0/d56/console_8c.html" title=" " alt="" coords="83,79,165,104"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="990,23,648,37,415,55,178,81,166,83,165,78,177,76,414,49,648,32,990,18"/>
+<area shape="rect" id="Node000004" href="$df/dc9/exec_8c.html" title=" " alt="" coords="190,79,253,104"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="990,23,862,27,682,36,475,54,266,81,253,84,252,79,265,76,475,48,682,31,861,21,989,17"/>
+<area shape="rect" id="Node000005" href="$d6/d13/file_8c.html" title=" " alt="" coords="277,79,331,104"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="990,23,873,27,712,36,528,54,343,81,331,84,330,79,342,76,528,48,712,31,873,22,989,18"/>
+<area shape="rect" id="Node000006" href="$d2/d5a/fs_8c.html" title=" " alt="" coords="355,79,400,104"/>
+<area shape="poly" id="edge5_Node000001_Node000006" title=" " alt="" coords="990,23,884,27,740,37,577,54,413,81,401,84,400,79,411,76,576,49,739,31,883,22,990,18"/>
+<area shape="rect" id="Node000007" href="$d9/d2f/ide_8c.html" title=" " alt="" coords="424,79,477,104"/>
+<area shape="poly" id="edge6_Node000001_Node000007" title=" " alt="" coords="990,24,771,41,631,58,490,81,478,84,477,79,489,76,630,53,770,36,989,19"/>
+<area shape="rect" id="Node000008" href="$d4/def/kalloc_8c.html" title=" " alt="" coords="502,79,573,104"/>
+<area shape="poly" id="edge7_Node000001_Node000008" title=" " alt="" coords="990,27,811,47,586,81,573,84,572,79,585,76,810,42,990,22"/>
+<area shape="rect" id="Node000009" href="$dc/df6/lapic_8c.html" title=" " alt="" coords="597,79,661,104"/>
+<area shape="poly" id="edge8_Node000001_Node000009" title=" " alt="" coords="990,29,847,50,674,81,662,84,661,79,673,76,846,45,989,24"/>
+<area shape="rect" id="Node000010" href="$d7/df8/log_8c.html" title=" " alt="" coords="685,79,739,104"/>
+<area shape="poly" id="edge9_Node000001_Node000010" title=" " alt="" coords="990,31,880,52,751,81,740,84,738,79,750,76,879,47,989,26"/>
+<area shape="rect" id="Node000011" href="$d0/d29/main_8c.html" title=" " alt="" coords="763,79,829,104"/>
+<area shape="poly" id="edge10_Node000001_Node000011" title=" " alt="" coords="991,37,830,83,829,78,989,32"/>
+<area shape="rect" id="Node000012" href="$da/d9b/memide_8c.html" title=" " alt="" coords="854,79,941,104"/>
+<area shape="poly" id="edge11_Node000001_Node000012" title=" " alt="" coords="1007,39,922,81,920,76,1005,34"/>
+<area shape="rect" id="Node000013" href="$d7/d1f/mkfs_8c.html" title=" " alt="" coords="965,79,1032,104"/>
+<area shape="poly" id="edge12_Node000001_Node000013" title=" " alt="" coords="1030,44,1008,80,1003,77,1025,41"/>
+<area shape="rect" id="Node000014" href="$dd/d06/mp_8c.html" title=" " alt="" coords="1057,79,1111,104"/>
+<area shape="poly" id="edge13_Node000001_Node000014" title=" " alt="" coords="1058,41,1079,77,1075,80,1053,44"/>
+<area shape="rect" id="Node000015" href="$d1/d47/pipe_8c.html" title=" " alt="" coords="1136,79,1197,104"/>
+<area shape="poly" id="edge14_Node000001_Node000015" title=" " alt="" coords="1075,35,1147,76,1145,81,1072,40"/>
+<area shape="rect" id="Node000016" href="$d3/dda/proc_8c.html" title=" " alt="" coords="1221,79,1283,104"/>
+<area shape="poly" id="edge15_Node000001_Node000016" title=" " alt="" coords="1089,33,1222,77,1220,82,1087,38"/>
+<area shape="rect" id="Node000017" href="$d8/dd1/sleeplock_8c.html" title=" " alt="" coords="1307,79,1402,104"/>
+<area shape="poly" id="edge16_Node000001_Node000017" title=" " alt="" coords="1094,28,1308,77,1307,82,1092,34"/>
+<area shape="rect" id="Node000018" href="$d3/d2d/spinlock_8c.html" title=" " alt="" coords="1426,79,1513,104"/>
+<area shape="poly" id="edge17_Node000001_Node000018" title=" " alt="" coords="1094,24,1415,76,1426,78,1425,83,1414,81,1093,29"/>
+<area shape="rect" id="Node000019" href="$db/dd8/syscall_8c.html" title=" " alt="" coords="1537,79,1615,104"/>
+<area shape="poly" id="edge18_Node000001_Node000019" title=" " alt="" coords="1093,21,1284,42,1526,76,1537,78,1536,83,1525,81,1284,47,1093,27"/>
+<area shape="rect" id="Node000020" href="$d1/d14/sysfile_8c.html" title=" " alt="" coords="1640,79,1715,104"/>
+<area shape="poly" id="edge19_Node000001_Node000020" title=" " alt="" coords="1093,20,1326,38,1476,55,1628,76,1640,78,1639,83,1628,81,1476,60,1325,44,1093,25"/>
+<area shape="rect" id="Node000021" href="$dd/d35/sysproc_8c.html" title=" " alt="" coords="1739,79,1821,104"/>
+<area shape="poly" id="edge20_Node000001_Node000021" title=" " alt="" coords="1093,19,1365,36,1545,53,1727,76,1739,78,1738,83,1726,81,1544,58,1364,42,1093,24"/>
+<area shape="rect" id="Node000022" href="$dc/d6f/trap_8c.html" title=" " alt="" coords="1845,79,1904,104"/>
+<area shape="poly" id="edge21_Node000001_Node000022" title=" " alt="" coords="1093,17,1223,20,1407,29,1619,47,1834,76,1846,79,1844,84,1833,81,1619,52,1407,35,1223,26,1093,22"/>
+<area shape="rect" id="Node000023" href="$d1/d87/uart_8c.html" title=" " alt="" coords="1928,79,1987,104"/>
+<area shape="poly" id="edge22_Node000001_Node000023" title=" " alt="" coords="1093,17,1236,19,1440,27,1676,45,1798,58,1916,76,1928,78,1927,84,1916,81,1797,64,1676,50,1439,32,1235,24,1093,22"/>
+<area shape="rect" id="Node000024" href="$df/d5d/umalloc_8c.html" title=" " alt="" coords="2011,79,2096,104"/>
+<area shape="poly" id="edge23_Node000001_Node000024" title=" " alt="" coords="1093,17,1247,21,1471,30,1733,48,1999,76,2011,78,2010,83,1998,81,1732,53,1471,36,1247,26,1093,23"/>
+<area shape="rect" id="Node000025" href="$de/de9/vm_8c.html" title=" " alt="" coords="2121,79,2175,104"/>
+<area shape="poly" id="edge24_Node000001_Node000025" title=" " alt="" coords="1093,18,1596,36,1892,54,2015,64,2108,76,2121,79,2120,84,2108,81,2015,69,1892,59,1596,42,1093,23"/>
+</map>

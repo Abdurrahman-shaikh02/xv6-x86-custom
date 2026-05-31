@@ -1,0 +1,235 @@
+\doxysection{sysfile.\+c File Reference}
+\hypertarget{sysfile_8c}{}\label{sysfile_8c}\index{sysfile.c@{sysfile.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}stat.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}file.\+h"{}}\newline
+{\ttfamily \#include "{}fcntl.\+h"{}}\newline
+Include dependency graph for sysfile.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/de8/sysfile_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{sysfile_8c_a8f8b9e2d98e8b444f23a39ae8992feff}{sys\+\_\+dup}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a54bf714d9e898cbdcbc061b280bbfae0}{sys\+\_\+read}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a687d939a9e4792af15db96f2c2f34378}{sys\+\_\+write}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a32945488fd39bc405757177b37cd2250}{sys\+\_\+close}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_ac243c8f20f5fb2e3e257b5007af2c204}{sys\+\_\+fstat}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a759600870314007ac558871239122fb7}{sys\+\_\+link}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_ae1e58ee11d41f643929520d8c1640da7}{sys\+\_\+unlink}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a74e45efc661ca17c068bc283b3842e6d}{sys\+\_\+open}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a057e5bce2de7a87ebfd2dc33967bca4a}{sys\+\_\+mkdir}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a25697aa3d828b5878d38170d724adb27}{sys\+\_\+mknod}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_ad1c5f8693cb35b9605fee09eebdda640}{sys\+\_\+chdir}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_aeaa813ddeb6a5fac3c45714c7351c526}{sys\+\_\+exec}} (void)
+\item 
+int \mbox{\hyperlink{sysfile_8c_a9a70db941def46ec25939e6c2d30e399}{sys\+\_\+pipe}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{sysfile_8c_ad1c5f8693cb35b9605fee09eebdda640}\label{sysfile_8c_ad1c5f8693cb35b9605fee09eebdda640} 
+\index{sysfile.c@{sysfile.c}!sys\_chdir@{sys\_chdir}}
+\index{sys\_chdir@{sys\_chdir}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_chdir()}{sys\_chdir()}}
+{\footnotesize\ttfamily int sys\+\_\+chdir (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_ad1c5f8693cb35b9605fee09eebdda640_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a32945488fd39bc405757177b37cd2250}\label{sysfile_8c_a32945488fd39bc405757177b37cd2250} 
+\index{sysfile.c@{sysfile.c}!sys\_close@{sys\_close}}
+\index{sys\_close@{sys\_close}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_close()}{sys\_close()}}
+{\footnotesize\ttfamily int sys\+\_\+close (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a32945488fd39bc405757177b37cd2250_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a8f8b9e2d98e8b444f23a39ae8992feff}\label{sysfile_8c_a8f8b9e2d98e8b444f23a39ae8992feff} 
+\index{sysfile.c@{sysfile.c}!sys\_dup@{sys\_dup}}
+\index{sys\_dup@{sys\_dup}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_dup()}{sys\_dup()}}
+{\footnotesize\ttfamily int sys\+\_\+dup (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a8f8b9e2d98e8b444f23a39ae8992feff_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_aeaa813ddeb6a5fac3c45714c7351c526}\label{sysfile_8c_aeaa813ddeb6a5fac3c45714c7351c526} 
+\index{sysfile.c@{sysfile.c}!sys\_exec@{sys\_exec}}
+\index{sys\_exec@{sys\_exec}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_exec()}{sys\_exec()}}
+{\footnotesize\ttfamily int sys\+\_\+exec (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_aeaa813ddeb6a5fac3c45714c7351c526_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_ac243c8f20f5fb2e3e257b5007af2c204}\label{sysfile_8c_ac243c8f20f5fb2e3e257b5007af2c204} 
+\index{sysfile.c@{sysfile.c}!sys\_fstat@{sys\_fstat}}
+\index{sys\_fstat@{sys\_fstat}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_fstat()}{sys\_fstat()}}
+{\footnotesize\ttfamily int sys\+\_\+fstat (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_ac243c8f20f5fb2e3e257b5007af2c204_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a759600870314007ac558871239122fb7}\label{sysfile_8c_a759600870314007ac558871239122fb7} 
+\index{sysfile.c@{sysfile.c}!sys\_link@{sys\_link}}
+\index{sys\_link@{sys\_link}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_link()}{sys\_link()}}
+{\footnotesize\ttfamily int sys\+\_\+link (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a759600870314007ac558871239122fb7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a057e5bce2de7a87ebfd2dc33967bca4a}\label{sysfile_8c_a057e5bce2de7a87ebfd2dc33967bca4a} 
+\index{sysfile.c@{sysfile.c}!sys\_mkdir@{sys\_mkdir}}
+\index{sys\_mkdir@{sys\_mkdir}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_mkdir()}{sys\_mkdir()}}
+{\footnotesize\ttfamily int sys\+\_\+mkdir (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a057e5bce2de7a87ebfd2dc33967bca4a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a25697aa3d828b5878d38170d724adb27}\label{sysfile_8c_a25697aa3d828b5878d38170d724adb27} 
+\index{sysfile.c@{sysfile.c}!sys\_mknod@{sys\_mknod}}
+\index{sys\_mknod@{sys\_mknod}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_mknod()}{sys\_mknod()}}
+{\footnotesize\ttfamily int sys\+\_\+mknod (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a25697aa3d828b5878d38170d724adb27_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a74e45efc661ca17c068bc283b3842e6d}\label{sysfile_8c_a74e45efc661ca17c068bc283b3842e6d} 
+\index{sysfile.c@{sysfile.c}!sys\_open@{sys\_open}}
+\index{sys\_open@{sys\_open}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_open()}{sys\_open()}}
+{\footnotesize\ttfamily int sys\+\_\+open (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a74e45efc661ca17c068bc283b3842e6d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a9a70db941def46ec25939e6c2d30e399}\label{sysfile_8c_a9a70db941def46ec25939e6c2d30e399} 
+\index{sysfile.c@{sysfile.c}!sys\_pipe@{sys\_pipe}}
+\index{sys\_pipe@{sys\_pipe}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_pipe()}{sys\_pipe()}}
+{\footnotesize\ttfamily int sys\+\_\+pipe (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a9a70db941def46ec25939e6c2d30e399_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a54bf714d9e898cbdcbc061b280bbfae0}\label{sysfile_8c_a54bf714d9e898cbdcbc061b280bbfae0} 
+\index{sysfile.c@{sysfile.c}!sys\_read@{sys\_read}}
+\index{sys\_read@{sys\_read}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_read()}{sys\_read()}}
+{\footnotesize\ttfamily int sys\+\_\+read (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a54bf714d9e898cbdcbc061b280bbfae0_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_ae1e58ee11d41f643929520d8c1640da7}\label{sysfile_8c_ae1e58ee11d41f643929520d8c1640da7} 
+\index{sysfile.c@{sysfile.c}!sys\_unlink@{sys\_unlink}}
+\index{sys\_unlink@{sys\_unlink}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_unlink()}{sys\_unlink()}}
+{\footnotesize\ttfamily int sys\+\_\+unlink (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_ae1e58ee11d41f643929520d8c1640da7_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{sysfile_8c_a687d939a9e4792af15db96f2c2f34378}\label{sysfile_8c_a687d939a9e4792af15db96f2c2f34378} 
+\index{sysfile.c@{sysfile.c}!sys\_write@{sys\_write}}
+\index{sys\_write@{sys\_write}!sysfile.c@{sysfile.c}}
+\doxysubsubsection{\texorpdfstring{sys\_write()}{sys\_write()}}
+{\footnotesize\ttfamily int sys\+\_\+write (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d14/sysfile_8c_a687d939a9e4792af15db96f2c2f34378_cgraph}
+\end{center}
+\end{figure}

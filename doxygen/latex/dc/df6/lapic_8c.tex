@@ -1,0 +1,460 @@
+\doxysection{lapic.\+c File Reference}
+\hypertarget{lapic_8c}{}\label{lapic_8c}\index{lapic.c@{lapic.c}}
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}date.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}traps.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+Include dependency graph for lapic.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/dfd/lapic_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a77ceac8d6af195fe72f95f6afd87c45e}{ID}}~(0x0020/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a98ed931f97fef7e06e3ea441d0326c67}{VER}}~(0x0030/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a0d378efcaaff1100c96bff8856bfc036}{TPR}}~(0x0080/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a04c9015da7e7ea45f3b80793809e2d7b}{EOI}}~(0x00\+B0/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a062fc16f4eacb723c76e2c87c8495412}{SVR}}~(0x00\+F0/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a514ad415fb6125ba296793df7d1a468a}{ENABLE}}~0x00000100
+\item 
+\#define \mbox{\hyperlink{lapic_8c_ae4ad5e3805ffa2cbe03b65421edd8f99}{ESR}}~(0x0280/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_ae6db3be23c343c0823604670010635f7}{ICRLO}}~(0x0300/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_ab5889105dcd019008c9448dff61323f6}{INIT}}~0x00000500
+\item 
+\#define \mbox{\hyperlink{lapic_8c_ad0dd8aa1d9d769cf15609ca108af4af9}{STARTUP}}~0x00000600
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a5f0b856b460d14d6fac161e35cfdb9d1}{DELIVS}}~0x00001000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_af343b20373ba49a92fce523e948f2ab3}{ASSERT}}~0x00004000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a8b48e10f84b81902cf66c89ac52649b7}{DEASSERT}}~0x00000000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a73f717b7aae31163c2a85f67883bf0ed}{LEVEL}}~0x00008000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_adc4a14c073a7427003796cbd9d435758}{BCAST}}~0x00080000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_ab5be0aaddb58ffb9cb20c12530d66316}{BUSY}}~0x00001000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a20207ffc8e6f0bdcefb5c42a5b5c3fb8}{FIXED}}~0x00000000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a9382474befd66e12c502eb221e4f9a0d}{ICRHI}}~(0x0310/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a599217205dc3092c26567a2bd868ef3a}{TIMER}}~(0x0320/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a1964818ccd90a6173ea48cecb652feeb}{X1}}~0x0000000B
+\item 
+\#define \mbox{\hyperlink{lapic_8c_af36821ad7b93ab31dcfaaa25e134fdf0}{PERIODIC}}~0x00020000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a5c989e3931132d4a4aca9cacfcb8b075}{PCINT}}~(0x0340/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_acec8cff36b5e5b2b4bda262480db2af2}{LINT0}}~(0x0350/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a19035d504c49cf257ef4dc27cd3eb668}{LINT1}}~(0x0360/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a8fe83ac76edc595f6b98cd4a4127aed5}{ERROR}}~(0x0370/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a8fe9c058dcb81f528134d37e741182a3}{MASKED}}~0x00010000
+\item 
+\#define \mbox{\hyperlink{lapic_8c_af1d7a14061b402e4718eff6d9ef7ada4}{TICR}}~(0x0380/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a1a73e99a3dd2d2d7dc6bbf084638e044}{TCCR}}~(0x0390/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a11b0b699f28c2043fcd6da289fff7375}{TDCR}}~(0x03\+E0/4)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a6ef3cdae7f581dab8f55d73dfa7a49bb}{CMOS\+\_\+\+PORT}}~0x70
+\item 
+\#define \mbox{\hyperlink{lapic_8c_aa08689fc090758a03b691b9909299ddc}{CMOS\+\_\+\+RETURN}}~0x71
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a7961582c4c0d7e087ef0c461b27d2bcb}{CMOS\+\_\+\+STATA}}~0x0a
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a7cacd7bee07e3e7ccb0bf85965d33fa4}{CMOS\+\_\+\+STATB}}~0x0b
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a2c7758749c45a1f6a3ae41bcbdfa72f3}{CMOS\+\_\+\+UIP}}~(1 $<$$<$ 7)
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a512a9ef84990cc5b81d736cb2520a063}{SECS}}~0x00
+\item 
+\#define \mbox{\hyperlink{lapic_8c_afa2fdcd26bbe3ddf0ac9c9487aa59284}{MINS}}~0x02
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a212d0f839f6f7ca43ccde311f93d5892}{HOURS}}~0x04
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a509a01c55cbe47386fe24602b7c7fda1}{DAY}}~0x07
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a3729d06495d9713592f79f3122c9e677}{MONTH}}~0x08
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a5871356500f559add06ea81d60331b1b}{YEAR}}~0x09
+\item 
+\#define \mbox{\hyperlink{lapic_8c_a7d52e480824afb678582f7b21cbd739d}{CONV}}(x)~(t1.\+x = ((t1.\+x $>$$>$ 4) \texorpdfstring{$\ast$}{*} 10) + (t1.\+x \& 0xf))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{lapic_8c_a6b48a1e50acc73cb3e70a65774c87392}{lapicinit}} (void)
+\item 
+int \mbox{\hyperlink{lapic_8c_a627f7996b64f99d885244a5102c85164}{lapicid}} (void)
+\item 
+void \mbox{\hyperlink{lapic_8c_a42fdd0783bbeb7cdc646d360191cdcac}{lapiceoi}} (void)
+\item 
+void \mbox{\hyperlink{lapic_8c_ae0ac6441d1d76d8ef821cdbbc6b6fc2f}{microdelay}} (int us)
+\item 
+void \mbox{\hyperlink{lapic_8c_a54df00c792282426648d2876835958fa}{lapicstartap}} (\mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}} apicid, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} addr)
+\item 
+void \mbox{\hyperlink{lapic_8c_a7247ece9501e31d62cffad46ec33d7af}{cmostime}} (struct \mbox{\hyperlink{structrtcdate}{rtcdate}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{console_8c_af10fa12dd785c91e29528fbdc50cf9af}{r}})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{lapic_8c_a4029f3e2439d5912f93543b8addd10ec}{lapic}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{lapic_8c_af343b20373ba49a92fce523e948f2ab3}\label{lapic_8c_af343b20373ba49a92fce523e948f2ab3} 
+\index{lapic.c@{lapic.c}!ASSERT@{ASSERT}}
+\index{ASSERT@{ASSERT}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ASSERT}{ASSERT}}
+{\footnotesize\ttfamily \#define ASSERT~0x00004000}
+
+\Hypertarget{lapic_8c_adc4a14c073a7427003796cbd9d435758}\label{lapic_8c_adc4a14c073a7427003796cbd9d435758} 
+\index{lapic.c@{lapic.c}!BCAST@{BCAST}}
+\index{BCAST@{BCAST}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{BCAST}{BCAST}}
+{\footnotesize\ttfamily \#define BCAST~0x00080000}
+
+\Hypertarget{lapic_8c_ab5be0aaddb58ffb9cb20c12530d66316}\label{lapic_8c_ab5be0aaddb58ffb9cb20c12530d66316} 
+\index{lapic.c@{lapic.c}!BUSY@{BUSY}}
+\index{BUSY@{BUSY}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{BUSY}{BUSY}}
+{\footnotesize\ttfamily \#define BUSY~0x00001000}
+
+\Hypertarget{lapic_8c_a6ef3cdae7f581dab8f55d73dfa7a49bb}\label{lapic_8c_a6ef3cdae7f581dab8f55d73dfa7a49bb} 
+\index{lapic.c@{lapic.c}!CMOS\_PORT@{CMOS\_PORT}}
+\index{CMOS\_PORT@{CMOS\_PORT}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{CMOS\_PORT}{CMOS\_PORT}}
+{\footnotesize\ttfamily \#define CMOS\+\_\+\+PORT~0x70}
+
+\Hypertarget{lapic_8c_aa08689fc090758a03b691b9909299ddc}\label{lapic_8c_aa08689fc090758a03b691b9909299ddc} 
+\index{lapic.c@{lapic.c}!CMOS\_RETURN@{CMOS\_RETURN}}
+\index{CMOS\_RETURN@{CMOS\_RETURN}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{CMOS\_RETURN}{CMOS\_RETURN}}
+{\footnotesize\ttfamily \#define CMOS\+\_\+\+RETURN~0x71}
+
+\Hypertarget{lapic_8c_a7961582c4c0d7e087ef0c461b27d2bcb}\label{lapic_8c_a7961582c4c0d7e087ef0c461b27d2bcb} 
+\index{lapic.c@{lapic.c}!CMOS\_STATA@{CMOS\_STATA}}
+\index{CMOS\_STATA@{CMOS\_STATA}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{CMOS\_STATA}{CMOS\_STATA}}
+{\footnotesize\ttfamily \#define CMOS\+\_\+\+STATA~0x0a}
+
+\Hypertarget{lapic_8c_a7cacd7bee07e3e7ccb0bf85965d33fa4}\label{lapic_8c_a7cacd7bee07e3e7ccb0bf85965d33fa4} 
+\index{lapic.c@{lapic.c}!CMOS\_STATB@{CMOS\_STATB}}
+\index{CMOS\_STATB@{CMOS\_STATB}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{CMOS\_STATB}{CMOS\_STATB}}
+{\footnotesize\ttfamily \#define CMOS\+\_\+\+STATB~0x0b}
+
+\Hypertarget{lapic_8c_a2c7758749c45a1f6a3ae41bcbdfa72f3}\label{lapic_8c_a2c7758749c45a1f6a3ae41bcbdfa72f3} 
+\index{lapic.c@{lapic.c}!CMOS\_UIP@{CMOS\_UIP}}
+\index{CMOS\_UIP@{CMOS\_UIP}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{CMOS\_UIP}{CMOS\_UIP}}
+{\footnotesize\ttfamily \#define CMOS\+\_\+\+UIP~(1 $<$$<$ 7)}
+
+\Hypertarget{lapic_8c_a7d52e480824afb678582f7b21cbd739d}\label{lapic_8c_a7d52e480824afb678582f7b21cbd739d} 
+\index{lapic.c@{lapic.c}!CONV@{CONV}}
+\index{CONV@{CONV}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{CONV}{CONV}}
+{\footnotesize\ttfamily \#define CONV(\begin{DoxyParamCaption}\item[{}]{x }\end{DoxyParamCaption})~(t1.\+x = ((t1.\+x $>$$>$ 4) \texorpdfstring{$\ast$}{*} 10) + (t1.\+x \& 0xf))}
+
+\Hypertarget{lapic_8c_a509a01c55cbe47386fe24602b7c7fda1}\label{lapic_8c_a509a01c55cbe47386fe24602b7c7fda1} 
+\index{lapic.c@{lapic.c}!DAY@{DAY}}
+\index{DAY@{DAY}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{DAY}{DAY}}
+{\footnotesize\ttfamily \#define DAY~0x07}
+
+\Hypertarget{lapic_8c_a8b48e10f84b81902cf66c89ac52649b7}\label{lapic_8c_a8b48e10f84b81902cf66c89ac52649b7} 
+\index{lapic.c@{lapic.c}!DEASSERT@{DEASSERT}}
+\index{DEASSERT@{DEASSERT}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{DEASSERT}{DEASSERT}}
+{\footnotesize\ttfamily \#define DEASSERT~0x00000000}
+
+\Hypertarget{lapic_8c_a5f0b856b460d14d6fac161e35cfdb9d1}\label{lapic_8c_a5f0b856b460d14d6fac161e35cfdb9d1} 
+\index{lapic.c@{lapic.c}!DELIVS@{DELIVS}}
+\index{DELIVS@{DELIVS}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{DELIVS}{DELIVS}}
+{\footnotesize\ttfamily \#define DELIVS~0x00001000}
+
+\Hypertarget{lapic_8c_a514ad415fb6125ba296793df7d1a468a}\label{lapic_8c_a514ad415fb6125ba296793df7d1a468a} 
+\index{lapic.c@{lapic.c}!ENABLE@{ENABLE}}
+\index{ENABLE@{ENABLE}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ENABLE}{ENABLE}}
+{\footnotesize\ttfamily \#define ENABLE~0x00000100}
+
+\Hypertarget{lapic_8c_a04c9015da7e7ea45f3b80793809e2d7b}\label{lapic_8c_a04c9015da7e7ea45f3b80793809e2d7b} 
+\index{lapic.c@{lapic.c}!EOI@{EOI}}
+\index{EOI@{EOI}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{EOI}{EOI}}
+{\footnotesize\ttfamily \#define EOI~(0x00\+B0/4)}
+
+\Hypertarget{lapic_8c_a8fe83ac76edc595f6b98cd4a4127aed5}\label{lapic_8c_a8fe83ac76edc595f6b98cd4a4127aed5} 
+\index{lapic.c@{lapic.c}!ERROR@{ERROR}}
+\index{ERROR@{ERROR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ERROR}{ERROR}}
+{\footnotesize\ttfamily \#define ERROR~(0x0370/4)}
+
+\Hypertarget{lapic_8c_ae4ad5e3805ffa2cbe03b65421edd8f99}\label{lapic_8c_ae4ad5e3805ffa2cbe03b65421edd8f99} 
+\index{lapic.c@{lapic.c}!ESR@{ESR}}
+\index{ESR@{ESR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ESR}{ESR}}
+{\footnotesize\ttfamily \#define ESR~(0x0280/4)}
+
+\Hypertarget{lapic_8c_a20207ffc8e6f0bdcefb5c42a5b5c3fb8}\label{lapic_8c_a20207ffc8e6f0bdcefb5c42a5b5c3fb8} 
+\index{lapic.c@{lapic.c}!FIXED@{FIXED}}
+\index{FIXED@{FIXED}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{FIXED}{FIXED}}
+{\footnotesize\ttfamily \#define FIXED~0x00000000}
+
+\Hypertarget{lapic_8c_a212d0f839f6f7ca43ccde311f93d5892}\label{lapic_8c_a212d0f839f6f7ca43ccde311f93d5892} 
+\index{lapic.c@{lapic.c}!HOURS@{HOURS}}
+\index{HOURS@{HOURS}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{HOURS}{HOURS}}
+{\footnotesize\ttfamily \#define HOURS~0x04}
+
+\Hypertarget{lapic_8c_a9382474befd66e12c502eb221e4f9a0d}\label{lapic_8c_a9382474befd66e12c502eb221e4f9a0d} 
+\index{lapic.c@{lapic.c}!ICRHI@{ICRHI}}
+\index{ICRHI@{ICRHI}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ICRHI}{ICRHI}}
+{\footnotesize\ttfamily \#define ICRHI~(0x0310/4)}
+
+\Hypertarget{lapic_8c_ae6db3be23c343c0823604670010635f7}\label{lapic_8c_ae6db3be23c343c0823604670010635f7} 
+\index{lapic.c@{lapic.c}!ICRLO@{ICRLO}}
+\index{ICRLO@{ICRLO}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ICRLO}{ICRLO}}
+{\footnotesize\ttfamily \#define ICRLO~(0x0300/4)}
+
+\Hypertarget{lapic_8c_a77ceac8d6af195fe72f95f6afd87c45e}\label{lapic_8c_a77ceac8d6af195fe72f95f6afd87c45e} 
+\index{lapic.c@{lapic.c}!ID@{ID}}
+\index{ID@{ID}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{ID}{ID}}
+{\footnotesize\ttfamily \#define ID~(0x0020/4)}
+
+\Hypertarget{lapic_8c_ab5889105dcd019008c9448dff61323f6}\label{lapic_8c_ab5889105dcd019008c9448dff61323f6} 
+\index{lapic.c@{lapic.c}!INIT@{INIT}}
+\index{INIT@{INIT}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{INIT}{INIT}}
+{\footnotesize\ttfamily \#define INIT~0x00000500}
+
+\Hypertarget{lapic_8c_a73f717b7aae31163c2a85f67883bf0ed}\label{lapic_8c_a73f717b7aae31163c2a85f67883bf0ed} 
+\index{lapic.c@{lapic.c}!LEVEL@{LEVEL}}
+\index{LEVEL@{LEVEL}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{LEVEL}{LEVEL}}
+{\footnotesize\ttfamily \#define LEVEL~0x00008000}
+
+\Hypertarget{lapic_8c_acec8cff36b5e5b2b4bda262480db2af2}\label{lapic_8c_acec8cff36b5e5b2b4bda262480db2af2} 
+\index{lapic.c@{lapic.c}!LINT0@{LINT0}}
+\index{LINT0@{LINT0}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{LINT0}{LINT0}}
+{\footnotesize\ttfamily \#define LINT0~(0x0350/4)}
+
+\Hypertarget{lapic_8c_a19035d504c49cf257ef4dc27cd3eb668}\label{lapic_8c_a19035d504c49cf257ef4dc27cd3eb668} 
+\index{lapic.c@{lapic.c}!LINT1@{LINT1}}
+\index{LINT1@{LINT1}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{LINT1}{LINT1}}
+{\footnotesize\ttfamily \#define LINT1~(0x0360/4)}
+
+\Hypertarget{lapic_8c_a8fe9c058dcb81f528134d37e741182a3}\label{lapic_8c_a8fe9c058dcb81f528134d37e741182a3} 
+\index{lapic.c@{lapic.c}!MASKED@{MASKED}}
+\index{MASKED@{MASKED}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{MASKED}{MASKED}}
+{\footnotesize\ttfamily \#define MASKED~0x00010000}
+
+\Hypertarget{lapic_8c_afa2fdcd26bbe3ddf0ac9c9487aa59284}\label{lapic_8c_afa2fdcd26bbe3ddf0ac9c9487aa59284} 
+\index{lapic.c@{lapic.c}!MINS@{MINS}}
+\index{MINS@{MINS}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{MINS}{MINS}}
+{\footnotesize\ttfamily \#define MINS~0x02}
+
+\Hypertarget{lapic_8c_a3729d06495d9713592f79f3122c9e677}\label{lapic_8c_a3729d06495d9713592f79f3122c9e677} 
+\index{lapic.c@{lapic.c}!MONTH@{MONTH}}
+\index{MONTH@{MONTH}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{MONTH}{MONTH}}
+{\footnotesize\ttfamily \#define MONTH~0x08}
+
+\Hypertarget{lapic_8c_a5c989e3931132d4a4aca9cacfcb8b075}\label{lapic_8c_a5c989e3931132d4a4aca9cacfcb8b075} 
+\index{lapic.c@{lapic.c}!PCINT@{PCINT}}
+\index{PCINT@{PCINT}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{PCINT}{PCINT}}
+{\footnotesize\ttfamily \#define PCINT~(0x0340/4)}
+
+\Hypertarget{lapic_8c_af36821ad7b93ab31dcfaaa25e134fdf0}\label{lapic_8c_af36821ad7b93ab31dcfaaa25e134fdf0} 
+\index{lapic.c@{lapic.c}!PERIODIC@{PERIODIC}}
+\index{PERIODIC@{PERIODIC}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{PERIODIC}{PERIODIC}}
+{\footnotesize\ttfamily \#define PERIODIC~0x00020000}
+
+\Hypertarget{lapic_8c_a512a9ef84990cc5b81d736cb2520a063}\label{lapic_8c_a512a9ef84990cc5b81d736cb2520a063} 
+\index{lapic.c@{lapic.c}!SECS@{SECS}}
+\index{SECS@{SECS}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{SECS}{SECS}}
+{\footnotesize\ttfamily \#define SECS~0x00}
+
+\Hypertarget{lapic_8c_ad0dd8aa1d9d769cf15609ca108af4af9}\label{lapic_8c_ad0dd8aa1d9d769cf15609ca108af4af9} 
+\index{lapic.c@{lapic.c}!STARTUP@{STARTUP}}
+\index{STARTUP@{STARTUP}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{STARTUP}{STARTUP}}
+{\footnotesize\ttfamily \#define STARTUP~0x00000600}
+
+\Hypertarget{lapic_8c_a062fc16f4eacb723c76e2c87c8495412}\label{lapic_8c_a062fc16f4eacb723c76e2c87c8495412} 
+\index{lapic.c@{lapic.c}!SVR@{SVR}}
+\index{SVR@{SVR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{SVR}{SVR}}
+{\footnotesize\ttfamily \#define SVR~(0x00\+F0/4)}
+
+\Hypertarget{lapic_8c_a1a73e99a3dd2d2d7dc6bbf084638e044}\label{lapic_8c_a1a73e99a3dd2d2d7dc6bbf084638e044} 
+\index{lapic.c@{lapic.c}!TCCR@{TCCR}}
+\index{TCCR@{TCCR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{TCCR}{TCCR}}
+{\footnotesize\ttfamily \#define TCCR~(0x0390/4)}
+
+\Hypertarget{lapic_8c_a11b0b699f28c2043fcd6da289fff7375}\label{lapic_8c_a11b0b699f28c2043fcd6da289fff7375} 
+\index{lapic.c@{lapic.c}!TDCR@{TDCR}}
+\index{TDCR@{TDCR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{TDCR}{TDCR}}
+{\footnotesize\ttfamily \#define TDCR~(0x03\+E0/4)}
+
+\Hypertarget{lapic_8c_af1d7a14061b402e4718eff6d9ef7ada4}\label{lapic_8c_af1d7a14061b402e4718eff6d9ef7ada4} 
+\index{lapic.c@{lapic.c}!TICR@{TICR}}
+\index{TICR@{TICR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{TICR}{TICR}}
+{\footnotesize\ttfamily \#define TICR~(0x0380/4)}
+
+\Hypertarget{lapic_8c_a599217205dc3092c26567a2bd868ef3a}\label{lapic_8c_a599217205dc3092c26567a2bd868ef3a} 
+\index{lapic.c@{lapic.c}!TIMER@{TIMER}}
+\index{TIMER@{TIMER}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{TIMER}{TIMER}}
+{\footnotesize\ttfamily \#define TIMER~(0x0320/4)}
+
+\Hypertarget{lapic_8c_a0d378efcaaff1100c96bff8856bfc036}\label{lapic_8c_a0d378efcaaff1100c96bff8856bfc036} 
+\index{lapic.c@{lapic.c}!TPR@{TPR}}
+\index{TPR@{TPR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{TPR}{TPR}}
+{\footnotesize\ttfamily \#define TPR~(0x0080/4)}
+
+\Hypertarget{lapic_8c_a98ed931f97fef7e06e3ea441d0326c67}\label{lapic_8c_a98ed931f97fef7e06e3ea441d0326c67} 
+\index{lapic.c@{lapic.c}!VER@{VER}}
+\index{VER@{VER}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{VER}{VER}}
+{\footnotesize\ttfamily \#define VER~(0x0030/4)}
+
+\Hypertarget{lapic_8c_a1964818ccd90a6173ea48cecb652feeb}\label{lapic_8c_a1964818ccd90a6173ea48cecb652feeb} 
+\index{lapic.c@{lapic.c}!X1@{X1}}
+\index{X1@{X1}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{X1}{X1}}
+{\footnotesize\ttfamily \#define X1~0x0000000B}
+
+\Hypertarget{lapic_8c_a5871356500f559add06ea81d60331b1b}\label{lapic_8c_a5871356500f559add06ea81d60331b1b} 
+\index{lapic.c@{lapic.c}!YEAR@{YEAR}}
+\index{YEAR@{YEAR}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{YEAR}{YEAR}}
+{\footnotesize\ttfamily \#define YEAR~0x09}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{lapic_8c_a7247ece9501e31d62cffad46ec33d7af}\label{lapic_8c_a7247ece9501e31d62cffad46ec33d7af} 
+\index{lapic.c@{lapic.c}!cmostime@{cmostime}}
+\index{cmostime@{cmostime}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{cmostime()}{cmostime()}}
+{\footnotesize\ttfamily void cmostime (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structrtcdate}{rtcdate}} \texorpdfstring{$\ast$}{*}}]{r }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{dc/df6/lapic_8c_a7247ece9501e31d62cffad46ec33d7af_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lapic_8c_a42fdd0783bbeb7cdc646d360191cdcac}\label{lapic_8c_a42fdd0783bbeb7cdc646d360191cdcac} 
+\index{lapic.c@{lapic.c}!lapiceoi@{lapiceoi}}
+\index{lapiceoi@{lapiceoi}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{lapiceoi()}{lapiceoi()}}
+{\footnotesize\ttfamily void lapiceoi (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=207pt]{dc/df6/lapic_8c_a42fdd0783bbeb7cdc646d360191cdcac_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lapic_8c_a627f7996b64f99d885244a5102c85164}\label{lapic_8c_a627f7996b64f99d885244a5102c85164} 
+\index{lapic.c@{lapic.c}!lapicid@{lapicid}}
+\index{lapicid@{lapicid}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{lapicid()}{lapicid()}}
+{\footnotesize\ttfamily int lapicid (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{dc/df6/lapic_8c_a627f7996b64f99d885244a5102c85164_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lapic_8c_a6b48a1e50acc73cb3e70a65774c87392}\label{lapic_8c_a6b48a1e50acc73cb3e70a65774c87392} 
+\index{lapic.c@{lapic.c}!lapicinit@{lapicinit}}
+\index{lapicinit@{lapicinit}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{lapicinit()}{lapicinit()}}
+{\footnotesize\ttfamily void lapicinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{lapic_8c_a54df00c792282426648d2876835958fa}\label{lapic_8c_a54df00c792282426648d2876835958fa} 
+\index{lapic.c@{lapic.c}!lapicstartap@{lapicstartap}}
+\index{lapicstartap@{lapicstartap}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{lapicstartap()}{lapicstartap()}}
+{\footnotesize\ttfamily void lapicstartap (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}}]{apicid,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{addr }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=261pt]{dc/df6/lapic_8c_a54df00c792282426648d2876835958fa_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{lapic_8c_ae0ac6441d1d76d8ef821cdbbc6b6fc2f}\label{lapic_8c_ae0ac6441d1d76d8ef821cdbbc6b6fc2f} 
+\index{lapic.c@{lapic.c}!microdelay@{microdelay}}
+\index{microdelay@{microdelay}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{microdelay()}{microdelay()}}
+{\footnotesize\ttfamily void microdelay (\begin{DoxyParamCaption}\item[{int}]{us }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=349pt]{dc/df6/lapic_8c_ae0ac6441d1d76d8ef821cdbbc6b6fc2f_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{lapic_8c_a4029f3e2439d5912f93543b8addd10ec}\label{lapic_8c_a4029f3e2439d5912f93543b8addd10ec} 
+\index{lapic.c@{lapic.c}!lapic@{lapic}}
+\index{lapic@{lapic}!lapic.c@{lapic.c}}
+\doxysubsubsection{\texorpdfstring{lapic}{lapic}}
+{\footnotesize\ttfamily volatile \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\texorpdfstring{$\ast$}{*} lapic}
+

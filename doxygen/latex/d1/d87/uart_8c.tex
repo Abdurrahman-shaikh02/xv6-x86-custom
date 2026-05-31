@@ -1,0 +1,105 @@
+\doxysection{uart.\+c File Reference}
+\hypertarget{uart_8c}{}\label{uart_8c}\index{uart.c@{uart.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}traps.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}file.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+Include dependency graph for uart.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d0/d56/uart_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{uart_8c_a00dbb3ab1c59e14699be9393693e2248}{COM1}}~0x3f8
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{uart_8c_a79fa7b73d0d61fdd15d30768a395437d}{uartinit}} (void)
+\item 
+void \mbox{\hyperlink{uart_8c_a55840fa098ac21df6535d6ac91956d07}{uartputc}} (int c)
+\item 
+void \mbox{\hyperlink{uart_8c_aa64047002b0e84e2611ebf7dc46b7c99}{uartintr}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{uart_8c_a00dbb3ab1c59e14699be9393693e2248}\label{uart_8c_a00dbb3ab1c59e14699be9393693e2248} 
+\index{uart.c@{uart.c}!COM1@{COM1}}
+\index{COM1@{COM1}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{COM1}{COM1}}
+{\footnotesize\ttfamily \#define COM1~0x3f8}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{uart_8c_a79fa7b73d0d61fdd15d30768a395437d}\label{uart_8c_a79fa7b73d0d61fdd15d30768a395437d} 
+\index{uart.c@{uart.c}!uartinit@{uartinit}}
+\index{uartinit@{uartinit}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{uartinit()}{uartinit()}}
+{\footnotesize\ttfamily void uartinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d87/uart_8c_a79fa7b73d0d61fdd15d30768a395437d_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart_8c_aa64047002b0e84e2611ebf7dc46b7c99}\label{uart_8c_aa64047002b0e84e2611ebf7dc46b7c99} 
+\index{uart.c@{uart.c}!uartintr@{uartintr}}
+\index{uartintr@{uartintr}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{uartintr()}{uartintr()}}
+{\footnotesize\ttfamily void uartintr (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d87/uart_8c_aa64047002b0e84e2611ebf7dc46b7c99_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=205pt]{d1/d87/uart_8c_aa64047002b0e84e2611ebf7dc46b7c99_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{uart_8c_a55840fa098ac21df6535d6ac91956d07}\label{uart_8c_a55840fa098ac21df6535d6ac91956d07} 
+\index{uart.c@{uart.c}!uartputc@{uartputc}}
+\index{uartputc@{uartputc}!uart.c@{uart.c}}
+\doxysubsubsection{\texorpdfstring{uartputc()}{uartputc()}}
+{\footnotesize\ttfamily void uartputc (\begin{DoxyParamCaption}\item[{int}]{c }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=244pt]{d1/d87/uart_8c_a55840fa098ac21df6535d6ac91956d07_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=225pt]{d1/d87/uart_8c_a55840fa098ac21df6535d6ac91956d07_icgraph}
+\end{center}
+\end{figure}

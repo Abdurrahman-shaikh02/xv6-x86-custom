@@ -1,0 +1,140 @@
+\doxysection{ioapic.\+c File Reference}
+\hypertarget{ioapic_8c}{}\label{ioapic_8c}\index{ioapic.c@{ioapic.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}traps.\+h"{}}\newline
+Include dependency graph for ioapic.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=267pt]{d6/de2/ioapic_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structioapic}{ioapic}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_a7d40119d2e49f7d8ae65520ccad99a1e}{IOAPIC}}~0x\+FEC00000
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_a91339a8293cb53b81407c016bc41e2b1}{REG\+\_\+\+ID}}~0x00
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_ac56cc95ec46071699b119b24d6d808f9}{REG\+\_\+\+VER}}~0x01
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_ad31b206e97e5e8cc5c70f8713669b27f}{REG\+\_\+\+TABLE}}~0x10
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_ab26e186261a82b907e024126fafbff1f}{INT\+\_\+\+DISABLED}}~0x00010000
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_aed01298d37e73ed9737c8a6b70e67caa}{INT\+\_\+\+LEVEL}}~0x00008000
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_a516778548109f98ff313d8753d030d37}{INT\+\_\+\+ACTIVELOW}}~0x00002000
+\item 
+\#define \mbox{\hyperlink{ioapic_8c_a7e41b4c95cc235d58d7a45411541f9de}{INT\+\_\+\+LOGICAL}}~0x00000800
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ioapic_8c_abce023b98422f397abdb425b20c8ceec}{ioapicinit}} (void)
+\item 
+void \mbox{\hyperlink{ioapic_8c_a9688537a0879e9e2ac5a90184e2ef987}{ioapicenable}} (int irq, int cpunum)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+volatile struct \mbox{\hyperlink{structioapic}{ioapic}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ioapic_8c_a61d7da24dba0ce35323deb8bb6cf6f91}{ioapic}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ioapic_8c_a516778548109f98ff313d8753d030d37}\label{ioapic_8c_a516778548109f98ff313d8753d030d37} 
+\index{ioapic.c@{ioapic.c}!INT\_ACTIVELOW@{INT\_ACTIVELOW}}
+\index{INT\_ACTIVELOW@{INT\_ACTIVELOW}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{INT\_ACTIVELOW}{INT\_ACTIVELOW}}
+{\footnotesize\ttfamily \#define INT\+\_\+\+ACTIVELOW~0x00002000}
+
+\Hypertarget{ioapic_8c_ab26e186261a82b907e024126fafbff1f}\label{ioapic_8c_ab26e186261a82b907e024126fafbff1f} 
+\index{ioapic.c@{ioapic.c}!INT\_DISABLED@{INT\_DISABLED}}
+\index{INT\_DISABLED@{INT\_DISABLED}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{INT\_DISABLED}{INT\_DISABLED}}
+{\footnotesize\ttfamily \#define INT\+\_\+\+DISABLED~0x00010000}
+
+\Hypertarget{ioapic_8c_aed01298d37e73ed9737c8a6b70e67caa}\label{ioapic_8c_aed01298d37e73ed9737c8a6b70e67caa} 
+\index{ioapic.c@{ioapic.c}!INT\_LEVEL@{INT\_LEVEL}}
+\index{INT\_LEVEL@{INT\_LEVEL}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{INT\_LEVEL}{INT\_LEVEL}}
+{\footnotesize\ttfamily \#define INT\+\_\+\+LEVEL~0x00008000}
+
+\Hypertarget{ioapic_8c_a7e41b4c95cc235d58d7a45411541f9de}\label{ioapic_8c_a7e41b4c95cc235d58d7a45411541f9de} 
+\index{ioapic.c@{ioapic.c}!INT\_LOGICAL@{INT\_LOGICAL}}
+\index{INT\_LOGICAL@{INT\_LOGICAL}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{INT\_LOGICAL}{INT\_LOGICAL}}
+{\footnotesize\ttfamily \#define INT\+\_\+\+LOGICAL~0x00000800}
+
+\Hypertarget{ioapic_8c_a7d40119d2e49f7d8ae65520ccad99a1e}\label{ioapic_8c_a7d40119d2e49f7d8ae65520ccad99a1e} 
+\index{ioapic.c@{ioapic.c}!IOAPIC@{IOAPIC}}
+\index{IOAPIC@{IOAPIC}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{IOAPIC}{IOAPIC}}
+{\footnotesize\ttfamily \#define IOAPIC~0x\+FEC00000}
+
+\Hypertarget{ioapic_8c_a91339a8293cb53b81407c016bc41e2b1}\label{ioapic_8c_a91339a8293cb53b81407c016bc41e2b1} 
+\index{ioapic.c@{ioapic.c}!REG\_ID@{REG\_ID}}
+\index{REG\_ID@{REG\_ID}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{REG\_ID}{REG\_ID}}
+{\footnotesize\ttfamily \#define REG\+\_\+\+ID~0x00}
+
+\Hypertarget{ioapic_8c_ad31b206e97e5e8cc5c70f8713669b27f}\label{ioapic_8c_ad31b206e97e5e8cc5c70f8713669b27f} 
+\index{ioapic.c@{ioapic.c}!REG\_TABLE@{REG\_TABLE}}
+\index{REG\_TABLE@{REG\_TABLE}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{REG\_TABLE}{REG\_TABLE}}
+{\footnotesize\ttfamily \#define REG\+\_\+\+TABLE~0x10}
+
+\Hypertarget{ioapic_8c_ac56cc95ec46071699b119b24d6d808f9}\label{ioapic_8c_ac56cc95ec46071699b119b24d6d808f9} 
+\index{ioapic.c@{ioapic.c}!REG\_VER@{REG\_VER}}
+\index{REG\_VER@{REG\_VER}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{REG\_VER}{REG\_VER}}
+{\footnotesize\ttfamily \#define REG\+\_\+\+VER~0x01}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ioapic_8c_a9688537a0879e9e2ac5a90184e2ef987}\label{ioapic_8c_a9688537a0879e9e2ac5a90184e2ef987} 
+\index{ioapic.c@{ioapic.c}!ioapicenable@{ioapicenable}}
+\index{ioapicenable@{ioapicenable}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{ioapicenable()}{ioapicenable()}}
+{\footnotesize\ttfamily void ioapicenable (\begin{DoxyParamCaption}\item[{int}]{irq,  }\item[{int}]{cpunum }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=265pt]{dd/d61/ioapic_8c_a9688537a0879e9e2ac5a90184e2ef987_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ioapic_8c_abce023b98422f397abdb425b20c8ceec}\label{ioapic_8c_abce023b98422f397abdb425b20c8ceec} 
+\index{ioapic.c@{ioapic.c}!ioapicinit@{ioapicinit}}
+\index{ioapicinit@{ioapicinit}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{ioapicinit()}{ioapicinit()}}
+{\footnotesize\ttfamily void ioapicinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d61/ioapic_8c_abce023b98422f397abdb425b20c8ceec_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{ioapic_8c_a61d7da24dba0ce35323deb8bb6cf6f91}\label{ioapic_8c_a61d7da24dba0ce35323deb8bb6cf6f91} 
+\index{ioapic.c@{ioapic.c}!ioapic@{ioapic}}
+\index{ioapic@{ioapic}!ioapic.c@{ioapic.c}}
+\doxysubsubsection{\texorpdfstring{ioapic}{ioapic}}
+{\footnotesize\ttfamily volatile struct \mbox{\hyperlink{structioapic}{ioapic}}\texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structioapic}{ioapic}}}
+

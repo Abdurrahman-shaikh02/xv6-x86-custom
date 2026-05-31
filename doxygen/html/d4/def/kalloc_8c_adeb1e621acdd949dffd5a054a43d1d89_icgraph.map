@@ -1,0 +1,7 @@
+<map id="freerange" name="freerange">
+<area shape="rect" id="Node000001" title=" " alt="" coords="112,31,197,56"/>
+<area shape="rect" id="Node000002" href="$d4/def/kalloc_8c.html#a596c07f040e83fd8ea1857f36ffab4fb" title=" " alt="" coords="5,5,64,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="98,34,64,27,65,22,99,29"/>
+<area shape="rect" id="Node000003" href="$d4/def/kalloc_8c.html#a8efe9094969255a41fbdaaee820bd478" title=" " alt="" coords="5,55,64,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="99,57,65,64,64,59,98,52"/>
+</map>

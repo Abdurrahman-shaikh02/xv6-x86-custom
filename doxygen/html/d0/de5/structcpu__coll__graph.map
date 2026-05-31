@@ -1,0 +1,28 @@
+<map id="cpu" name="cpu">
+<area shape="rect" id="Node000001" title=" " alt="" coords="139,93,185,119"/>
+<area shape="rect" id="Node000009" href="$d1/d08/structspinlock.html" title=" " alt="" coords="152,181,228,207"/>
+<area shape="poly" id="edge11_Node000009_Node000001" title=" " alt="" coords="172,131,189,180,184,182,167,132"/>
+<area shape="rect" id="Node000002" href="$d7/dfe/structcontext.html" title=" " alt="" coords="5,5,76,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="60,39,90,67,140,94,138,98,87,72,57,43"/>
+<area shape="rect" id="Node000005" href="$de/d48/structproc.html" title=" " alt="" coords="146,544,197,569"/>
+<area shape="poly" id="edge7_Node000005_Node000002" title=" " alt="" coords="34,44,26,73,22,105,22,470,25,489,35,505,50,518,68,528,109,543,146,550,145,555,107,548,65,533,46,522,31,508,21,491,17,470,17,105,21,72,29,43"/>
+<area shape="rect" id="Node000003" href="$dc/dd1/structtaskstate.html" title=" " alt="" coords="121,5,203,31"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="165,45,165,93,159,93,159,45"/>
+<area shape="rect" id="Node000004" href="$d8/d3e/structsegdesc.html" title=" " alt="" coords="227,5,302,31"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="242,42,178,95,175,91,238,38"/>
+<area shape="poly" id="edge4_Node000001_Node000005" title=" " alt="" coords="143,536,119,508,111,490,107,470,107,192,111,170,122,149,147,117,151,120,126,151,117,171,113,193,113,470,116,488,124,505,147,533"/>
+<area shape="poly" id="edge5_Node000005_Node000005" title=" " alt="" coords="211,547,219,550,223,557,214,566,197,567,197,562,212,561,218,556,216,554,209,552"/>
+<area shape="rect" id="Node000006" href="$df/d05/structtrapframe.html" title=" " alt="" coords="293,456,380,481"/>
+<area shape="poly" id="edge6_Node000005_Node000006" title=" " alt="" coords="309,491,253,522,198,547,196,542,250,518,306,486"/>
+<area shape="rect" id="Node000007" href="$d7/d3a/structfile.html" title=" " alt="" coords="226,456,269,481"/>
+<area shape="poly" id="edge8_Node000005_Node000007" title=" " alt="" coords="230,494,184,545,180,542,226,490"/>
+<area shape="rect" id="Node000008" href="$d8/d53/structpipe.html" title=" " alt="" coords="243,319,294,344"/>
+<area shape="poly" id="edge9_Node000007_Node000008" title=" " alt="" coords="267,358,252,456,247,455,262,357"/>
+<area shape="poly" id="edge10_Node000008_Node000009" title=" " alt="" coords="211,216,247,268,268,317,263,319,242,271,206,219"/>
+<area shape="rect" id="Node000011" href="$d9/dd0/structsleeplock.html" title=" " alt="" coords="148,269,232,295"/>
+<area shape="poly" id="edge14_Node000011_Node000009" title=" " alt="" coords="193,221,193,269,187,269,187,221"/>
+<area shape="rect" id="Node000010" href="$d0/df8/structinode.html" title=" " alt="" coords="161,368,219,393"/>
+<area shape="poly" id="edge15_Node000005_Node000010" title=" " alt="" coords="190,407,175,544,170,543,185,407"/>
+<area shape="poly" id="edge12_Node000007_Node000010" title=" " alt="" coords="208,403,242,454,237,457,203,406"/>
+<area shape="poly" id="edge13_Node000010_Node000011" title=" " alt="" coords="193,308,193,368,187,368,187,308"/>
+</map>

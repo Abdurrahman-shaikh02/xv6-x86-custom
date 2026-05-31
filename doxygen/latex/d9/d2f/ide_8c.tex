@@ -1,0 +1,130 @@
+\doxysection{ide.\+c File Reference}
+\hypertarget{ide_8c}{}\label{ide_8c}\index{ide.c@{ide.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}traps.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}buf.\+h"{}}\newline
+Include dependency graph for ide.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d54/ide_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{ide_8c_aa35bad1e92008da628f27b2f6bb270aa}{SECTOR\+\_\+\+SIZE}}~512
+\item 
+\#define \mbox{\hyperlink{ide_8c_aebe5f7f39eb6d658f4a430936dc1dfc2}{IDE\+\_\+\+BSY}}~0x80
+\item 
+\#define \mbox{\hyperlink{ide_8c_a46b51ed8423e20960b46bd4451aad66b}{IDE\+\_\+\+DRDY}}~0x40
+\item 
+\#define \mbox{\hyperlink{ide_8c_a8856c5f8e07087f4cc462dc093539f75}{IDE\+\_\+\+DF}}~0x20
+\item 
+\#define \mbox{\hyperlink{ide_8c_ae27406a5efbf146eebd69751e36b1d14}{IDE\+\_\+\+ERR}}~0x01
+\item 
+\#define \mbox{\hyperlink{ide_8c_ae117ee5b71546241f52d9088c0fffadc}{IDE\+\_\+\+CMD\+\_\+\+READ}}~0x20
+\item 
+\#define \mbox{\hyperlink{ide_8c_ae7cbfd899670e7987022c3bb639e568d}{IDE\+\_\+\+CMD\+\_\+\+WRITE}}~0x30
+\item 
+\#define \mbox{\hyperlink{ide_8c_a93b80911b1cd461ad95283151dfc90ee}{IDE\+\_\+\+CMD\+\_\+\+RDMUL}}~0xc4
+\item 
+\#define \mbox{\hyperlink{ide_8c_a4afad2a87c6ecab61eefe7804384defc}{IDE\+\_\+\+CMD\+\_\+\+WRMUL}}~0xc5
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{ide_8c_aefb190a6104cb58c0bc1f8fec88d1307}{ideinit}} (void)
+\item 
+void \mbox{\hyperlink{ide_8c_a709693afdb9b89d848e684e7acde1f8f}{ideintr}} (void)
+\item 
+void \mbox{\hyperlink{ide_8c_a7f36b008f02088c86f76e98e05b55af5}{iderw}} (struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}b)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{ide_8c_aebe5f7f39eb6d658f4a430936dc1dfc2}\label{ide_8c_aebe5f7f39eb6d658f4a430936dc1dfc2} 
+\index{ide.c@{ide.c}!IDE\_BSY@{IDE\_BSY}}
+\index{IDE\_BSY@{IDE\_BSY}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_BSY}{IDE\_BSY}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+BSY~0x80}
+
+\Hypertarget{ide_8c_a93b80911b1cd461ad95283151dfc90ee}\label{ide_8c_a93b80911b1cd461ad95283151dfc90ee} 
+\index{ide.c@{ide.c}!IDE\_CMD\_RDMUL@{IDE\_CMD\_RDMUL}}
+\index{IDE\_CMD\_RDMUL@{IDE\_CMD\_RDMUL}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_CMD\_RDMUL}{IDE\_CMD\_RDMUL}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+CMD\+\_\+\+RDMUL~0xc4}
+
+\Hypertarget{ide_8c_ae117ee5b71546241f52d9088c0fffadc}\label{ide_8c_ae117ee5b71546241f52d9088c0fffadc} 
+\index{ide.c@{ide.c}!IDE\_CMD\_READ@{IDE\_CMD\_READ}}
+\index{IDE\_CMD\_READ@{IDE\_CMD\_READ}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_CMD\_READ}{IDE\_CMD\_READ}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+CMD\+\_\+\+READ~0x20}
+
+\Hypertarget{ide_8c_ae7cbfd899670e7987022c3bb639e568d}\label{ide_8c_ae7cbfd899670e7987022c3bb639e568d} 
+\index{ide.c@{ide.c}!IDE\_CMD\_WRITE@{IDE\_CMD\_WRITE}}
+\index{IDE\_CMD\_WRITE@{IDE\_CMD\_WRITE}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_CMD\_WRITE}{IDE\_CMD\_WRITE}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+CMD\+\_\+\+WRITE~0x30}
+
+\Hypertarget{ide_8c_a4afad2a87c6ecab61eefe7804384defc}\label{ide_8c_a4afad2a87c6ecab61eefe7804384defc} 
+\index{ide.c@{ide.c}!IDE\_CMD\_WRMUL@{IDE\_CMD\_WRMUL}}
+\index{IDE\_CMD\_WRMUL@{IDE\_CMD\_WRMUL}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_CMD\_WRMUL}{IDE\_CMD\_WRMUL}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+CMD\+\_\+\+WRMUL~0xc5}
+
+\Hypertarget{ide_8c_a8856c5f8e07087f4cc462dc093539f75}\label{ide_8c_a8856c5f8e07087f4cc462dc093539f75} 
+\index{ide.c@{ide.c}!IDE\_DF@{IDE\_DF}}
+\index{IDE\_DF@{IDE\_DF}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_DF}{IDE\_DF}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+DF~0x20}
+
+\Hypertarget{ide_8c_a46b51ed8423e20960b46bd4451aad66b}\label{ide_8c_a46b51ed8423e20960b46bd4451aad66b} 
+\index{ide.c@{ide.c}!IDE\_DRDY@{IDE\_DRDY}}
+\index{IDE\_DRDY@{IDE\_DRDY}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_DRDY}{IDE\_DRDY}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+DRDY~0x40}
+
+\Hypertarget{ide_8c_ae27406a5efbf146eebd69751e36b1d14}\label{ide_8c_ae27406a5efbf146eebd69751e36b1d14} 
+\index{ide.c@{ide.c}!IDE\_ERR@{IDE\_ERR}}
+\index{IDE\_ERR@{IDE\_ERR}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{IDE\_ERR}{IDE\_ERR}}
+{\footnotesize\ttfamily \#define IDE\+\_\+\+ERR~0x01}
+
+\Hypertarget{ide_8c_aa35bad1e92008da628f27b2f6bb270aa}\label{ide_8c_aa35bad1e92008da628f27b2f6bb270aa} 
+\index{ide.c@{ide.c}!SECTOR\_SIZE@{SECTOR\_SIZE}}
+\index{SECTOR\_SIZE@{SECTOR\_SIZE}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{SECTOR\_SIZE}{SECTOR\_SIZE}}
+{\footnotesize\ttfamily \#define SECTOR\+\_\+\+SIZE~512}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ide_8c_aefb190a6104cb58c0bc1f8fec88d1307}\label{ide_8c_aefb190a6104cb58c0bc1f8fec88d1307} 
+\index{ide.c@{ide.c}!ideinit@{ideinit}}
+\index{ideinit@{ideinit}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{ideinit()}{ideinit()}}
+{\footnotesize\ttfamily void ideinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{ide_8c_a709693afdb9b89d848e684e7acde1f8f}\label{ide_8c_a709693afdb9b89d848e684e7acde1f8f} 
+\index{ide.c@{ide.c}!ideintr@{ideintr}}
+\index{ideintr@{ideintr}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{ideintr()}{ideintr()}}
+{\footnotesize\ttfamily void ideintr (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{ide_8c_a7f36b008f02088c86f76e98e05b55af5}\label{ide_8c_a7f36b008f02088c86f76e98e05b55af5} 
+\index{ide.c@{ide.c}!iderw@{iderw}}
+\index{iderw@{iderw}!ide.c@{ide.c}}
+\doxysubsubsection{\texorpdfstring{iderw()}{iderw()}}
+{\footnotesize\ttfamily void iderw (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}}]{b }\end{DoxyParamCaption})}
+

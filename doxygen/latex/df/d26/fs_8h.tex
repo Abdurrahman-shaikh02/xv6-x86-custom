@@ -1,0 +1,105 @@
+\doxysection{fs.\+h File Reference}
+\hypertarget{fs_8h}{}\label{fs_8h}\index{fs.h@{fs.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d98/fs_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structsuperblock}{superblock}}
+\item 
+struct \mbox{\hyperlink{structdinode}{dinode}}
+\item 
+struct \mbox{\hyperlink{structdirent}{dirent}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{fs_8h_a22c8ea96d09283ed6496347806cc72a0}{ROOTINO}}~1
+\item 
+\#define \mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}~512
+\item 
+\#define \mbox{\hyperlink{fs_8h_acd38e9532d4b3623f844b93c012a8e06}{NDIRECT}}~12
+\item 
+\#define \mbox{\hyperlink{fs_8h_a6d24f098ea2928d61ff80b123d761715}{NINDIRECT}}~(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}} / sizeof(\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}))
+\item 
+\#define \mbox{\hyperlink{fs_8h_a714b2485a6dd312e37226e1f833728a9}{MAXFILE}}~(\mbox{\hyperlink{fs_8h_acd38e9532d4b3623f844b93c012a8e06}{NDIRECT}} + \mbox{\hyperlink{fs_8h_a6d24f098ea2928d61ff80b123d761715}{NINDIRECT}})
+\item 
+\#define \mbox{\hyperlink{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228}{IPB}}~(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}} / sizeof(struct \mbox{\hyperlink{structdinode}{dinode}}))
+\item 
+\#define \mbox{\hyperlink{fs_8h_ac9a5b990015f0f86e5d4c6b21d38ffa0}{IBLOCK}}(i,  \mbox{\hyperlink{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}})~((i) / \mbox{\hyperlink{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228}{IPB}} + sb.\+inodestart)
+\item 
+\#define \mbox{\hyperlink{fs_8h_a3c88fd21abb83ef11461ce750c466828}{BPB}}~(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\texorpdfstring{$\ast$}{*}8)
+\item 
+\#define \mbox{\hyperlink{fs_8h_a080eb729016328ec6da85bfe125fc04c}{BBLOCK}}(b,  \mbox{\hyperlink{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}})~(b/\mbox{\hyperlink{fs_8h_a3c88fd21abb83ef11461ce750c466828}{BPB}} + sb.\+bmapstart)
+\item 
+\#define \mbox{\hyperlink{fs_8h_a48246fb9e5cb7f6a71ebc9ebc2f06562}{DIRSIZ}}~14
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{fs_8h_a080eb729016328ec6da85bfe125fc04c}\label{fs_8h_a080eb729016328ec6da85bfe125fc04c} 
+\index{fs.h@{fs.h}!BBLOCK@{BBLOCK}}
+\index{BBLOCK@{BBLOCK}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{BBLOCK}{BBLOCK}}
+{\footnotesize\ttfamily \#define BBLOCK(\begin{DoxyParamCaption}\item[{}]{b,  }\item[{}]{\mbox{\hyperlink{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}} }\end{DoxyParamCaption})~(b/\mbox{\hyperlink{fs_8h_a3c88fd21abb83ef11461ce750c466828}{BPB}} + sb.\+bmapstart)}
+
+\Hypertarget{fs_8h_a3c88fd21abb83ef11461ce750c466828}\label{fs_8h_a3c88fd21abb83ef11461ce750c466828} 
+\index{fs.h@{fs.h}!BPB@{BPB}}
+\index{BPB@{BPB}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{BPB}{BPB}}
+{\footnotesize\ttfamily \#define BPB~(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\texorpdfstring{$\ast$}{*}8)}
+
+\Hypertarget{fs_8h_a403cf3149c084cea115b85c90721039a}\label{fs_8h_a403cf3149c084cea115b85c90721039a} 
+\index{fs.h@{fs.h}!BSIZE@{BSIZE}}
+\index{BSIZE@{BSIZE}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{BSIZE}{BSIZE}}
+{\footnotesize\ttfamily \#define BSIZE~512}
+
+\Hypertarget{fs_8h_a48246fb9e5cb7f6a71ebc9ebc2f06562}\label{fs_8h_a48246fb9e5cb7f6a71ebc9ebc2f06562} 
+\index{fs.h@{fs.h}!DIRSIZ@{DIRSIZ}}
+\index{DIRSIZ@{DIRSIZ}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{DIRSIZ}{DIRSIZ}}
+{\footnotesize\ttfamily \#define DIRSIZ~14}
+
+\Hypertarget{fs_8h_ac9a5b990015f0f86e5d4c6b21d38ffa0}\label{fs_8h_ac9a5b990015f0f86e5d4c6b21d38ffa0} 
+\index{fs.h@{fs.h}!IBLOCK@{IBLOCK}}
+\index{IBLOCK@{IBLOCK}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{IBLOCK}{IBLOCK}}
+{\footnotesize\ttfamily \#define IBLOCK(\begin{DoxyParamCaption}\item[{}]{i,  }\item[{}]{\mbox{\hyperlink{fs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}} }\end{DoxyParamCaption})~((i) / \mbox{\hyperlink{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228}{IPB}} + sb.\+inodestart)}
+
+\Hypertarget{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228}\label{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228} 
+\index{fs.h@{fs.h}!IPB@{IPB}}
+\index{IPB@{IPB}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{IPB}{IPB}}
+{\footnotesize\ttfamily \#define IPB~(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}} / sizeof(struct \mbox{\hyperlink{structdinode}{dinode}}))}
+
+\Hypertarget{fs_8h_a714b2485a6dd312e37226e1f833728a9}\label{fs_8h_a714b2485a6dd312e37226e1f833728a9} 
+\index{fs.h@{fs.h}!MAXFILE@{MAXFILE}}
+\index{MAXFILE@{MAXFILE}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{MAXFILE}{MAXFILE}}
+{\footnotesize\ttfamily \#define MAXFILE~(\mbox{\hyperlink{fs_8h_acd38e9532d4b3623f844b93c012a8e06}{NDIRECT}} + \mbox{\hyperlink{fs_8h_a6d24f098ea2928d61ff80b123d761715}{NINDIRECT}})}
+
+\Hypertarget{fs_8h_acd38e9532d4b3623f844b93c012a8e06}\label{fs_8h_acd38e9532d4b3623f844b93c012a8e06} 
+\index{fs.h@{fs.h}!NDIRECT@{NDIRECT}}
+\index{NDIRECT@{NDIRECT}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{NDIRECT}{NDIRECT}}
+{\footnotesize\ttfamily \#define NDIRECT~12}
+
+\Hypertarget{fs_8h_a6d24f098ea2928d61ff80b123d761715}\label{fs_8h_a6d24f098ea2928d61ff80b123d761715} 
+\index{fs.h@{fs.h}!NINDIRECT@{NINDIRECT}}
+\index{NINDIRECT@{NINDIRECT}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{NINDIRECT}{NINDIRECT}}
+{\footnotesize\ttfamily \#define NINDIRECT~(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}} / sizeof(\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}))}
+
+\Hypertarget{fs_8h_a22c8ea96d09283ed6496347806cc72a0}\label{fs_8h_a22c8ea96d09283ed6496347806cc72a0} 
+\index{fs.h@{fs.h}!ROOTINO@{ROOTINO}}
+\index{ROOTINO@{ROOTINO}!fs.h@{fs.h}}
+\doxysubsubsection{\texorpdfstring{ROOTINO}{ROOTINO}}
+{\footnotesize\ttfamily \#define ROOTINO~1}
+

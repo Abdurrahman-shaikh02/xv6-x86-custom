@@ -1,0 +1,10 @@
+<map id="consoleintr" name="consoleintr">
+<area shape="rect" id="Node000001" title=" " alt="" coords="220,31,315,56"/>
+<area shape="rect" id="Node000002" href="$dc/da9/kbd_8c.html#af3d6113fa152781400e1e0e728c55e54" title=" " alt="" coords="103,5,171,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="206,34,170,27,171,22,207,29"/>
+<area shape="rect" id="Node000004" href="$d1/d87/uart_8c.html#aa64047002b0e84e2611ebf7dc46b7c99" title=" " alt="" coords="101,55,172,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="207,57,173,64,172,58,206,52"/>
+<area shape="rect" id="Node000003" href="$dc/d6f/trap_8c.html#a372d166e36c086c91e5f5d81e5fead3a" title=" " alt="" coords="5,31,53,56"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="90,32,54,40,53,35,89,27"/>
+<area shape="poly" id="edge4_Node000004_Node000003" title=" " alt="" coords="87,59,53,51,54,46,89,54"/>
+</map>

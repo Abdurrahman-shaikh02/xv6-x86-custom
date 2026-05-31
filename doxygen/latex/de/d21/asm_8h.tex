@@ -1,0 +1,61 @@
+\doxysection{asm.\+h File Reference}
+\hypertarget{asm_8h}{}\label{asm_8h}\index{asm.h@{asm.h}}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{asm_8h_a0281b83dd2d5c19c39be963761f26e4f}{SEG\+\_\+\+NULLASM}}
+\item 
+\#define \mbox{\hyperlink{asm_8h_a56761ae3b4f4c70da4f433b9867e4e87}{SEG\+\_\+\+ASM}}(type,  base,  lim)
+\item 
+\#define \mbox{\hyperlink{asm_8h_af30c683a434e0712fd83781307239cb9}{STA\+\_\+X}}~0x8
+\item 
+\#define \mbox{\hyperlink{asm_8h_a9321b5b232838b8b230c6b681be9a882}{STA\+\_\+W}}~0x2
+\item 
+\#define \mbox{\hyperlink{asm_8h_a6545a48f34a3fae1b04cf265f13bc8f3}{STA\+\_\+R}}~0x2
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{asm_8h_a56761ae3b4f4c70da4f433b9867e4e87}\label{asm_8h_a56761ae3b4f4c70da4f433b9867e4e87} 
+\index{asm.h@{asm.h}!SEG\_ASM@{SEG\_ASM}}
+\index{SEG\_ASM@{SEG\_ASM}!asm.h@{asm.h}}
+\doxysubsubsection{\texorpdfstring{SEG\_ASM}{SEG\_ASM}}
+{\footnotesize\ttfamily \#define SEG\+\_\+\+ASM(\begin{DoxyParamCaption}\item[{}]{type,  }\item[{}]{base,  }\item[{}]{lim }\end{DoxyParamCaption})}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .word\ (((lim)\ >>\ 12)\ \&\ 0xffff),\ ((base)\ \&\ 0xffff);\ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .byte\ (((base)\ >>\ 16)\ \&\ 0xff),\ (0x90\ |\ (type)),\ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xC0\ |\ (((lim)\ >>\ 28)\ \&\ 0xf)),\ (((base)\ >>\ 24)\ \&\ 0xff)}
+
+\end{DoxyCode}
+\Hypertarget{asm_8h_a0281b83dd2d5c19c39be963761f26e4f}\label{asm_8h_a0281b83dd2d5c19c39be963761f26e4f} 
+\index{asm.h@{asm.h}!SEG\_NULLASM@{SEG\_NULLASM}}
+\index{SEG\_NULLASM@{SEG\_NULLASM}!asm.h@{asm.h}}
+\doxysubsubsection{\texorpdfstring{SEG\_NULLASM}{SEG\_NULLASM}}
+{\footnotesize\ttfamily \#define SEG\+\_\+\+NULLASM}
+
+{\bfseries Value\+:}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .word\ 0,\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ .byte\ 0,\ 0,\ 0,\ 0}
+
+\end{DoxyCode}
+\Hypertarget{asm_8h_a6545a48f34a3fae1b04cf265f13bc8f3}\label{asm_8h_a6545a48f34a3fae1b04cf265f13bc8f3} 
+\index{asm.h@{asm.h}!STA\_R@{STA\_R}}
+\index{STA\_R@{STA\_R}!asm.h@{asm.h}}
+\doxysubsubsection{\texorpdfstring{STA\_R}{STA\_R}}
+{\footnotesize\ttfamily \#define STA\+\_\+R~0x2}
+
+\Hypertarget{asm_8h_a9321b5b232838b8b230c6b681be9a882}\label{asm_8h_a9321b5b232838b8b230c6b681be9a882} 
+\index{asm.h@{asm.h}!STA\_W@{STA\_W}}
+\index{STA\_W@{STA\_W}!asm.h@{asm.h}}
+\doxysubsubsection{\texorpdfstring{STA\_W}{STA\_W}}
+{\footnotesize\ttfamily \#define STA\+\_\+W~0x2}
+
+\Hypertarget{asm_8h_af30c683a434e0712fd83781307239cb9}\label{asm_8h_af30c683a434e0712fd83781307239cb9} 
+\index{asm.h@{asm.h}!STA\_X@{STA\_X}}
+\index{STA\_X@{STA\_X}!asm.h@{asm.h}}
+\doxysubsubsection{\texorpdfstring{STA\_X}{STA\_X}}
+{\footnotesize\ttfamily \#define STA\+\_\+X~0x8}
+

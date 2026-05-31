@@ -1,0 +1,188 @@
+\doxysection{x86.\+h}
+\hypertarget{x86_8h_source}{}\label{x86_8h_source}\mbox{\hyperlink{x86_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Routines\ to\ let\ C\ code\ use\ special\ x86\ instructions.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}}
+\DoxyCodeLine{00004\ inb(\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ port)}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}};}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}in\ \%1,\%0"{}}\ :\ \textcolor{stringliteral}{"{}=a"{}}\ (\mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}})\ :\ \textcolor{stringliteral}{"{}d"{}}\ (port));}
+\DoxyCodeLine{00009\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}};}
+\DoxyCodeLine{00010\ \}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00013\ insl(\textcolor{keywordtype}{int}\ port,\ \textcolor{keywordtype}{void}\ *addr,\ \textcolor{keywordtype}{int}\ cnt)}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cld;\ rep\ insl"{}}\ :}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}=D"{}}\ (addr),\ \textcolor{stringliteral}{"{}=c"{}}\ (cnt)\ :}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}d"{}}\ (port),\ \textcolor{stringliteral}{"{}0"{}}\ (addr),\ \textcolor{stringliteral}{"{}1"{}}\ (cnt)\ :}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}memory"{}},\ \textcolor{stringliteral}{"{}cc"{}});}
+\DoxyCodeLine{00019\ \}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00022\ outb(\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ port,\ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}})}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}out\ \%0,\%1"{}}\ :\ :\ \textcolor{stringliteral}{"{}a"{}}\ (\mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}}),\ \textcolor{stringliteral}{"{}d"{}}\ (port));}
+\DoxyCodeLine{00025\ \}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00028\ outw(\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ port,\ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}})}
+\DoxyCodeLine{00029\ \{}
+\DoxyCodeLine{00030\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}out\ \%0,\%1"{}}\ :\ :\ \textcolor{stringliteral}{"{}a"{}}\ (\mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}}),\ \textcolor{stringliteral}{"{}d"{}}\ (port));}
+\DoxyCodeLine{00031\ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00034\ outsl(\textcolor{keywordtype}{int}\ port,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ *addr,\ \textcolor{keywordtype}{int}\ cnt)}
+\DoxyCodeLine{00035\ \{}
+\DoxyCodeLine{00036\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cld;\ rep\ outsl"{}}\ :}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}=S"{}}\ (addr),\ \textcolor{stringliteral}{"{}=c"{}}\ (cnt)\ :}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}d"{}}\ (port),\ \textcolor{stringliteral}{"{}0"{}}\ (addr),\ \textcolor{stringliteral}{"{}1"{}}\ (cnt)\ :}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cc"{}});}
+\DoxyCodeLine{00040\ \}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00043\ stosb(\textcolor{keywordtype}{void}\ *addr,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}},\ \textcolor{keywordtype}{int}\ cnt)}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cld;\ rep\ stosb"{}}\ :}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}=D"{}}\ (addr),\ \textcolor{stringliteral}{"{}=c"{}}\ (cnt)\ :}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}0"{}}\ (addr),\ \textcolor{stringliteral}{"{}1"{}}\ (cnt),\ \textcolor{stringliteral}{"{}a"{}}\ (\mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}})\ :}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}memory"{}},\ \textcolor{stringliteral}{"{}cc"{}});}
+\DoxyCodeLine{00049\ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00052\ stosl(\textcolor{keywordtype}{void}\ *addr,\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}},\ \textcolor{keywordtype}{int}\ cnt)}
+\DoxyCodeLine{00053\ \{}
+\DoxyCodeLine{00054\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cld;\ rep\ stosl"{}}\ :}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}=D"{}}\ (addr),\ \textcolor{stringliteral}{"{}=c"{}}\ (cnt)\ :}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}0"{}}\ (addr),\ \textcolor{stringliteral}{"{}1"{}}\ (cnt),\ \textcolor{stringliteral}{"{}a"{}}\ (\mbox{\hyperlink{vm_8c_a923b2158227405b9f7a6eceb6c7104c8}{data}})\ :}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}memory"{}},\ \textcolor{stringliteral}{"{}cc"{}});}
+\DoxyCodeLine{00058\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsegdesc}{segdesc}};}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00063\ lgdt(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structsegdesc}{segdesc}}\ *\mbox{\hyperlink{structsegdesc_a322a34a84a3815d35ebb3aa50c5a55e2}{p}},\ \textcolor{keywordtype}{int}\ size)}
+\DoxyCodeLine{00064\ \{}
+\DoxyCodeLine{00065\ \ \ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structsegdesc_aacc67bb0857f0c77c1f8a5c9b8a1ac09}{pd}}[3];}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00067\ \ \ \mbox{\hyperlink{structsegdesc_aacc67bb0857f0c77c1f8a5c9b8a1ac09}{pd}}[0]\ =\ size-\/1;}
+\DoxyCodeLine{00068\ \ \ \mbox{\hyperlink{structsegdesc_aacc67bb0857f0c77c1f8a5c9b8a1ac09}{pd}}[1]\ =\ (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}})\mbox{\hyperlink{structsegdesc_a322a34a84a3815d35ebb3aa50c5a55e2}{p}};}
+\DoxyCodeLine{00069\ \ \ \mbox{\hyperlink{structsegdesc_aacc67bb0857f0c77c1f8a5c9b8a1ac09}{pd}}[2]\ =\ (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}})\mbox{\hyperlink{structsegdesc_a322a34a84a3815d35ebb3aa50c5a55e2}{p}}\ >>\ 16;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}lgdt\ (\%0)"{}}\ :\ :\ \textcolor{stringliteral}{"{}r"{}}\ (\mbox{\hyperlink{structsegdesc_aacc67bb0857f0c77c1f8a5c9b8a1ac09}{pd}}));}
+\DoxyCodeLine{00072\ \}}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgatedesc}{gatedesc}};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00077\ lidt(\textcolor{keyword}{struct}\ \mbox{\hyperlink{structgatedesc}{gatedesc}}\ *\mbox{\hyperlink{structgatedesc_a5f754b650dc96be286cbc74e69da6a81}{p}},\ \textcolor{keywordtype}{int}\ size)}
+\DoxyCodeLine{00078\ \{}
+\DoxyCodeLine{00079\ \ \ \textcolor{keyword}{volatile}\ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{pd}}[3];}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{pd}}[0]\ =\ size-\/1;}
+\DoxyCodeLine{00082\ \ \ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{pd}}[1]\ =\ (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}})\mbox{\hyperlink{structgatedesc_a5f754b650dc96be286cbc74e69da6a81}{p}};}
+\DoxyCodeLine{00083\ \ \ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{pd}}[2]\ =\ (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}})\mbox{\hyperlink{structgatedesc_a5f754b650dc96be286cbc74e69da6a81}{p}}\ >>\ 16;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}lidt\ (\%0)"{}}\ :\ :\ \textcolor{stringliteral}{"{}r"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{pd}}));}
+\DoxyCodeLine{00086\ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00089\ ltr(\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{sel}})}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}ltr\ \%0"{}}\ :\ :\ \textcolor{stringliteral}{"{}r"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{sel}}));}
+\DoxyCodeLine{00092\ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}
+\DoxyCodeLine{00095\ readeflags(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00096\ \{}
+\DoxyCodeLine{00097\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ eflags;}
+\DoxyCodeLine{00098\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}pushfl;\ popl\ \%0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (eflags));}
+\DoxyCodeLine{00099\ \ \ \textcolor{keywordflow}{return}\ eflags;}
+\DoxyCodeLine{00100\ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00103\ loadgs(\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{v}})}
+\DoxyCodeLine{00104\ \{}
+\DoxyCodeLine{00105\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}movw\ \%0,\ \%\%gs"{}}\ :\ :\ \textcolor{stringliteral}{"{}r"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{v}}));}
+\DoxyCodeLine{00106\ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00109\ cli(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00110\ \{}
+\DoxyCodeLine{00111\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}cli"{}});}
+\DoxyCodeLine{00112\ \}}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00115\ sti(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00116\ \{}
+\DoxyCodeLine{00117\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}sti"{}});}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}
+\DoxyCodeLine{00121\ xchg(\textcolor{keyword}{volatile}\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *addr,\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{newval}})}
+\DoxyCodeLine{00122\ \{}
+\DoxyCodeLine{00123\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{result}};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \textcolor{comment}{//\ The\ +\ in\ "{}+m"{}\ denotes\ a\ read-\/modify-\/write\ operand.}}
+\DoxyCodeLine{00126\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}lock;\ xchgl\ \%0,\ \%1"{}}\ :}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}+m"{}}\ (*addr),\ \textcolor{stringliteral}{"{}=a"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{result}})\ :}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}1"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{newval}})\ :}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}cc"{}});}
+\DoxyCodeLine{00130\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{result}};}
+\DoxyCodeLine{00131\ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}
+\DoxyCodeLine{00134\ rcr2(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00135\ \{}
+\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{val}};}
+\DoxyCodeLine{00137\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}movl\ \%\%cr2,\%0"{}}\ :\ \textcolor{stringliteral}{"{}=r"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{val}}));}
+\DoxyCodeLine{00138\ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{val}};}
+\DoxyCodeLine{00139\ \}}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \textcolor{keyword}{static}\ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00142\ lcr3(\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{val}})}
+\DoxyCodeLine{00143\ \{}
+\DoxyCodeLine{00144\ \ \ \textcolor{keyword}{asm}\ \textcolor{keyword}{volatile}(\textcolor{stringliteral}{"{}movl\ \%0,\%\%cr3"{}}\ :\ :\ \textcolor{stringliteral}{"{}r"{}}\ (\mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{val}}));}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//PAGEBREAK:\ 36}}
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ Layout\ of\ the\ trap\ frame\ built\ on\ the\ stack\ by\ the}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ hardware\ and\ by\ trapasm.S,\ and\ passed\ to\ trap().}}
+\DoxyCodeLine{00150\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtrapframe}{trapframe}}\ \{}
+\DoxyCodeLine{00151\ \ \ \textcolor{comment}{//\ registers\ as\ pushed\ by\ pusha}}
+\DoxyCodeLine{00152\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_ad20959553b558987a0d475b6367c87d0}{edi}};}
+\DoxyCodeLine{00153\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_a11cbc20a968f2ce7a9b71590a709bb46}{esi}};}
+\DoxyCodeLine{00154\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_a258f414f983f95f6799372d548fbd6d3}{ebp}};}
+\DoxyCodeLine{00155\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_a8466e7bcbbbe2d19fbe7f4fe0daa29fb}{oesp}};\ \ \ \ \ \ \textcolor{comment}{//\ useless\ \&\ ignored}}
+\DoxyCodeLine{00156\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_a0f93026966ea52a69a94870fb394ba04}{ebx}};}
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_a62585fbda8434a03de564611b89c02ad}{edx}};}
+\DoxyCodeLine{00158\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_ad42fe2bbc83c7fe778f0127ac038efa3}{ecx}};}
+\DoxyCodeLine{00159\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_ab1dd3a10936b61129d7395c3a21bc2fe}{eax}};}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \textcolor{comment}{//\ rest\ of\ trap\ frame}}
+\DoxyCodeLine{00162\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a3df62e3ed00405cbaaa4d72902c617da}{gs}};}
+\DoxyCodeLine{00163\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a84a5fbe43d7f11df983d97c80aabb454}{padding1}};}
+\DoxyCodeLine{00164\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a4791a272cca7213d324e59db2d9d0b71}{fs}};}
+\DoxyCodeLine{00165\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a63737765c58491a8604ef180a3864ad0}{padding2}};}
+\DoxyCodeLine{00166\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_ab974b358098da0aaa5897c32827a038d}{es}};}
+\DoxyCodeLine{00167\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_acd8a8fee013b35212fab787b645f8dd9}{padding3}};}
+\DoxyCodeLine{00168\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a421be1ec9ad2a55f1d1adeac9b0b89c3}{ds}};}
+\DoxyCodeLine{00169\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_aef4bc72b31fb4a0cf6b32782b40a7e2f}{padding4}};}
+\DoxyCodeLine{00170\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_abc7f81b0a6a91d13e9fefe171b0a7d12}{trapno}};}
+\DoxyCodeLine{00171\ }
+\DoxyCodeLine{00172\ \ \ \textcolor{comment}{//\ below\ here\ defined\ by\ x86\ hardware}}
+\DoxyCodeLine{00173\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_acfb2346e6184b0d2438960b4f2a67e4f}{err}};}
+\DoxyCodeLine{00174\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_a886a5973a537894e3a95435f38767d5c}{eip}};}
+\DoxyCodeLine{00175\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a61261f63223a73e25be79fcc8c625265}{cs}};}
+\DoxyCodeLine{00176\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a5715f786df145b0bf6faf3aa3304f05f}{padding5}};}
+\DoxyCodeLine{00177\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_ae6b3005ad34416546603ab18dbb4a644}{eflags}};}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \textcolor{comment}{//\ below\ here\ only\ when\ crossing\ rings,\ such\ as\ from\ user\ to\ kernel}}
+\DoxyCodeLine{00180\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtrapframe_acd319e2dbd720d217c10f8fb620d73e2}{esp}};}
+\DoxyCodeLine{00181\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_aa9c9b52b242d4f42fe4252e26b655bf6}{ss}};}
+\DoxyCodeLine{00182\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtrapframe_a1c079b271df9fdd3502bfe9e00888dfa}{padding6}};}
+\DoxyCodeLine{00183\ \};}
+
+\end{DoxyCode}

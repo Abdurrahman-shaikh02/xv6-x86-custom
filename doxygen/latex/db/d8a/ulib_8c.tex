@@ -1,0 +1,133 @@
+\doxysection{ulib.\+c File Reference}
+\hypertarget{ulib_8c}{}\label{ulib_8c}\index{ulib.c@{ulib.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}stat.\+h"{}}\newline
+{\ttfamily \#include "{}fcntl.\+h"{}}\newline
+{\ttfamily \#include "{}user.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+Include dependency graph for ulib.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d33/ulib_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ulib_8c_a8047435e7597349a349589b1e264d1d8}{strcpy}} (char \texorpdfstring{$\ast$}{*}s, const char \texorpdfstring{$\ast$}{*}t)
+\item 
+int \mbox{\hyperlink{ulib_8c_a20f61ccd139bc66f11fc83ff9d66d4cf}{strcmp}} (const char \texorpdfstring{$\ast$}{*}p, const char \texorpdfstring{$\ast$}{*}q)
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{ulib_8c_a59b5e6e6105ef0e97aed266ec6fdfe60}{strlen}} (const char \texorpdfstring{$\ast$}{*}s)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ulib_8c_aa9cdc2409c15ccd5ee3b2031576f4093}{memset}} (void \texorpdfstring{$\ast$}{*}dst, int c, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} n)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ulib_8c_a34704df9bf598dd9b477bafe5642cfe7}{strchr}} (const char \texorpdfstring{$\ast$}{*}s, char c)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ulib_8c_a5d99411ae3770ce242b82a1d01b47164}{gets}} (char \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structbuf}{buf}}, int max)
+\item 
+int \mbox{\hyperlink{ulib_8c_af8d7e31cf6c47831175508f96f29bc5a}{stat}} (const char \texorpdfstring{$\ast$}{*}n, struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}st)
+\item 
+int \mbox{\hyperlink{ulib_8c_a30670a60464f77af17dfb353353d6df8}{atoi}} (const char \texorpdfstring{$\ast$}{*}s)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{ulib_8c_a6d50c17bc17085392dd935f098573def}{memmove}} (void \texorpdfstring{$\ast$}{*}vdst, const void \texorpdfstring{$\ast$}{*}vsrc, int n)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{ulib_8c_a30670a60464f77af17dfb353353d6df8}\label{ulib_8c_a30670a60464f77af17dfb353353d6df8} 
+\index{ulib.c@{ulib.c}!atoi@{atoi}}
+\index{atoi@{atoi}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{atoi()}{atoi()}}
+{\footnotesize\ttfamily int atoi (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})}
+
+\Hypertarget{ulib_8c_a5d99411ae3770ce242b82a1d01b47164}\label{ulib_8c_a5d99411ae3770ce242b82a1d01b47164} 
+\index{ulib.c@{ulib.c}!gets@{gets}}
+\index{gets@{gets}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{gets()}{gets()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} gets (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{db/d8a/ulib_8c_a5d99411ae3770ce242b82a1d01b47164_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ulib_8c_a6d50c17bc17085392dd935f098573def}\label{ulib_8c_a6d50c17bc17085392dd935f098573def} 
+\index{ulib.c@{ulib.c}!memmove@{memmove}}
+\index{memmove@{memmove}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{memmove()}{memmove()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} memmove (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{vdst,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{vsrc,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{ulib_8c_aa9cdc2409c15ccd5ee3b2031576f4093}\label{ulib_8c_aa9cdc2409c15ccd5ee3b2031576f4093} 
+\index{ulib.c@{ulib.c}!memset@{memset}}
+\index{memset@{memset}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{memset()}{memset()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} memset (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dst,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{n }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d8a/ulib_8c_aa9cdc2409c15ccd5ee3b2031576f4093_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ulib_8c_af8d7e31cf6c47831175508f96f29bc5a}\label{ulib_8c_af8d7e31cf6c47831175508f96f29bc5a} 
+\index{ulib.c@{ulib.c}!stat@{stat}}
+\index{stat@{stat}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{stat()}{stat()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{structstat}{stat}} (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{n,  }\item[{struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}}]{st }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{db/d8a/ulib_8c_af8d7e31cf6c47831175508f96f29bc5a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ulib_8c_a34704df9bf598dd9b477bafe5642cfe7}\label{ulib_8c_a34704df9bf598dd9b477bafe5642cfe7} 
+\index{ulib.c@{ulib.c}!strchr@{strchr}}
+\index{strchr@{strchr}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{strchr()}{strchr()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} strchr (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+\Hypertarget{ulib_8c_a20f61ccd139bc66f11fc83ff9d66d4cf}\label{ulib_8c_a20f61ccd139bc66f11fc83ff9d66d4cf} 
+\index{ulib.c@{ulib.c}!strcmp@{strcmp}}
+\index{strcmp@{strcmp}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{strcmp()}{strcmp()}}
+{\footnotesize\ttfamily int strcmp (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{p,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{q }\end{DoxyParamCaption})}
+
+\Hypertarget{ulib_8c_a8047435e7597349a349589b1e264d1d8}\label{ulib_8c_a8047435e7597349a349589b1e264d1d8} 
+\index{ulib.c@{ulib.c}!strcpy@{strcpy}}
+\index{strcpy@{strcpy}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{strcpy()}{strcpy()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} strcpy (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{t }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{db/d8a/ulib_8c_a8047435e7597349a349589b1e264d1d8_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{ulib_8c_a59b5e6e6105ef0e97aed266ec6fdfe60}\label{ulib_8c_a59b5e6e6105ef0e97aed266ec6fdfe60} 
+\index{ulib.c@{ulib.c}!strlen@{strlen}}
+\index{strlen@{strlen}!ulib.c@{ulib.c}}
+\doxysubsubsection{\texorpdfstring{strlen()}{strlen()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} strlen (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{db/d8a/ulib_8c_a59b5e6e6105ef0e97aed266ec6fdfe60_icgraph}
+\end{center}
+\end{figure}

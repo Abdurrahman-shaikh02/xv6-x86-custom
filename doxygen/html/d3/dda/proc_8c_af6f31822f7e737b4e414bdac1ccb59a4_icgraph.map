@@ -1,0 +1,9 @@
+<map id="wait" name="wait">
+<area shape="rect" id="Node000001" title=" " alt="" coords="235,31,285,56"/>
+<area shape="rect" id="Node000002" href="$d5/de1/forktest_8c.html#a0ef8ccf57bc8c491407ec513b234f83c" title=" " alt="" coords="111,5,184,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="220,37,184,29,185,24,222,32"/>
+<area shape="rect" id="Node000004" href="$dd/d35/sysproc_8c.html#ad202e06addda05ba6fe60f05d3f61913" title=" " alt="" coords="108,55,187,80"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="222,54,187,62,186,56,220,49"/>
+<area shape="rect" id="Node000003" href="$d5/de1/forktest_8c.html#a840291bc02cba5474a4cb46a9b9566fe" title=" " alt="" coords="5,5,60,31"/>
+<area shape="poly" id="edge2_Node000002_Node000003" title=" " alt="" coords="97,21,60,21,60,15,97,15"/>
+</map>

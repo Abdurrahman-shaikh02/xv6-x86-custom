@@ -1,0 +1,103 @@
+\doxysection{trap.\+c File Reference}
+\hypertarget{trap_8c}{}\label{trap_8c}\index{trap.c@{trap.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}traps.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+Include dependency graph for trap.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/dd4/trap_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{trap_8c_a9e7167b8e20e217c4af4e757f612ba6a}{tvinit}} (void)
+\item 
+void \mbox{\hyperlink{trap_8c_a9b6e7f6c302700cb54216ad22cbc1591}{idtinit}} (void)
+\item 
+void \mbox{\hyperlink{trap_8c_a372d166e36c086c91e5f5d81e5fead3a}{trap}} (struct \mbox{\hyperlink{structtrapframe}{trapframe}} \texorpdfstring{$\ast$}{*}tf)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structgatedesc}{gatedesc}} \mbox{\hyperlink{trap_8c_a3facbc1e1e6618fb238fc124bd9aa827}{idt}} \mbox{[}256\mbox{]}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{trap_8c_a3e6e0e8b5ba8014e09de2d9aa3740486}{vectors}} \mbox{[}$\,$\mbox{]}
+\item 
+struct \mbox{\hyperlink{structspinlock}{spinlock}} \mbox{\hyperlink{trap_8c_a094a4703b62095e2fa469fab3ffea5c7}{tickslock}}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{trap_8c_a7fcd6915876e066781399d7b00f1b1f0}{ticks}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{trap_8c_a9b6e7f6c302700cb54216ad22cbc1591}\label{trap_8c_a9b6e7f6c302700cb54216ad22cbc1591} 
+\index{trap.c@{trap.c}!idtinit@{idtinit}}
+\index{idtinit@{idtinit}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{idtinit()}{idtinit()}}
+{\footnotesize\ttfamily void idtinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{trap_8c_a372d166e36c086c91e5f5d81e5fead3a}\label{trap_8c_a372d166e36c086c91e5f5d81e5fead3a} 
+\index{trap.c@{trap.c}!trap@{trap}}
+\index{trap@{trap}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{trap()}{trap()}}
+{\footnotesize\ttfamily void trap (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structtrapframe}{trapframe}} \texorpdfstring{$\ast$}{*}}]{tf }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/d6f/trap_8c_a372d166e36c086c91e5f5d81e5fead3a_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{trap_8c_a9e7167b8e20e217c4af4e757f612ba6a}\label{trap_8c_a9e7167b8e20e217c4af4e757f612ba6a} 
+\index{trap.c@{trap.c}!tvinit@{tvinit}}
+\index{tvinit@{tvinit}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{tvinit()}{tvinit()}}
+{\footnotesize\ttfamily void tvinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=211pt]{dc/d6f/trap_8c_a9e7167b8e20e217c4af4e757f612ba6a_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{trap_8c_a3facbc1e1e6618fb238fc124bd9aa827}\label{trap_8c_a3facbc1e1e6618fb238fc124bd9aa827} 
+\index{trap.c@{trap.c}!idt@{idt}}
+\index{idt@{idt}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{idt}{idt}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structgatedesc}{gatedesc}} idt\mbox{[}256\mbox{]}}
+
+\Hypertarget{trap_8c_a7fcd6915876e066781399d7b00f1b1f0}\label{trap_8c_a7fcd6915876e066781399d7b00f1b1f0} 
+\index{trap.c@{trap.c}!ticks@{ticks}}
+\index{ticks@{ticks}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{ticks}{ticks}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} ticks}
+
+\Hypertarget{trap_8c_a094a4703b62095e2fa469fab3ffea5c7}\label{trap_8c_a094a4703b62095e2fa469fab3ffea5c7} 
+\index{trap.c@{trap.c}!tickslock@{tickslock}}
+\index{tickslock@{tickslock}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{tickslock}{tickslock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} tickslock}
+
+\Hypertarget{trap_8c_a3e6e0e8b5ba8014e09de2d9aa3740486}\label{trap_8c_a3e6e0e8b5ba8014e09de2d9aa3740486} 
+\index{trap.c@{trap.c}!vectors@{vectors}}
+\index{vectors@{vectors}!trap.c@{trap.c}}
+\doxysubsubsection{\texorpdfstring{vectors}{vectors}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} vectors\mbox{[}$\,$\mbox{]}\hspace{0.3cm}{\ttfamily [extern]}}
+

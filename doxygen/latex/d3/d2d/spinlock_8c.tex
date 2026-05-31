@@ -1,0 +1,176 @@
+\doxysection{spinlock.\+c File Reference}
+\hypertarget{spinlock_8c}{}\label{spinlock_8c}\index{spinlock.c@{spinlock.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+Include dependency graph for spinlock.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d36/spinlock_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{spinlock_8c_abda07b4a007b2e888d9d783920460b89}{initlock}} (struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}lk, char \texorpdfstring{$\ast$}{*}name)
+\item 
+void \mbox{\hyperlink{spinlock_8c_aed377f16a085b00de3a4b32392adbdfb}{acquire}} (struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}lk)
+\item 
+void \mbox{\hyperlink{spinlock_8c_a1cee376aa9a00e754bf5481cd5f3d97b}{release}} (struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}lk)
+\item 
+void \mbox{\hyperlink{spinlock_8c_a6ac35304ea80f01086b47edcc2328010}{getcallerpcs}} (void \texorpdfstring{$\ast$}{*}v, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} pcs\mbox{[}$\,$\mbox{]})
+\item 
+int \mbox{\hyperlink{spinlock_8c_aea48df3e5cfb903179ad3dc78ab502d9}{holding}} (struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{bio_8c_ab28e82cd5dda7d960095706a3ea20572}{lock}})
+\item 
+void \mbox{\hyperlink{spinlock_8c_a206b749d1b7768dadce61cbcde7e0f1c}{pushcli}} (void)
+\item 
+void \mbox{\hyperlink{spinlock_8c_ae3424f669269fef400ce29c3aeb43fdb}{popcli}} (void)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{spinlock_8c_aed377f16a085b00de3a4b32392adbdfb}\label{spinlock_8c_aed377f16a085b00de3a4b32392adbdfb} 
+\index{spinlock.c@{spinlock.c}!acquire@{acquire}}
+\index{acquire@{acquire}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{acquire()}{acquire()}}
+{\footnotesize\ttfamily void acquire (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}}]{lk }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_aed377f16a085b00de3a4b32392adbdfb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_aed377f16a085b00de3a4b32392adbdfb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spinlock_8c_a6ac35304ea80f01086b47edcc2328010}\label{spinlock_8c_a6ac35304ea80f01086b47edcc2328010} 
+\index{spinlock.c@{spinlock.c}!getcallerpcs@{getcallerpcs}}
+\index{getcallerpcs@{getcallerpcs}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{getcallerpcs()}{getcallerpcs()}}
+{\footnotesize\ttfamily void getcallerpcs (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{v,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{pcs\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_a6ac35304ea80f01086b47edcc2328010_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spinlock_8c_aea48df3e5cfb903179ad3dc78ab502d9}\label{spinlock_8c_aea48df3e5cfb903179ad3dc78ab502d9} 
+\index{spinlock.c@{spinlock.c}!holding@{holding}}
+\index{holding@{holding}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{holding()}{holding()}}
+{\footnotesize\ttfamily int holding (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}}]{lock }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_aea48df3e5cfb903179ad3dc78ab502d9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/d2d/spinlock_8c_aea48df3e5cfb903179ad3dc78ab502d9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spinlock_8c_abda07b4a007b2e888d9d783920460b89}\label{spinlock_8c_abda07b4a007b2e888d9d783920460b89} 
+\index{spinlock.c@{spinlock.c}!initlock@{initlock}}
+\index{initlock@{initlock}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{initlock()}{initlock()}}
+{\footnotesize\ttfamily void initlock (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}}]{lk,  }\item[{char \texorpdfstring{$\ast$}{*}}]{name }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_abda07b4a007b2e888d9d783920460b89_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spinlock_8c_ae3424f669269fef400ce29c3aeb43fdb}\label{spinlock_8c_ae3424f669269fef400ce29c3aeb43fdb} 
+\index{spinlock.c@{spinlock.c}!popcli@{popcli}}
+\index{popcli@{popcli}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{popcli()}{popcli()}}
+{\footnotesize\ttfamily void popcli (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_ae3424f669269fef400ce29c3aeb43fdb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/d2d/spinlock_8c_ae3424f669269fef400ce29c3aeb43fdb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spinlock_8c_a206b749d1b7768dadce61cbcde7e0f1c}\label{spinlock_8c_a206b749d1b7768dadce61cbcde7e0f1c} 
+\index{spinlock.c@{spinlock.c}!pushcli@{pushcli}}
+\index{pushcli@{pushcli}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{pushcli()}{pushcli()}}
+{\footnotesize\ttfamily void pushcli (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_a206b749d1b7768dadce61cbcde7e0f1c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=550pt]{d3/d2d/spinlock_8c_a206b749d1b7768dadce61cbcde7e0f1c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{spinlock_8c_a1cee376aa9a00e754bf5481cd5f3d97b}\label{spinlock_8c_a1cee376aa9a00e754bf5481cd5f3d97b} 
+\index{spinlock.c@{spinlock.c}!release@{release}}
+\index{release@{release}!spinlock.c@{spinlock.c}}
+\doxysubsubsection{\texorpdfstring{release()}{release()}}
+{\footnotesize\ttfamily void release (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structspinlock}{spinlock}} \texorpdfstring{$\ast$}{*}}]{lk }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_a1cee376aa9a00e754bf5481cd5f3d97b_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d3/d2d/spinlock_8c_a1cee376aa9a00e754bf5481cd5f3d97b_icgraph}
+\end{center}
+\end{figure}

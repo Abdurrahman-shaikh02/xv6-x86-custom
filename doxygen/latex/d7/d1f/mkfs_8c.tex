@@ -1,0 +1,366 @@
+\doxysection{mkfs.\+c File Reference}
+\hypertarget{mkfs_8c}{}\label{mkfs_8c}\index{mkfs.c@{mkfs.c}}
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$unistd.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include $<$string.\+h$>$}\newline
+{\ttfamily \#include $<$fcntl.\+h$>$}\newline
+{\ttfamily \#include $<$assert.\+h$>$}\newline
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}stat.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+Include dependency graph for mkfs.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/ddf/mkfs_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{mkfs_8c_a149da0702b060478da4d59ffe807adac}{stat}}~xv6\+\_\+stat
+\item 
+\#define \mbox{\hyperlink{mkfs_8c_abce67139ad0bc979ef080a694e60fb36}{static\+\_\+assert}}(a,  b)~do \{ switch (0) case 0\+: case (a)\+: ; \} while (0)
+\item 
+\#define \mbox{\hyperlink{mkfs_8c_ad285a4c453432da6be26e87a581ee35c}{NINODES}}~200
+\item 
+\#define \mbox{\hyperlink{mkfs_8c_ac6afabdc09a49a433ee19d8a9486056d}{min}}(a,  b)~((a) $<$ (b) ? (a) \+: (b))
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mkfs_8c_a327cdfc7a74165d8922ec6c8ba256906}{balloc}} (int)
+\item 
+void \mbox{\hyperlink{mkfs_8c_ac62d827d836d1807e4d6f365f32348bb}{wsect}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}, void \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{mkfs_8c_a2540c48cea7dc865909cfb3f8450a887}{winode}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}, struct \mbox{\hyperlink{structdinode}{dinode}} \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{mkfs_8c_a3b6cb1258a963010211a8e5ddf99defe}{rinode}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} inum, struct \mbox{\hyperlink{structdinode}{dinode}} \texorpdfstring{$\ast$}{*}ip)
+\item 
+void \mbox{\hyperlink{mkfs_8c_a22ea835ad23cd716a962f30e4882ee80}{rsect}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} sec, void \texorpdfstring{$\ast$}{*}\mbox{\hyperlink{structbuf}{buf}})
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{mkfs_8c_a341af7faeda3d6fcb57a5a9fe3a0104a}{ialloc}} (\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}} type)
+\item 
+void \mbox{\hyperlink{mkfs_8c_a268b61616f575ff072f5bb34c83e02e9}{iappend}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} inum, void \texorpdfstring{$\ast$}{*}p, int n)
+\item 
+\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}} \mbox{\hyperlink{mkfs_8c_ac6dbbb3aaeee7114cf795be284be08ce}{xshort}} (\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}} x)
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{mkfs_8c_a0cb088f1b4dabee9a6056b88a8f813ef}{xint}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} x)
+\item 
+int \mbox{\hyperlink{mkfs_8c_a0ddf1224851353fc92bfbff6f499fa97}{main}} (int argc, char \texorpdfstring{$\ast$}{*}argv\mbox{[}$\,$\mbox{]})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{mkfs_8c_ab3610080ec9ad31beae2488dffd98026}{nbitmap}} = \mbox{\hyperlink{param_8h_a486f47992f736854db2444b01afd9991}{FSSIZE}}/(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\texorpdfstring{$\ast$}{*}8) + 1
+\item 
+int \mbox{\hyperlink{mkfs_8c_a86bf1487f875e3a82dbb4f7c0cde878c}{ninodeblocks}} = \mbox{\hyperlink{mkfs_8c_ad285a4c453432da6be26e87a581ee35c}{NINODES}} / \mbox{\hyperlink{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228}{IPB}} + 1
+\item 
+int \mbox{\hyperlink{mkfs_8c_aa86ff3fab07bd3139fcd159de0ffce90}{nlog}} = \mbox{\hyperlink{param_8h_acc7694167c7840a913939a1b90808b4c}{LOGSIZE}}
+\item 
+int \mbox{\hyperlink{mkfs_8c_a6bb66ce69ae378551f55d86c515ae02c}{nmeta}}
+\item 
+int \mbox{\hyperlink{mkfs_8c_a076c8e8b7f7acccc46cd356bd8776b26}{nblocks}}
+\item 
+int \mbox{\hyperlink{mkfs_8c_a44f12de41bc5a5ada9e5fff19c18201c}{fsfd}}
+\item 
+struct \mbox{\hyperlink{structsuperblock}{superblock}} \mbox{\hyperlink{mkfs_8c_a0248d0bac625de5a1415f2f8c91f3343}{sb}}
+\item 
+char \mbox{\hyperlink{mkfs_8c_aef2d52736d40de37197333ecdeb14a60}{zeroes}} \mbox{[}\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\mbox{]}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{mkfs_8c_acee9059b25c8d81ef2b9cfedded17d48}{freeinode}} = 1
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{mkfs_8c_a8d3a0b59d5f6e59c8b7c0bbdab41ab15}{freeblock}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{mkfs_8c_ac6afabdc09a49a433ee19d8a9486056d}\label{mkfs_8c_ac6afabdc09a49a433ee19d8a9486056d} 
+\index{mkfs.c@{mkfs.c}!min@{min}}
+\index{min@{min}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{min}{min}}
+{\footnotesize\ttfamily \#define min(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~((a) $<$ (b) ? (a) \+: (b))}
+
+\Hypertarget{mkfs_8c_ad285a4c453432da6be26e87a581ee35c}\label{mkfs_8c_ad285a4c453432da6be26e87a581ee35c} 
+\index{mkfs.c@{mkfs.c}!NINODES@{NINODES}}
+\index{NINODES@{NINODES}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{NINODES}{NINODES}}
+{\footnotesize\ttfamily \#define NINODES~200}
+
+\Hypertarget{mkfs_8c_a149da0702b060478da4d59ffe807adac}\label{mkfs_8c_a149da0702b060478da4d59ffe807adac} 
+\index{mkfs.c@{mkfs.c}!stat@{stat}}
+\index{stat@{stat}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{stat}{stat}}
+{\footnotesize\ttfamily \#define \mbox{\hyperlink{structstat}{stat}}~xv6\+\_\+stat}
+
+\Hypertarget{mkfs_8c_abce67139ad0bc979ef080a694e60fb36}\label{mkfs_8c_abce67139ad0bc979ef080a694e60fb36} 
+\index{mkfs.c@{mkfs.c}!static\_assert@{static\_assert}}
+\index{static\_assert@{static\_assert}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{static\_assert}{static\_assert}}
+{\footnotesize\ttfamily \#define static\+\_\+assert(\begin{DoxyParamCaption}\item[{}]{a,  }\item[{}]{b }\end{DoxyParamCaption})~do \{ switch (0) case 0\+: case (a)\+: ; \} while (0)}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mkfs_8c_a327cdfc7a74165d8922ec6c8ba256906}\label{mkfs_8c_a327cdfc7a74165d8922ec6c8ba256906} 
+\index{mkfs.c@{mkfs.c}!balloc@{balloc}}
+\index{balloc@{balloc}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{balloc()}{balloc()}}
+{\footnotesize\ttfamily void balloc (\begin{DoxyParamCaption}\item[{int}]{used }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a327cdfc7a74165d8922ec6c8ba256906_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{d7/d1f/mkfs_8c_a327cdfc7a74165d8922ec6c8ba256906_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a341af7faeda3d6fcb57a5a9fe3a0104a}\label{mkfs_8c_a341af7faeda3d6fcb57a5a9fe3a0104a} 
+\index{mkfs.c@{mkfs.c}!ialloc@{ialloc}}
+\index{ialloc@{ialloc}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{ialloc()}{ialloc()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} ialloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}}]{type }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a341af7faeda3d6fcb57a5a9fe3a0104a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=200pt]{d7/d1f/mkfs_8c_a341af7faeda3d6fcb57a5a9fe3a0104a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a268b61616f575ff072f5bb34c83e02e9}\label{mkfs_8c_a268b61616f575ff072f5bb34c83e02e9} 
+\index{mkfs.c@{mkfs.c}!iappend@{iappend}}
+\index{iappend@{iappend}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{iappend()}{iappend()}}
+{\footnotesize\ttfamily void iappend (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{inum,  }\item[{void \texorpdfstring{$\ast$}{*}}]{p,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a268b61616f575ff072f5bb34c83e02e9_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=213pt]{d7/d1f/mkfs_8c_a268b61616f575ff072f5bb34c83e02e9_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a0ddf1224851353fc92bfbff6f499fa97}\label{mkfs_8c_a0ddf1224851353fc92bfbff6f499fa97} 
+\index{mkfs.c@{mkfs.c}!main@{main}}
+\index{main@{main}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char \texorpdfstring{$\ast$}{*}}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a0ddf1224851353fc92bfbff6f499fa97_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a3b6cb1258a963010211a8e5ddf99defe}\label{mkfs_8c_a3b6cb1258a963010211a8e5ddf99defe} 
+\index{mkfs.c@{mkfs.c}!rinode@{rinode}}
+\index{rinode@{rinode}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{rinode()}{rinode()}}
+{\footnotesize\ttfamily void rinode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{inum,  }\item[{struct \mbox{\hyperlink{structdinode}{dinode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a3b6cb1258a963010211a8e5ddf99defe_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=296pt]{d7/d1f/mkfs_8c_a3b6cb1258a963010211a8e5ddf99defe_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a22ea835ad23cd716a962f30e4882ee80}\label{mkfs_8c_a22ea835ad23cd716a962f30e4882ee80} 
+\index{mkfs.c@{mkfs.c}!rsect@{rsect}}
+\index{rsect@{rsect}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{rsect()}{rsect()}}
+{\footnotesize\ttfamily void rsect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{sec,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a22ea835ad23cd716a962f30e4882ee80_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a22ea835ad23cd716a962f30e4882ee80_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a2540c48cea7dc865909cfb3f8450a887}\label{mkfs_8c_a2540c48cea7dc865909cfb3f8450a887} 
+\index{mkfs.c@{mkfs.c}!winode@{winode}}
+\index{winode@{winode}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{winode()}{winode()}}
+{\footnotesize\ttfamily void winode (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{inum,  }\item[{struct \mbox{\hyperlink{structdinode}{dinode}} \texorpdfstring{$\ast$}{*}}]{ip }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_a2540c48cea7dc865909cfb3f8450a887_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=301pt]{d7/d1f/mkfs_8c_a2540c48cea7dc865909cfb3f8450a887_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_ac62d827d836d1807e4d6f365f32348bb}\label{mkfs_8c_ac62d827d836d1807e4d6f365f32348bb} 
+\index{mkfs.c@{mkfs.c}!wsect@{wsect}}
+\index{wsect@{wsect}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{wsect()}{wsect()}}
+{\footnotesize\ttfamily void wsect (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{sec,  }\item[{void \texorpdfstring{$\ast$}{*}}]{buf }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_ac62d827d836d1807e4d6f365f32348bb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d7/d1f/mkfs_8c_ac62d827d836d1807e4d6f365f32348bb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_a0cb088f1b4dabee9a6056b88a8f813ef}\label{mkfs_8c_a0cb088f1b4dabee9a6056b88a8f813ef} 
+\index{mkfs.c@{mkfs.c}!xint@{xint}}
+\index{xint@{xint}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{xint()}{xint()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} xint (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{x }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=284pt]{d7/d1f/mkfs_8c_a0cb088f1b4dabee9a6056b88a8f813ef_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{mkfs_8c_ac6dbbb3aaeee7114cf795be284be08ce}\label{mkfs_8c_ac6dbbb3aaeee7114cf795be284be08ce} 
+\index{mkfs.c@{mkfs.c}!xshort@{xshort}}
+\index{xshort@{xshort}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{xshort()}{xshort()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}} xshort (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}}]{x }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=283pt]{d7/d1f/mkfs_8c_ac6dbbb3aaeee7114cf795be284be08ce_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{mkfs_8c_a8d3a0b59d5f6e59c8b7c0bbdab41ab15}\label{mkfs_8c_a8d3a0b59d5f6e59c8b7c0bbdab41ab15} 
+\index{mkfs.c@{mkfs.c}!freeblock@{freeblock}}
+\index{freeblock@{freeblock}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{freeblock}{freeblock}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} freeblock}
+
+\Hypertarget{mkfs_8c_acee9059b25c8d81ef2b9cfedded17d48}\label{mkfs_8c_acee9059b25c8d81ef2b9cfedded17d48} 
+\index{mkfs.c@{mkfs.c}!freeinode@{freeinode}}
+\index{freeinode@{freeinode}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{freeinode}{freeinode}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} freeinode = 1}
+
+\Hypertarget{mkfs_8c_a44f12de41bc5a5ada9e5fff19c18201c}\label{mkfs_8c_a44f12de41bc5a5ada9e5fff19c18201c} 
+\index{mkfs.c@{mkfs.c}!fsfd@{fsfd}}
+\index{fsfd@{fsfd}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{fsfd}{fsfd}}
+{\footnotesize\ttfamily int fsfd}
+
+\Hypertarget{mkfs_8c_ab3610080ec9ad31beae2488dffd98026}\label{mkfs_8c_ab3610080ec9ad31beae2488dffd98026} 
+\index{mkfs.c@{mkfs.c}!nbitmap@{nbitmap}}
+\index{nbitmap@{nbitmap}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{nbitmap}{nbitmap}}
+{\footnotesize\ttfamily int nbitmap = \mbox{\hyperlink{param_8h_a486f47992f736854db2444b01afd9991}{FSSIZE}}/(\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\texorpdfstring{$\ast$}{*}8) + 1}
+
+\Hypertarget{mkfs_8c_a076c8e8b7f7acccc46cd356bd8776b26}\label{mkfs_8c_a076c8e8b7f7acccc46cd356bd8776b26} 
+\index{mkfs.c@{mkfs.c}!nblocks@{nblocks}}
+\index{nblocks@{nblocks}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{nblocks}{nblocks}}
+{\footnotesize\ttfamily int nblocks}
+
+\Hypertarget{mkfs_8c_a86bf1487f875e3a82dbb4f7c0cde878c}\label{mkfs_8c_a86bf1487f875e3a82dbb4f7c0cde878c} 
+\index{mkfs.c@{mkfs.c}!ninodeblocks@{ninodeblocks}}
+\index{ninodeblocks@{ninodeblocks}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{ninodeblocks}{ninodeblocks}}
+{\footnotesize\ttfamily int ninodeblocks = \mbox{\hyperlink{mkfs_8c_ad285a4c453432da6be26e87a581ee35c}{NINODES}} / \mbox{\hyperlink{fs_8h_aadb6c866a6d0a173f5f0a6ed9c7e0228}{IPB}} + 1}
+
+\Hypertarget{mkfs_8c_aa86ff3fab07bd3139fcd159de0ffce90}\label{mkfs_8c_aa86ff3fab07bd3139fcd159de0ffce90} 
+\index{mkfs.c@{mkfs.c}!nlog@{nlog}}
+\index{nlog@{nlog}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{nlog}{nlog}}
+{\footnotesize\ttfamily int nlog = \mbox{\hyperlink{param_8h_acc7694167c7840a913939a1b90808b4c}{LOGSIZE}}}
+
+\Hypertarget{mkfs_8c_a6bb66ce69ae378551f55d86c515ae02c}\label{mkfs_8c_a6bb66ce69ae378551f55d86c515ae02c} 
+\index{mkfs.c@{mkfs.c}!nmeta@{nmeta}}
+\index{nmeta@{nmeta}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{nmeta}{nmeta}}
+{\footnotesize\ttfamily int nmeta}
+
+\Hypertarget{mkfs_8c_a0248d0bac625de5a1415f2f8c91f3343}\label{mkfs_8c_a0248d0bac625de5a1415f2f8c91f3343} 
+\index{mkfs.c@{mkfs.c}!sb@{sb}}
+\index{sb@{sb}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{sb}{sb}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsuperblock}{superblock}} sb}
+
+\Hypertarget{mkfs_8c_aef2d52736d40de37197333ecdeb14a60}\label{mkfs_8c_aef2d52736d40de37197333ecdeb14a60} 
+\index{mkfs.c@{mkfs.c}!zeroes@{zeroes}}
+\index{zeroes@{zeroes}!mkfs.c@{mkfs.c}}
+\doxysubsubsection{\texorpdfstring{zeroes}{zeroes}}
+{\footnotesize\ttfamily char zeroes\mbox{[}\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\mbox{]}}
+

@@ -1,0 +1,142 @@
+\doxysection{bio.\+c File Reference}
+\hypertarget{bio_8c}{}\label{bio_8c}\index{bio.c@{bio.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}buf.\+h"{}}\newline
+Include dependency graph for bio.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d9/d72/bio_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{bio_8c_a53cca0ddc98c5f1de37124eca2575a59}{binit}} (void)
+\item 
+struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{bio_8c_a30b8d2ef2300ed8e3d879a428fe39898}{bread}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} dev, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} blockno)
+\item 
+void \mbox{\hyperlink{bio_8c_a63c899c13b176ddf80064d32225e1298}{bwrite}} (struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}b)
+\item 
+void \mbox{\hyperlink{bio_8c_ab5335aeb503731104314321a78a6d727}{brelse}} (struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}b)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structspinlock}{spinlock}} \mbox{\hyperlink{bio_8c_ab28e82cd5dda7d960095706a3ea20572}{lock}}\\
+\>struct \mbox{\hyperlink{structbuf}{buf}} \mbox{\hyperlink{bio_8c_a72ee90c61d41547b10a533c219e081c6}{buf}} \mbox{[}\mbox{\hyperlink{param_8h_ad51e2f8dffd163c263ec676a268d0f0a}{NBUF}}\mbox{]}\\
+\>struct \mbox{\hyperlink{structbuf}{buf}} \mbox{\hyperlink{bio_8c_aa6e692c16f1b909f5cb2a1832cf43430}{head}}\\
+\} \mbox{\hyperlink{bio_8c_a7725a9957148b7740449a091ea12b0e4}{bcache}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{bio_8c_a53cca0ddc98c5f1de37124eca2575a59}\label{bio_8c_a53cca0ddc98c5f1de37124eca2575a59} 
+\index{bio.c@{bio.c}!binit@{binit}}
+\index{binit@{binit}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{binit()}{binit()}}
+{\footnotesize\ttfamily void binit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=322pt]{dc/de6/bio_8c_a53cca0ddc98c5f1de37124eca2575a59_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bio_8c_a30b8d2ef2300ed8e3d879a428fe39898}\label{bio_8c_a30b8d2ef2300ed8e3d879a428fe39898} 
+\index{bio.c@{bio.c}!bread@{bread}}
+\index{bread@{bread}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{bread()}{bread()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*} bread (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{dev,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{blockno }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/de6/bio_8c_a30b8d2ef2300ed8e3d879a428fe39898_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/de6/bio_8c_a30b8d2ef2300ed8e3d879a428fe39898_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bio_8c_ab5335aeb503731104314321a78a6d727}\label{bio_8c_ab5335aeb503731104314321a78a6d727} 
+\index{bio.c@{bio.c}!brelse@{brelse}}
+\index{brelse@{brelse}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{brelse()}{brelse()}}
+{\footnotesize\ttfamily void brelse (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}}]{b }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/de6/bio_8c_ab5335aeb503731104314321a78a6d727_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/de6/bio_8c_ab5335aeb503731104314321a78a6d727_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{bio_8c_a63c899c13b176ddf80064d32225e1298}\label{bio_8c_a63c899c13b176ddf80064d32225e1298} 
+\index{bio.c@{bio.c}!bwrite@{bwrite}}
+\index{bwrite@{bwrite}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{bwrite()}{bwrite()}}
+{\footnotesize\ttfamily void bwrite (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*}}]{b }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dc/de6/bio_8c_a63c899c13b176ddf80064d32225e1298_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{bio_8c_a7725a9957148b7740449a091ea12b0e4}\label{bio_8c_a7725a9957148b7740449a091ea12b0e4} 
+\index{bio.c@{bio.c}!bcache@{bcache}}
+\index{bcache@{bcache}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily struct  \{ ... \}  bcache}
+
+\Hypertarget{bio_8c_a72ee90c61d41547b10a533c219e081c6}\label{bio_8c_a72ee90c61d41547b10a533c219e081c6} 
+\index{bio.c@{bio.c}!buf@{buf}}
+\index{buf@{buf}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{buf}{buf}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuf}{buf}} \mbox{\hyperlink{structbuf}{buf}}\mbox{[}\mbox{\hyperlink{param_8h_ad51e2f8dffd163c263ec676a268d0f0a}{NBUF}}\mbox{]}}
+
+\Hypertarget{bio_8c_aa6e692c16f1b909f5cb2a1832cf43430}\label{bio_8c_aa6e692c16f1b909f5cb2a1832cf43430} 
+\index{bio.c@{bio.c}!head@{head}}
+\index{head@{head}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{head}{head}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuf}{buf}} head}
+
+\Hypertarget{bio_8c_ab28e82cd5dda7d960095706a3ea20572}\label{bio_8c_ab28e82cd5dda7d960095706a3ea20572} 
+\index{bio.c@{bio.c}!lock@{lock}}
+\index{lock@{lock}!bio.c@{bio.c}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} lock}
+

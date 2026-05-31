@@ -1,0 +1,360 @@
+\doxysection{user.\+h File Reference}
+\hypertarget{user_8h}{}\label{user_8h}\index{user.h@{user.h}}
+This graph shows which files directly or indirectly include this file\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/de9/user_8h__dep__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{user_8h_acd2e1ded4bb6fce4500438bf928330f4}{fork}} (void)
+\item 
+int \mbox{\hyperlink{user_8h_ab3db880e623854a39a18d618e360323d}{exit}} (void) \mbox{\hyperlink{main_8c_a08f0b7c20a38fda2383d4f70bb78dc3e}{\+\_\+\+\_\+attribute\+\_\+\+\_\+}}((noreturn))
+\item 
+int \mbox{\hyperlink{user_8h_af6f31822f7e737b4e414bdac1ccb59a4}{wait}} (void)
+\item 
+int \mbox{\hyperlink{user_8h_a3e511a43ff12776599312723e69df219}{pipe}} (int \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_ae57e95d717eb7386cd8b935a0c136abe}{write}} (int, const void \texorpdfstring{$\ast$}{*}, int)
+\item 
+int \mbox{\hyperlink{user_8h_a2d73522d6354b8a141ecfaa9585a0c77}{read}} (int, void \texorpdfstring{$\ast$}{*}, int)
+\item 
+int \mbox{\hyperlink{user_8h_ae152484c890a24e4d9b4980e7b965be0}{close}} (int)
+\item 
+int \mbox{\hyperlink{user_8h_ab893e9671d6bfe2b2604002a50639f21}{kill}} (int)
+\item 
+int \mbox{\hyperlink{user_8h_aa7b4aae4a12acd187e23396214aeca47}{exec}} (char \texorpdfstring{$\ast$}{*}, char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_a2c4414339f388561554c2deab11a1a07}{open}} (const char \texorpdfstring{$\ast$}{*}, int)
+\item 
+int \mbox{\hyperlink{user_8h_a3b9ff823fbf509b3d200bd3d5c238365}{mknod}} (const char \texorpdfstring{$\ast$}{*}, short, short)
+\item 
+int \mbox{\hyperlink{user_8h_a4ade26dbdb332f64c44daf49ba949ff4}{unlink}} (const char \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_a649aa32ddc94f9b64c3fa27dc9724459}{fstat}} (int fd, struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_a9f0ffa429d1a466322fb9b5bb084f828}{link}} (const char \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_a034fad25eff1c559bf33767e574d1d62}{mkdir}} (const char \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_aebe305544f2eb0cf2c4a4f8b4c12bc0f}{chdir}} (const char \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_a530ea95b243a1bf148adaf399e2a6292}{dup}} (int)
+\item 
+int \mbox{\hyperlink{user_8h_a939cb25a305fe68aad9b365077f1a8c7}{getpid}} (void)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_af9b02dd9eafa02f44aa5e354a5260bc9}{sbrk}} (int)
+\item 
+int \mbox{\hyperlink{user_8h_a4c9ea5126314b1eedbe1f6c94996878a}{sleep}} (int)
+\item 
+int \mbox{\hyperlink{user_8h_ab637d1dd2fecad1cb0c91a42597a8dbc}{uptime}} (void)
+\item 
+int \mbox{\hyperlink{user_8h_a4f3cc37bc79351b98643c69f33ba8866}{stat}} (const char \texorpdfstring{$\ast$}{*}, struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*})
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_a54e4f23104fa6f722f9459d2673a1eba}{strcpy}} (char \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*})
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_ab0cb468c5236ca7d15ec8f455a9dbdc4}{memmove}} (void \texorpdfstring{$\ast$}{*}, const void \texorpdfstring{$\ast$}{*}, int)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_a58f5d6c37e537e6c632e81e8ef4bc78d}{strchr}} (const char \texorpdfstring{$\ast$}{*}, char c)
+\item 
+int \mbox{\hyperlink{user_8h_a21e4788b4a0ae39b11aa32e9a1079f98}{strcmp}} (const char \texorpdfstring{$\ast$}{*}, const char \texorpdfstring{$\ast$}{*})
+\item 
+void \mbox{\hyperlink{user_8h_a7126977808ae8dcc78624cdebda293a0}{printf}} (int, const char \texorpdfstring{$\ast$}{*},...)
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_a7dc53f126f9818785d5824bbb155f7a4}{gets}} (char \texorpdfstring{$\ast$}{*}, int max)
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{user_8h_ac4294f6d83e8839487693627b738a429}{strlen}} (const char \texorpdfstring{$\ast$}{*})
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_a0098886a849eef10803e9f35ceec61b9}{memset}} (void \texorpdfstring{$\ast$}{*}, int, \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}})
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{user_8h_a6ce12ff2e91d62ac939f6cad0788501f}{malloc}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}})
+\item 
+void \mbox{\hyperlink{user_8h_af07d89f5ceaea0c7c8252cc41fd75f37}{free}} (void \texorpdfstring{$\ast$}{*})
+\item 
+int \mbox{\hyperlink{user_8h_a4e157d18591ba54c92e4da99a3d1ccae}{atoi}} (const char \texorpdfstring{$\ast$}{*})
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{user_8h_a4e157d18591ba54c92e4da99a3d1ccae}\label{user_8h_a4e157d18591ba54c92e4da99a3d1ccae} 
+\index{user.h@{user.h}!atoi@{atoi}}
+\index{atoi@{atoi}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{atoi()}{atoi()}}
+{\footnotesize\ttfamily int atoi (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_aebe305544f2eb0cf2c4a4f8b4c12bc0f}\label{user_8h_aebe305544f2eb0cf2c4a4f8b4c12bc0f} 
+\index{user.h@{user.h}!chdir@{chdir}}
+\index{chdir@{chdir}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{chdir()}{chdir()}}
+{\footnotesize\ttfamily int chdir (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_ae152484c890a24e4d9b4980e7b965be0}\label{user_8h_ae152484c890a24e4d9b4980e7b965be0} 
+\index{user.h@{user.h}!close@{close}}
+\index{close@{close}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{close()}{close()}}
+{\footnotesize\ttfamily int close (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=199pt]{d8/ddb/user_8h_ae152484c890a24e4d9b4980e7b965be0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_a530ea95b243a1bf148adaf399e2a6292}\label{user_8h_a530ea95b243a1bf148adaf399e2a6292} 
+\index{user.h@{user.h}!dup@{dup}}
+\index{dup@{dup}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{dup()}{dup()}}
+{\footnotesize\ttfamily int dup (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_aa7b4aae4a12acd187e23396214aeca47}\label{user_8h_aa7b4aae4a12acd187e23396214aeca47} 
+\index{user.h@{user.h}!exec@{exec}}
+\index{exec@{exec}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{exec()}{exec()}}
+{\footnotesize\ttfamily int exec (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{path,  }\item[{char \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{argv }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_ab3db880e623854a39a18d618e360323d}\label{user_8h_ab3db880e623854a39a18d618e360323d} 
+\index{user.h@{user.h}!exit@{exit}}
+\index{exit@{exit}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{exit()}{exit()}}
+{\footnotesize\ttfamily int exit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_acd2e1ded4bb6fce4500438bf928330f4}\label{user_8h_acd2e1ded4bb6fce4500438bf928330f4} 
+\index{user.h@{user.h}!fork@{fork}}
+\index{fork@{fork}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{fork()}{fork()}}
+{\footnotesize\ttfamily int fork (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_af07d89f5ceaea0c7c8252cc41fd75f37}\label{user_8h_af07d89f5ceaea0c7c8252cc41fd75f37} 
+\index{user.h@{user.h}!free@{free}}
+\index{free@{free}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily void free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ap }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a649aa32ddc94f9b64c3fa27dc9724459}\label{user_8h_a649aa32ddc94f9b64c3fa27dc9724459} 
+\index{user.h@{user.h}!fstat@{fstat}}
+\index{fstat@{fstat}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{fstat()}{fstat()}}
+{\footnotesize\ttfamily int fstat (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=190pt]{d8/ddb/user_8h_a649aa32ddc94f9b64c3fa27dc9724459_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_a939cb25a305fe68aad9b365077f1a8c7}\label{user_8h_a939cb25a305fe68aad9b365077f1a8c7} 
+\index{user.h@{user.h}!getpid@{getpid}}
+\index{getpid@{getpid}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{getpid()}{getpid()}}
+{\footnotesize\ttfamily int getpid (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a7dc53f126f9818785d5824bbb155f7a4}\label{user_8h_a7dc53f126f9818785d5824bbb155f7a4} 
+\index{user.h@{user.h}!gets@{gets}}
+\index{gets@{gets}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{gets()}{gets()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} gets (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{buf,  }\item[{int}]{max }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=192pt]{d8/ddb/user_8h_a7dc53f126f9818785d5824bbb155f7a4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_ab893e9671d6bfe2b2604002a50639f21}\label{user_8h_ab893e9671d6bfe2b2604002a50639f21} 
+\index{user.h@{user.h}!kill@{kill}}
+\index{kill@{kill}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{kill()}{kill()}}
+{\footnotesize\ttfamily int kill (\begin{DoxyParamCaption}\item[{int}]{pid }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a9f0ffa429d1a466322fb9b5bb084f828}\label{user_8h_a9f0ffa429d1a466322fb9b5bb084f828} 
+\index{user.h@{user.h}!link@{link}}
+\index{link@{link}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{link()}{link()}}
+{\footnotesize\ttfamily int link (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a6ce12ff2e91d62ac939f6cad0788501f}\label{user_8h_a6ce12ff2e91d62ac939f6cad0788501f} 
+\index{user.h@{user.h}!malloc@{malloc}}
+\index{malloc@{malloc}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{malloc()}{malloc()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} malloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{nbytes }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_ab0cb468c5236ca7d15ec8f455a9dbdc4}\label{user_8h_ab0cb468c5236ca7d15ec8f455a9dbdc4} 
+\index{user.h@{user.h}!memmove@{memmove}}
+\index{memmove@{memmove}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{memmove()}{memmove()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} memmove (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{vdst,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{vsrc,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a0098886a849eef10803e9f35ceec61b9}\label{user_8h_a0098886a849eef10803e9f35ceec61b9} 
+\index{user.h@{user.h}!memset@{memset}}
+\index{memset@{memset}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{memset()}{memset()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} memset (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{dst,  }\item[{int}]{c,  }\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{n }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a034fad25eff1c559bf33767e574d1d62}\label{user_8h_a034fad25eff1c559bf33767e574d1d62} 
+\index{user.h@{user.h}!mkdir@{mkdir}}
+\index{mkdir@{mkdir}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{mkdir()}{mkdir()}}
+{\footnotesize\ttfamily int mkdir (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a3b9ff823fbf509b3d200bd3d5c238365}\label{user_8h_a3b9ff823fbf509b3d200bd3d5c238365} 
+\index{user.h@{user.h}!mknod@{mknod}}
+\index{mknod@{mknod}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{mknod()}{mknod()}}
+{\footnotesize\ttfamily int mknod (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{,  }\item[{short}]{,  }\item[{short}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a2c4414339f388561554c2deab11a1a07}\label{user_8h_a2c4414339f388561554c2deab11a1a07} 
+\index{user.h@{user.h}!open@{open}}
+\index{open@{open}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily int open (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=198pt]{d8/ddb/user_8h_a2c4414339f388561554c2deab11a1a07_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_a3e511a43ff12776599312723e69df219}\label{user_8h_a3e511a43ff12776599312723e69df219} 
+\index{user.h@{user.h}!pipe@{pipe}}
+\index{pipe@{pipe}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{pipe()}{pipe()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{structpipe}{pipe}} (\begin{DoxyParamCaption}\item[{int \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a7126977808ae8dcc78624cdebda293a0}\label{user_8h_a7126977808ae8dcc78624cdebda293a0} 
+\index{user.h@{user.h}!printf@{printf}}
+\index{printf@{printf}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{printf()}{printf()}}
+{\footnotesize\ttfamily void printf (\begin{DoxyParamCaption}\item[{int}]{fd,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{}]{... }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=203pt]{d8/ddb/user_8h_a7126977808ae8dcc78624cdebda293a0_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=291pt]{d8/ddb/user_8h_a7126977808ae8dcc78624cdebda293a0_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_a2d73522d6354b8a141ecfaa9585a0c77}\label{user_8h_a2d73522d6354b8a141ecfaa9585a0c77} 
+\index{user.h@{user.h}!read@{read}}
+\index{read@{read}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{read()}{read()}}
+{\footnotesize\ttfamily int read (\begin{DoxyParamCaption}\item[{int}]{,  }\item[{void \texorpdfstring{$\ast$}{*}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/ddb/user_8h_a2d73522d6354b8a141ecfaa9585a0c77_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_af9b02dd9eafa02f44aa5e354a5260bc9}\label{user_8h_af9b02dd9eafa02f44aa5e354a5260bc9} 
+\index{user.h@{user.h}!sbrk@{sbrk}}
+\index{sbrk@{sbrk}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{sbrk()}{sbrk()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} sbrk (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a4c9ea5126314b1eedbe1f6c94996878a}\label{user_8h_a4c9ea5126314b1eedbe1f6c94996878a} 
+\index{user.h@{user.h}!sleep@{sleep}}
+\index{sleep@{sleep}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{sleep()}{sleep()}}
+{\footnotesize\ttfamily int sleep (\begin{DoxyParamCaption}\item[{int}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a4f3cc37bc79351b98643c69f33ba8866}\label{user_8h_a4f3cc37bc79351b98643c69f33ba8866} 
+\index{user.h@{user.h}!stat@{stat}}
+\index{stat@{stat}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{stat()}{stat()}}
+{\footnotesize\ttfamily int \mbox{\hyperlink{structstat}{stat}} (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{n,  }\item[{struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}}]{st }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=193pt]{d8/ddb/user_8h_a4f3cc37bc79351b98643c69f33ba8866_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_a58f5d6c37e537e6c632e81e8ef4bc78d}\label{user_8h_a58f5d6c37e537e6c632e81e8ef4bc78d} 
+\index{user.h@{user.h}!strchr@{strchr}}
+\index{strchr@{strchr}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{strchr()}{strchr()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} strchr (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{char}]{c }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a21e4788b4a0ae39b11aa32e9a1079f98}\label{user_8h_a21e4788b4a0ae39b11aa32e9a1079f98} 
+\index{user.h@{user.h}!strcmp@{strcmp}}
+\index{strcmp@{strcmp}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{strcmp()}{strcmp()}}
+{\footnotesize\ttfamily int strcmp (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{p,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{q }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a54e4f23104fa6f722f9459d2673a1eba}\label{user_8h_a54e4f23104fa6f722f9459d2673a1eba} 
+\index{user.h@{user.h}!strcpy@{strcpy}}
+\index{strcpy@{strcpy}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{strcpy()}{strcpy()}}
+{\footnotesize\ttfamily char \texorpdfstring{$\ast$}{*} strcpy (\begin{DoxyParamCaption}\item[{char \texorpdfstring{$\ast$}{*}}]{s,  }\item[{const char \texorpdfstring{$\ast$}{*}}]{t }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=204pt]{d8/ddb/user_8h_a54e4f23104fa6f722f9459d2673a1eba_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{user_8h_ac4294f6d83e8839487693627b738a429}\label{user_8h_ac4294f6d83e8839487693627b738a429} 
+\index{user.h@{user.h}!strlen@{strlen}}
+\index{strlen@{strlen}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{strlen()}{strlen()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} strlen (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{s }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_a4ade26dbdb332f64c44daf49ba949ff4}\label{user_8h_a4ade26dbdb332f64c44daf49ba949ff4} 
+\index{user.h@{user.h}!unlink@{unlink}}
+\index{unlink@{unlink}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{unlink()}{unlink()}}
+{\footnotesize\ttfamily int unlink (\begin{DoxyParamCaption}\item[{const char \texorpdfstring{$\ast$}{*}}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_ab637d1dd2fecad1cb0c91a42597a8dbc}\label{user_8h_ab637d1dd2fecad1cb0c91a42597a8dbc} 
+\index{user.h@{user.h}!uptime@{uptime}}
+\index{uptime@{uptime}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{uptime()}{uptime()}}
+{\footnotesize\ttfamily int uptime (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_af6f31822f7e737b4e414bdac1ccb59a4}\label{user_8h_af6f31822f7e737b4e414bdac1ccb59a4} 
+\index{user.h@{user.h}!wait@{wait}}
+\index{wait@{wait}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{wait()}{wait()}}
+{\footnotesize\ttfamily int wait (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+\Hypertarget{user_8h_ae57e95d717eb7386cd8b935a0c136abe}\label{user_8h_ae57e95d717eb7386cd8b935a0c136abe} 
+\index{user.h@{user.h}!write@{write}}
+\index{write@{write}!user.h@{user.h}}
+\doxysubsubsection{\texorpdfstring{write()}{write()}}
+{\footnotesize\ttfamily int write (\begin{DoxyParamCaption}\item[{int}]{,  }\item[{const void \texorpdfstring{$\ast$}{*}}]{,  }\item[{int}]{ }\end{DoxyParamCaption})}
+
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d8/ddb/user_8h_ae57e95d717eb7386cd8b935a0c136abe_icgraph}
+\end{center}
+\end{figure}

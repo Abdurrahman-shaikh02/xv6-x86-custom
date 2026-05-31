@@ -1,0 +1,42 @@
+\doxysection{file.\+h}
+\hypertarget{file_8h_source}{}\label{file_8h_source}\mbox{\hyperlink{file_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structfile}{file}}\ \{}
+\DoxyCodeLine{00002\ \ \ \textcolor{keyword}{enum}\ \{\ \mbox{\hyperlink{structfile_a4aeeba6a286e58966d853aa1f510d3d5a224e095442d50a6bd1058fd742fb68c7}{FD\_NONE}},\ \mbox{\hyperlink{structfile_a4aeeba6a286e58966d853aa1f510d3d5a59fcf59caf6e70c3cc3cc48291b89752}{FD\_PIPE}},\ \mbox{\hyperlink{structfile_a4aeeba6a286e58966d853aa1f510d3d5aa5d8c5e0d95ed88367e96ecebfdf326d}{FD\_INODE}}\ \}\ \mbox{\hyperlink{structfile_a3a28c808a8dcd4acf45087ac30c075e7}{type}};}
+\DoxyCodeLine{00003\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structfile_a41c818f828adea488058bca63e4df23f}{ref}};\ \textcolor{comment}{//\ reference\ count}}
+\DoxyCodeLine{00004\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structfile_a0c5c8eced8bc562dbbecc8d450a6b646}{readable}};}
+\DoxyCodeLine{00005\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structfile_a6e1b641ea1551ac4316a0c11a683df45}{writable}};}
+\DoxyCodeLine{00006\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structpipe}{pipe}}\ *\mbox{\hyperlink{structfile_a19d83a8d6cb47902fe8c762d2798c198}{pipe}};}
+\DoxyCodeLine{00007\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinode}{inode}}\ *\mbox{\hyperlink{structfile_a4fd095f927715574dc2a4f243690e508}{ip}};}
+\DoxyCodeLine{00008\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structfile_a94a911be6cc1b1326728392d8b40150d}{off}};}
+\DoxyCodeLine{00009\ \};}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ in-\/memory\ copy\ of\ an\ inode}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structinode}{inode}}\ \{}
+\DoxyCodeLine{00014\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structinode_a121742a89c4531f03a7de1613d5be605}{dev}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Device\ number}}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structinode_a8acc2b9df0bfc6856da62925763db7fe}{inum}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Inode\ number}}
+\DoxyCodeLine{00016\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinode_a6a519028ee67f805482b3e1725bf09c5}{ref}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reference\ count}}
+\DoxyCodeLine{00017\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsleeplock}{sleeplock}}\ \mbox{\hyperlink{structinode_a46bad0e938fbd348ac02bdef0c8d6215}{lock}};\ \textcolor{comment}{//\ protects\ everything\ below\ here}}
+\DoxyCodeLine{00018\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structinode_aad324382ba30eb83daa5304fce7dca08}{valid}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ inode\ has\ been\ read\ from\ disk?}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structinode_a8d74bec2898785c057111c328d23fda2}{type}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ copy\ of\ disk\ inode}}
+\DoxyCodeLine{00021\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structinode_a34af7242018a977dace5730683850875}{major}};}
+\DoxyCodeLine{00022\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structinode_a37878866e7905b666db2aa33076076a2}{minor}};}
+\DoxyCodeLine{00023\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structinode_af8b88b409bea7ef99c49a55f387538b2}{nlink}};}
+\DoxyCodeLine{00024\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structinode_a918af769c48a8ca8afac057bf83d12de}{size}};}
+\DoxyCodeLine{00025\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structinode_a7ba4ab7e52404b80d6d854678715ae30}{addrs}}[\mbox{\hyperlink{fs_8h_acd38e9532d4b3623f844b93c012a8e06}{NDIRECT}}+1];}
+\DoxyCodeLine{00026\ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ table\ mapping\ major\ device\ number\ to}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ device\ functions}}
+\DoxyCodeLine{00030\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdevsw}{devsw}}\ \{}
+\DoxyCodeLine{00031\ \ \ int\ (*\mbox{\hyperlink{structdevsw_a4efbe00d0031a1c9005ef2186947ea37}{read}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structinode}{inode}}*,\ \textcolor{keywordtype}{char}*,\ int);}
+\DoxyCodeLine{00032\ \ \ int\ (*\mbox{\hyperlink{structdevsw_a87fd7af6c9a6fb8663fc206be7a233d4}{write}})(\textcolor{keyword}{struct\ }\mbox{\hyperlink{structinode}{inode}}*,\ \textcolor{keywordtype}{char}*,\ int);}
+\DoxyCodeLine{00033\ \};}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{keyword}{extern}\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdevsw}{devsw}}\ \mbox{\hyperlink{structdevsw}{devsw}}[];}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ CONSOLE\ 1}}
+
+\end{DoxyCode}

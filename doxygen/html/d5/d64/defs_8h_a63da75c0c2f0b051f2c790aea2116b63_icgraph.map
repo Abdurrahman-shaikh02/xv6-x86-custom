@@ -1,0 +1,9 @@
+<map id="ioapicenable" name="ioapicenable">
+<area shape="rect" id="Node000001" title=" " alt="" coords="147,55,252,80"/>
+<area shape="rect" id="Node000002" href="$d0/d56/console_8c.html#ab508ff0f4db26fe35cd25fa648f9ee75" title=" " alt="" coords="5,5,99,31"/>
+<area shape="poly" id="edge1_Node000001_Node000002" title=" " alt="" coords="147,53,90,33,92,28,149,48"/>
+<area shape="rect" id="Node000003" href="$da/d9b/memide_8c.html#aefb190a6104cb58c0bc1f8fec88d1307" title=" " alt="" coords="21,55,83,80"/>
+<area shape="poly" id="edge2_Node000001_Node000003" title=" " alt="" coords="133,70,84,70,84,65,133,65"/>
+<area shape="rect" id="Node000004" href="$d1/d87/uart_8c.html#a79fa7b73d0d61fdd15d30768a395437d" title=" " alt="" coords="17,104,87,129"/>
+<area shape="poly" id="edge3_Node000001_Node000004" title=" " alt="" coords="149,87,88,108,86,103,147,82"/>
+</map>

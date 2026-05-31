@@ -1,0 +1,59 @@
+\doxysection{spinlock Struct Reference}
+\hypertarget{structspinlock}{}\label{structspinlock}\index{spinlock@{spinlock}}
+
+
+{\ttfamily \#include $<$spinlock.\+h$>$}
+
+
+
+Collaboration diagram for spinlock\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{da/d23/structspinlock__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{structspinlock_a48f3007579f644934d9aba91e5378c03}{locked}}
+\item 
+char \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structspinlock_afbec3274bf8ad9c421695a22f8d9d584}{name}}
+\item 
+struct \mbox{\hyperlink{structcpu}{cpu}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structspinlock_a290ae772c8ccb9e8c1580204c31a7f88}{cpu}}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{structspinlock_ac9ef3f16f664094198af0b9063e23fe0}{pcs}} \mbox{[}10\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structspinlock_a290ae772c8ccb9e8c1580204c31a7f88}\label{structspinlock_a290ae772c8ccb9e8c1580204c31a7f88} 
+\index{spinlock@{spinlock}!cpu@{cpu}}
+\index{cpu@{cpu}!spinlock@{spinlock}}
+\doxysubsubsection{\texorpdfstring{cpu}{cpu}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structcpu}{cpu}}\texorpdfstring{$\ast$}{*} spinlock\+::cpu}
+
+\Hypertarget{structspinlock_a48f3007579f644934d9aba91e5378c03}\label{structspinlock_a48f3007579f644934d9aba91e5378c03} 
+\index{spinlock@{spinlock}!locked@{locked}}
+\index{locked@{locked}!spinlock@{spinlock}}
+\doxysubsubsection{\texorpdfstring{locked}{locked}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} spinlock\+::locked}
+
+\Hypertarget{structspinlock_afbec3274bf8ad9c421695a22f8d9d584}\label{structspinlock_afbec3274bf8ad9c421695a22f8d9d584} 
+\index{spinlock@{spinlock}!name@{name}}
+\index{name@{name}!spinlock@{spinlock}}
+\doxysubsubsection{\texorpdfstring{name}{name}}
+{\footnotesize\ttfamily char\texorpdfstring{$\ast$}{*} spinlock\+::name}
+
+\Hypertarget{structspinlock_ac9ef3f16f664094198af0b9063e23fe0}\label{structspinlock_ac9ef3f16f664094198af0b9063e23fe0} 
+\index{spinlock@{spinlock}!pcs@{pcs}}
+\index{pcs@{pcs}!spinlock@{spinlock}}
+\doxysubsubsection{\texorpdfstring{pcs}{pcs}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} spinlock\+::pcs\mbox{[}10\mbox{]}}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{spinlock_8h}{spinlock.\+h}}\end{DoxyCompactItemize}

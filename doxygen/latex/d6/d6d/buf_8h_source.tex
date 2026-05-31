@@ -1,0 +1,19 @@
+\doxysection{buf.\+h}
+\hypertarget{buf_8h_source}{}\label{buf_8h_source}\mbox{\hyperlink{buf_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbuf}{buf}}\ \{}
+\DoxyCodeLine{00002\ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{structbuf_ae7d6b6c34fdeadb38970efd0554aa1a9}{flags}};}
+\DoxyCodeLine{00003\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structbuf_ac96082c2b5f22133ac7092ef81487227}{dev}};}
+\DoxyCodeLine{00004\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structbuf_a756b2bcc88008bef7f21d688aa4a7a48}{blockno}};}
+\DoxyCodeLine{00005\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsleeplock}{sleeplock}}\ \mbox{\hyperlink{structbuf_a626ad748d91d4bd7f4e65b74c73f2644}{lock}};}
+\DoxyCodeLine{00006\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structbuf_aaf5efe777371aaeb9944508fd52adda5}{refcnt}};}
+\DoxyCodeLine{00007\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbuf}{buf}}\ *\mbox{\hyperlink{structbuf_a930cab1e1b3751795d31bfd0291dff4a}{prev}};\ \textcolor{comment}{//\ LRU\ cache\ list}}
+\DoxyCodeLine{00008\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbuf}{buf}}\ *\mbox{\hyperlink{structbuf_ab18c18abb22f07617619e9a74c71f51a}{next}};}
+\DoxyCodeLine{00009\ \ \ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structbuf}{buf}}\ *\mbox{\hyperlink{structbuf_aba5c088c4da07a5ec88edfacdae9b85a}{qnext}};\ \textcolor{comment}{//\ disk\ queue}}
+\DoxyCodeLine{00010\ \ \ \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}}\ \mbox{\hyperlink{structbuf_ab0ec38784ab94ed35e575cf6d33912d2}{data}}[\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}];}
+\DoxyCodeLine{00011\ \};}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ B\_VALID\ 0x2\ \ }\textcolor{comment}{//\ buffer\ has\ been\ read\ from\ disk}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ B\_DIRTY\ 0x4\ \ }\textcolor{comment}{//\ buffer\ needs\ to\ be\ written\ to\ disk}}
+\DoxyCodeLine{00014\ }
+
+\end{DoxyCode}

@@ -1,0 +1,99 @@
+\doxysection{buf Struct Reference}
+\hypertarget{structbuf}{}\label{structbuf}\index{buf@{buf}}
+
+
+{\ttfamily \#include $<$buf.\+h$>$}
+
+
+
+Collaboration diagram for buf\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d72/structbuf__coll__graph}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{structbuf_ae7d6b6c34fdeadb38970efd0554aa1a9}{flags}}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{structbuf_ac96082c2b5f22133ac7092ef81487227}{dev}}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{structbuf_a756b2bcc88008bef7f21d688aa4a7a48}{blockno}}
+\item 
+struct \mbox{\hyperlink{structsleeplock}{sleeplock}} \mbox{\hyperlink{structbuf_a626ad748d91d4bd7f4e65b74c73f2644}{lock}}
+\item 
+\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} \mbox{\hyperlink{structbuf_aaf5efe777371aaeb9944508fd52adda5}{refcnt}}
+\item 
+struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structbuf_a930cab1e1b3751795d31bfd0291dff4a}{prev}}
+\item 
+struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structbuf_ab18c18abb22f07617619e9a74c71f51a}{next}}
+\item 
+struct \mbox{\hyperlink{structbuf}{buf}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{structbuf_aba5c088c4da07a5ec88edfacdae9b85a}{qnext}}
+\item 
+\mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}} \mbox{\hyperlink{structbuf_ab0ec38784ab94ed35e575cf6d33912d2}{data}} \mbox{[}\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Data Documentation}
+\Hypertarget{structbuf_a756b2bcc88008bef7f21d688aa4a7a48}\label{structbuf_a756b2bcc88008bef7f21d688aa4a7a48} 
+\index{buf@{buf}!blockno@{blockno}}
+\index{blockno@{blockno}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{blockno}{blockno}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} buf\+::blockno}
+
+\Hypertarget{structbuf_ab0ec38784ab94ed35e575cf6d33912d2}\label{structbuf_ab0ec38784ab94ed35e575cf6d33912d2} 
+\index{buf@{buf}!data@{data}}
+\index{data@{data}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}} buf\+::data\mbox{[}\mbox{\hyperlink{fs_8h_a403cf3149c084cea115b85c90721039a}{BSIZE}}\mbox{]}}
+
+\Hypertarget{structbuf_ac96082c2b5f22133ac7092ef81487227}\label{structbuf_ac96082c2b5f22133ac7092ef81487227} 
+\index{buf@{buf}!dev@{dev}}
+\index{dev@{dev}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{dev}{dev}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} buf\+::dev}
+
+\Hypertarget{structbuf_ae7d6b6c34fdeadb38970efd0554aa1a9}\label{structbuf_ae7d6b6c34fdeadb38970efd0554aa1a9} 
+\index{buf@{buf}!flags@{flags}}
+\index{flags@{flags}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{flags}{flags}}
+{\footnotesize\ttfamily int buf\+::flags}
+
+\Hypertarget{structbuf_a626ad748d91d4bd7f4e65b74c73f2644}\label{structbuf_a626ad748d91d4bd7f4e65b74c73f2644} 
+\index{buf@{buf}!lock@{lock}}
+\index{lock@{lock}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structsleeplock}{sleeplock}} buf\+::lock}
+
+\Hypertarget{structbuf_ab18c18abb22f07617619e9a74c71f51a}\label{structbuf_ab18c18abb22f07617619e9a74c71f51a} 
+\index{buf@{buf}!next@{next}}
+\index{next@{next}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{next}{next}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuf}{buf}}\texorpdfstring{$\ast$}{*} buf\+::next}
+
+\Hypertarget{structbuf_a930cab1e1b3751795d31bfd0291dff4a}\label{structbuf_a930cab1e1b3751795d31bfd0291dff4a} 
+\index{buf@{buf}!prev@{prev}}
+\index{prev@{prev}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{prev}{prev}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuf}{buf}}\texorpdfstring{$\ast$}{*} buf\+::prev}
+
+\Hypertarget{structbuf_aba5c088c4da07a5ec88edfacdae9b85a}\label{structbuf_aba5c088c4da07a5ec88edfacdae9b85a} 
+\index{buf@{buf}!qnext@{qnext}}
+\index{qnext@{qnext}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{qnext}{qnext}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structbuf}{buf}}\texorpdfstring{$\ast$}{*} buf\+::qnext}
+
+\Hypertarget{structbuf_aaf5efe777371aaeb9944508fd52adda5}\label{structbuf_aaf5efe777371aaeb9944508fd52adda5} 
+\index{buf@{buf}!refcnt@{refcnt}}
+\index{refcnt@{refcnt}!buf@{buf}}
+\doxysubsubsection{\texorpdfstring{refcnt}{refcnt}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} buf\+::refcnt}
+
+
+
+The documentation for this struct was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{buf_8h}{buf.\+h}}\end{DoxyCompactItemize}

@@ -1,0 +1,63 @@
+\doxysection{umalloc.\+c File Reference}
+\hypertarget{umalloc_8c}{}\label{umalloc_8c}\index{umalloc.c@{umalloc.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}stat.\+h"{}}\newline
+{\ttfamily \#include "{}user.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+Include dependency graph for umalloc.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=335pt]{d7/df9/umalloc_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+union \mbox{\hyperlink{unionheader}{header}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+typedef long \mbox{\hyperlink{umalloc_8c_aa508dd61e627680e57643837d292d89f}{Align}}
+\item 
+typedef union \mbox{\hyperlink{unionheader}{header}} \mbox{\hyperlink{umalloc_8c_a1a2bfaef0959ba21a357a6f8feaa477b}{Header}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{umalloc_8c_adebb229f063e66907017098087cbe791}{free}} (void \texorpdfstring{$\ast$}{*}ap)
+\item 
+void \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{umalloc_8c_ac131c16d1dcb6bea908d0237c82e981d}{malloc}} (\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}} nbytes)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Typedef Documentation}
+\Hypertarget{umalloc_8c_aa508dd61e627680e57643837d292d89f}\label{umalloc_8c_aa508dd61e627680e57643837d292d89f} 
+\index{umalloc.c@{umalloc.c}!Align@{Align}}
+\index{Align@{Align}!umalloc.c@{umalloc.c}}
+\doxysubsubsection{\texorpdfstring{Align}{Align}}
+{\footnotesize\ttfamily typedef long \mbox{\hyperlink{umalloc_8c_aa508dd61e627680e57643837d292d89f}{Align}}}
+
+\Hypertarget{umalloc_8c_a1a2bfaef0959ba21a357a6f8feaa477b}\label{umalloc_8c_a1a2bfaef0959ba21a357a6f8feaa477b} 
+\index{umalloc.c@{umalloc.c}!Header@{Header}}
+\index{Header@{Header}!umalloc.c@{umalloc.c}}
+\doxysubsubsection{\texorpdfstring{Header}{Header}}
+{\footnotesize\ttfamily typedef union \mbox{\hyperlink{unionheader}{header}} \mbox{\hyperlink{umalloc_8c_a1a2bfaef0959ba21a357a6f8feaa477b}{Header}}}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{umalloc_8c_adebb229f063e66907017098087cbe791}\label{umalloc_8c_adebb229f063e66907017098087cbe791} 
+\index{umalloc.c@{umalloc.c}!free@{free}}
+\index{free@{free}!umalloc.c@{umalloc.c}}
+\doxysubsubsection{\texorpdfstring{free()}{free()}}
+{\footnotesize\ttfamily void free (\begin{DoxyParamCaption}\item[{void \texorpdfstring{$\ast$}{*}}]{ap }\end{DoxyParamCaption})}
+
+\Hypertarget{umalloc_8c_ac131c16d1dcb6bea908d0237c82e981d}\label{umalloc_8c_ac131c16d1dcb6bea908d0237c82e981d} 
+\index{umalloc.c@{umalloc.c}!malloc@{malloc}}
+\index{malloc@{malloc}!umalloc.c@{umalloc.c}}
+\doxysubsubsection{\texorpdfstring{malloc()}{malloc()}}
+{\footnotesize\ttfamily void \texorpdfstring{$\ast$}{*} malloc (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}}]{nbytes }\end{DoxyParamCaption})}
+

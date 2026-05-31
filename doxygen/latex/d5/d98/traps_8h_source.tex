@@ -1,0 +1,43 @@
+\doxysection{traps.\+h}
+\hypertarget{traps_8h_source}{}\label{traps_8h_source}\mbox{\hyperlink{traps_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ x86\ trap\ and\ interrupt\ constants.}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ Processor-\/defined:}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ T\_DIVIDE\ \ \ \ \ \ \ \ \ 0\ \ \ \ \ \ }\textcolor{comment}{//\ divide\ error}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ T\_DEBUG\ \ \ \ \ \ \ \ \ \ 1\ \ \ \ \ \ }\textcolor{comment}{//\ debug\ exception}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ T\_NMI\ \ \ \ \ \ \ \ \ \ \ \ 2\ \ \ \ \ \ }\textcolor{comment}{//\ non-\/maskable\ interrupt}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ T\_BRKPT\ \ \ \ \ \ \ \ \ \ 3\ \ \ \ \ \ }\textcolor{comment}{//\ breakpoint}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ T\_OFLOW\ \ \ \ \ \ \ \ \ \ 4\ \ \ \ \ \ }\textcolor{comment}{//\ overflow}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ T\_BOUND\ \ \ \ \ \ \ \ \ \ 5\ \ \ \ \ \ }\textcolor{comment}{//\ bounds\ check}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ T\_ILLOP\ \ \ \ \ \ \ \ \ \ 6\ \ \ \ \ \ }\textcolor{comment}{//\ illegal\ opcode}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ T\_DEVICE\ \ \ \ \ \ \ \ \ 7\ \ \ \ \ \ }\textcolor{comment}{//\ device\ not\ available}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ T\_DBLFLT\ \ \ \ \ \ \ \ \ 8\ \ \ \ \ \ }\textcolor{comment}{//\ double\ fault}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ \#define\ T\_COPROC\ \ \ \ \ \ 9\ \ \ \ \ \ //\ reserved\ (not\ used\ since\ 486)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ T\_TSS\ \ \ \ \ \ \ \ \ \ \ 10\ \ \ \ \ \ }\textcolor{comment}{//\ invalid\ task\ switch\ segment}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ T\_SEGNP\ \ \ \ \ \ \ \ \ 11\ \ \ \ \ \ }\textcolor{comment}{//\ segment\ not\ present}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ T\_STACK\ \ \ \ \ \ \ \ \ 12\ \ \ \ \ \ }\textcolor{comment}{//\ stack\ exception}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ T\_GPFLT\ \ \ \ \ \ \ \ \ 13\ \ \ \ \ \ }\textcolor{comment}{//\ general\ protection\ fault}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ T\_PGFLT\ \ \ \ \ \ \ \ \ 14\ \ \ \ \ \ }\textcolor{comment}{//\ page\ fault}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ \#define\ T\_RES\ \ \ \ \ \ \ \ 15\ \ \ \ \ \ //\ reserved}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ T\_FPERR\ \ \ \ \ \ \ \ \ 16\ \ \ \ \ \ }\textcolor{comment}{//\ floating\ point\ error}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ T\_ALIGN\ \ \ \ \ \ \ \ \ 17\ \ \ \ \ \ }\textcolor{comment}{//\ aligment\ check}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ T\_MCHK\ \ \ \ \ \ \ \ \ \ 18\ \ \ \ \ \ }\textcolor{comment}{//\ machine\ check}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ T\_SIMDERR\ \ \ \ \ \ \ 19\ \ \ \ \ \ }\textcolor{comment}{//\ SIMD\ floating\ point\ error}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ These\ are\ arbitrarily\ chosen,\ but\ with\ care\ not\ to\ overlap}}
+\DoxyCodeLine{00026\ \textcolor{comment}{//\ processor\ defined\ exceptions\ or\ interrupt\ vectors.}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ T\_SYSCALL\ \ \ \ \ \ \ 64\ \ \ \ \ \ }\textcolor{comment}{//\ system\ call}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ T\_DEFAULT\ \ \ \ \ \ 500\ \ \ \ \ \ }\textcolor{comment}{//\ catchall}}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ T\_IRQ0\ \ \ \ \ \ \ \ \ \ 32\ \ \ \ \ \ }\textcolor{comment}{//\ IRQ\ 0\ corresponds\ to\ int\ T\_IRQ}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ IRQ\_TIMER\ \ \ \ \ \ \ \ 0}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ IRQ\_KBD\ \ \ \ \ \ \ \ \ \ 1}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ IRQ\_COM1\ \ \ \ \ \ \ \ \ 4}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ IRQ\_IDE\ \ \ \ \ \ \ \ \ 14}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ IRQ\_ERROR\ \ \ \ \ \ \ 19}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ IRQ\_SPURIOUS\ \ \ \ 31}}
+\DoxyCodeLine{00038\ }
+
+\end{DoxyCode}

@@ -1,0 +1,23 @@
+\doxysection{asm.\+h}
+\hypertarget{asm_8h_source}{}\label{asm_8h_source}\mbox{\hyperlink{asm_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ assembler\ macros\ to\ create\ x86\ segments}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ SEG\_NULLASM\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .word\ 0,\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .byte\ 0,\ 0,\ 0,\ 0}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ The\ 0xC0\ means\ the\ limit\ is\ in\ 4096-\/byte\ units}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ and\ (for\ executable\ segments)\ 32-\/bit\ mode.}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ SEG\_ASM(type,base,lim)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .word\ (((lim)\ >>\ 12)\ \&\ 0xffff),\ ((base)\ \&\ 0xffff);\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ .byte\ (((base)\ >>\ 16)\ \&\ 0xff),\ (0x90\ |\ (type)),\ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (0xC0\ |\ (((lim)\ >>\ 28)\ \&\ 0xf)),\ (((base)\ >>\ 24)\ \&\ 0xff)}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ STA\_X\ \ \ \ \ 0x8\ \ \ \ \ \ \ }\textcolor{comment}{//\ Executable\ segment}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ STA\_W\ \ \ \ \ 0x2\ \ \ \ \ \ \ }\textcolor{comment}{//\ Writeable\ (non-\/executable\ segments)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ STA\_R\ \ \ \ \ 0x2\ \ \ \ \ \ \ }\textcolor{comment}{//\ Readable\ (executable\ segments)}}
+
+\end{DoxyCode}

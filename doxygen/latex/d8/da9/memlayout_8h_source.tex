@@ -1,0 +1,20 @@
+\doxysection{memlayout.\+h}
+\hypertarget{memlayout_8h_source}{}\label{memlayout_8h_source}\mbox{\hyperlink{memlayout_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Memory\ layout}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ EXTMEM\ \ 0x100000\ \ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Start\ of\ extended\ memory}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ PHYSTOP\ 0xE000000\ \ \ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Top\ physical\ memory}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ DEVSPACE\ 0xFE000000\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ Other\ devices\ are\ at\ high\ addresses}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Key\ addresses\ for\ address\ space\ layout\ (see\ kmap\ in\ vm.c\ for\ layout)}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ KERNBASE\ 0x80000000\ \ \ \ \ \ \ \ \ }\textcolor{comment}{//\ First\ kernel\ virtual\ address}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ KERNLINK\ (KERNBASE+EXTMEM)\ \ }\textcolor{comment}{//\ Address\ where\ kernel\ is\ linked}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ V2P(a)\ (((uint)\ (a))\ -\/\ KERNBASE)}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ P2V(a)\ ((void\ *)(((char\ *)\ (a))\ +\ KERNBASE))}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ V2P\_WO(x)\ ((x)\ -\/\ KERNBASE)\ \ \ \ }\textcolor{comment}{//\ same\ as\ V2P,\ but\ without\ casts}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ P2V\_WO(x)\ ((x)\ +\ KERNBASE)\ \ \ \ }\textcolor{comment}{//\ same\ as\ P2V,\ but\ without\ casts}}
+
+\end{DoxyCode}

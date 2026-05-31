@@ -43,6 +43,8 @@ _start = V2P_WO(entry)
 # Entering xv6 on boot processor, with paging off.
 .globl entry
 entry:
+# NOTE: So entry just does some memory thing and then calls the kernels main function
+
   # Turn on page size extension for 4Mbyte pages
   movl    %cr4, %eax
   orl     $(CR4_PSE), %eax

@@ -1,0 +1,223 @@
+\doxysection{file.\+c File Reference}
+\hypertarget{file_8c}{}\label{file_8c}\index{file.c@{file.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}file.\+h"{}}\newline
+Include dependency graph for file.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d5/da4/file_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{file_8c_a66bb5a4b304ea0f851dd999fc8195fa4}{fileinit}} (void)
+\item 
+struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8c_ac56b15561658d0e74ce1c53309b8f97d}{filealloc}} (void)
+\item 
+struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{file_8c_a9ef0346d08d8ed79ce2a9c03f9a4b4b2}{filedup}} (struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}f)
+\item 
+void \mbox{\hyperlink{file_8c_ae557c81ab89c24219146144bb6adaa2c}{fileclose}} (struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}f)
+\item 
+int \mbox{\hyperlink{file_8c_afff8e849fa54dea2a5a27dbb97474607}{filestat}} (struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}f, struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}st)
+\item 
+int \mbox{\hyperlink{file_8c_a1dc8c87c7e48bdaaf98e9c7047928f29}{fileread}} (struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}f, char \texorpdfstring{$\ast$}{*}addr, int n)
+\item 
+int \mbox{\hyperlink{file_8c_ab8de757a0a9f58dcc6511ea5e46ebb88}{filewrite}} (struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}f, char \texorpdfstring{$\ast$}{*}addr, int n)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structdevsw}{devsw}} \mbox{\hyperlink{file_8c_aadbb32b41c0d0e9c19d6d8fa3a0a6502}{devsw}} \mbox{[}\mbox{\hyperlink{param_8h_aa564a41c8409694da49b0badf2bb2853}{NDEV}}\mbox{]}
+\item 
+\begin{tabbing}
+xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=xx\=\kill
+struct \{\\
+\>struct \mbox{\hyperlink{structspinlock}{spinlock}} \mbox{\hyperlink{file_8c_ab28e82cd5dda7d960095706a3ea20572}{lock}}\\
+\>struct \mbox{\hyperlink{structfile}{file}} \mbox{\hyperlink{file_8c_a7cfa5243b3d349a415c7500c962fe9a5}{file}} \mbox{[}\mbox{\hyperlink{param_8h_a8485f4e81de2537e6a0935626167a775}{NFILE}}\mbox{]}\\
+\} \mbox{\hyperlink{file_8c_aa3cdfe534b83322d79f0605488e11ecc}{ftable}}\\
+
+\end{tabbing}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{file_8c_ac56b15561658d0e74ce1c53309b8f97d}\label{file_8c_ac56b15561658d0e74ce1c53309b8f97d} 
+\index{file.c@{file.c}!filealloc@{filealloc}}
+\index{filealloc@{filealloc}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{filealloc()}{filealloc()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*} filealloc (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_ac56b15561658d0e74ce1c53309b8f97d_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=328pt]{d6/d13/file_8c_ac56b15561658d0e74ce1c53309b8f97d_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{file_8c_ae557c81ab89c24219146144bb6adaa2c}\label{file_8c_ae557c81ab89c24219146144bb6adaa2c} 
+\index{file.c@{file.c}!fileclose@{fileclose}}
+\index{fileclose@{fileclose}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{fileclose()}{fileclose()}}
+{\footnotesize\ttfamily void fileclose (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_ae557c81ab89c24219146144bb6adaa2c_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_ae557c81ab89c24219146144bb6adaa2c_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{file_8c_a9ef0346d08d8ed79ce2a9c03f9a4b4b2}\label{file_8c_a9ef0346d08d8ed79ce2a9c03f9a4b4b2} 
+\index{file.c@{file.c}!filedup@{filedup}}
+\index{filedup@{filedup}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{filedup()}{filedup()}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*} filedup (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}}]{f }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_a9ef0346d08d8ed79ce2a9c03f9a4b4b2_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_a9ef0346d08d8ed79ce2a9c03f9a4b4b2_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{file_8c_a66bb5a4b304ea0f851dd999fc8195fa4}\label{file_8c_a66bb5a4b304ea0f851dd999fc8195fa4} 
+\index{file.c@{file.c}!fileinit@{fileinit}}
+\index{fileinit@{fileinit}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{fileinit()}{fileinit()}}
+{\footnotesize\ttfamily void fileinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=216pt]{d6/d13/file_8c_a66bb5a4b304ea0f851dd999fc8195fa4_cgraph}
+\end{center}
+\end{figure}
+\Hypertarget{file_8c_a1dc8c87c7e48bdaaf98e9c7047928f29}\label{file_8c_a1dc8c87c7e48bdaaf98e9c7047928f29} 
+\index{file.c@{file.c}!fileread@{fileread}}
+\index{fileread@{fileread}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{fileread()}{fileread()}}
+{\footnotesize\ttfamily int fileread (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}}]{f,  }\item[{char \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_a1dc8c87c7e48bdaaf98e9c7047928f29_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=229pt]{d6/d13/file_8c_a1dc8c87c7e48bdaaf98e9c7047928f29_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{file_8c_afff8e849fa54dea2a5a27dbb97474607}\label{file_8c_afff8e849fa54dea2a5a27dbb97474607} 
+\index{file.c@{file.c}!filestat@{filestat}}
+\index{filestat@{filestat}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{filestat()}{filestat()}}
+{\footnotesize\ttfamily int filestat (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}}]{f,  }\item[{struct \mbox{\hyperlink{structstat}{stat}} \texorpdfstring{$\ast$}{*}}]{st }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_afff8e849fa54dea2a5a27dbb97474607_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=227pt]{d6/d13/file_8c_afff8e849fa54dea2a5a27dbb97474607_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{file_8c_ab8de757a0a9f58dcc6511ea5e46ebb88}\label{file_8c_ab8de757a0a9f58dcc6511ea5e46ebb88} 
+\index{file.c@{file.c}!filewrite@{filewrite}}
+\index{filewrite@{filewrite}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{filewrite()}{filewrite()}}
+{\footnotesize\ttfamily int filewrite (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}}]{f,  }\item[{char \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d6/d13/file_8c_ab8de757a0a9f58dcc6511ea5e46ebb88_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=235pt]{d6/d13/file_8c_ab8de757a0a9f58dcc6511ea5e46ebb88_icgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{file_8c_aadbb32b41c0d0e9c19d6d8fa3a0a6502}\label{file_8c_aadbb32b41c0d0e9c19d6d8fa3a0a6502} 
+\index{file.c@{file.c}!devsw@{devsw}}
+\index{devsw@{devsw}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{devsw}{devsw}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structdevsw}{devsw}} \mbox{\hyperlink{structdevsw}{devsw}}\mbox{[}\mbox{\hyperlink{param_8h_aa564a41c8409694da49b0badf2bb2853}{NDEV}}\mbox{]}}
+
+\Hypertarget{file_8c_a7cfa5243b3d349a415c7500c962fe9a5}\label{file_8c_a7cfa5243b3d349a415c7500c962fe9a5} 
+\index{file.c@{file.c}!file@{file}}
+\index{file@{file}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{file}{file}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structfile}{file}} \mbox{\hyperlink{structfile}{file}}\mbox{[}\mbox{\hyperlink{param_8h_a8485f4e81de2537e6a0935626167a775}{NFILE}}\mbox{]}}
+
+\Hypertarget{file_8c_aa3cdfe534b83322d79f0605488e11ecc}\label{file_8c_aa3cdfe534b83322d79f0605488e11ecc} 
+\index{file.c@{file.c}!ftable@{ftable}}
+\index{ftable@{ftable}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{[struct]}{[struct]}}
+{\footnotesize\ttfamily struct  \{ ... \}  ftable}
+
+\Hypertarget{file_8c_ab28e82cd5dda7d960095706a3ea20572}\label{file_8c_ab28e82cd5dda7d960095706a3ea20572} 
+\index{file.c@{file.c}!lock@{lock}}
+\index{lock@{lock}!file.c@{file.c}}
+\doxysubsubsection{\texorpdfstring{lock}{lock}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structspinlock}{spinlock}} lock}
+

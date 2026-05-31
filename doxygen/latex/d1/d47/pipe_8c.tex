@@ -1,0 +1,140 @@
+\doxysection{pipe.\+c File Reference}
+\hypertarget{pipe_8c}{}\label{pipe_8c}\index{pipe.c@{pipe.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+{\ttfamily \#include "{}fs.\+h"{}}\newline
+{\ttfamily \#include "{}spinlock.\+h"{}}\newline
+{\ttfamily \#include "{}sleeplock.\+h"{}}\newline
+{\ttfamily \#include "{}file.\+h"{}}\newline
+Include dependency graph for pipe.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d4/d01/pipe_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structpipe}{pipe}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \mbox{\hyperlink{pipe_8c_ad3dc9214a710d7a6c516cbaa2a12a1de}{PIPESIZE}}~512
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \mbox{\hyperlink{pipe_8c_a9d6f0c526148e6002b6776619c7563e6}{pipealloc}} (struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}f0, struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}f1)
+\item 
+void \mbox{\hyperlink{pipe_8c_a48642f54734698f6f881ee07723292cb}{pipeclose}} (struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*}p, int writable)
+\item 
+int \mbox{\hyperlink{pipe_8c_acfca0fab7d2c0c0dcc56359c8febe14a}{pipewrite}} (struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*}p, char \texorpdfstring{$\ast$}{*}addr, int n)
+\item 
+int \mbox{\hyperlink{pipe_8c_ad4cce6144039b615d139f8660c60293a}{piperead}} (struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*}p, char \texorpdfstring{$\ast$}{*}addr, int n)
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Macro Definition Documentation}
+\Hypertarget{pipe_8c_ad3dc9214a710d7a6c516cbaa2a12a1de}\label{pipe_8c_ad3dc9214a710d7a6c516cbaa2a12a1de} 
+\index{pipe.c@{pipe.c}!PIPESIZE@{PIPESIZE}}
+\index{PIPESIZE@{PIPESIZE}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{PIPESIZE}{PIPESIZE}}
+{\footnotesize\ttfamily \#define PIPESIZE~512}
+
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{pipe_8c_a9d6f0c526148e6002b6776619c7563e6}\label{pipe_8c_a9d6f0c526148e6002b6776619c7563e6} 
+\index{pipe.c@{pipe.c}!pipealloc@{pipealloc}}
+\index{pipealloc@{pipealloc}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{pipealloc()}{pipealloc()}}
+{\footnotesize\ttfamily int pipealloc (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{f0,  }\item[{struct \mbox{\hyperlink{structfile}{file}} \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}}]{f1 }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d47/pipe_8c_a9d6f0c526148e6002b6776619c7563e6_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=236pt]{d1/d47/pipe_8c_a9d6f0c526148e6002b6776619c7563e6_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pipe_8c_a48642f54734698f6f881ee07723292cb}\label{pipe_8c_a48642f54734698f6f881ee07723292cb} 
+\index{pipe.c@{pipe.c}!pipeclose@{pipeclose}}
+\index{pipeclose@{pipeclose}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{pipeclose()}{pipeclose()}}
+{\footnotesize\ttfamily void pipeclose (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{int}]{writable }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d47/pipe_8c_a48642f54734698f6f881ee07723292cb_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d47/pipe_8c_a48642f54734698f6f881ee07723292cb_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pipe_8c_ad4cce6144039b615d139f8660c60293a}\label{pipe_8c_ad4cce6144039b615d139f8660c60293a} 
+\index{pipe.c@{pipe.c}!piperead@{piperead}}
+\index{piperead@{piperead}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{piperead()}{piperead()}}
+{\footnotesize\ttfamily int piperead (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{char \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d47/pipe_8c_ad4cce6144039b615d139f8660c60293a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=324pt]{d1/d47/pipe_8c_ad4cce6144039b615d139f8660c60293a_icgraph}
+\end{center}
+\end{figure}
+\Hypertarget{pipe_8c_acfca0fab7d2c0c0dcc56359c8febe14a}\label{pipe_8c_acfca0fab7d2c0c0dcc56359c8febe14a} 
+\index{pipe.c@{pipe.c}!pipewrite@{pipewrite}}
+\index{pipewrite@{pipewrite}!pipe.c@{pipe.c}}
+\doxysubsubsection{\texorpdfstring{pipewrite()}{pipewrite()}}
+{\footnotesize\ttfamily int pipewrite (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{structpipe}{pipe}} \texorpdfstring{$\ast$}{*}}]{p,  }\item[{char \texorpdfstring{$\ast$}{*}}]{addr,  }\item[{int}]{n }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{d1/d47/pipe_8c_acfca0fab7d2c0c0dcc56359c8febe14a_cgraph}
+\end{center}
+\end{figure}
+Here is the caller graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=333pt]{d1/d47/pipe_8c_acfca0fab7d2c0c0dcc56359c8febe14a_icgraph}
+\end{center}
+\end{figure}

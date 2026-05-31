@@ -1,0 +1,186 @@
+\doxysection{mmu.\+h}
+\hypertarget{mmu_8h_source}{}\label{mmu_8h_source}\mbox{\hyperlink{mmu_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ This\ file\ contains\ definitions\ for\ the}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ x86\ memory\ management\ unit\ (MMU).}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ Eflags\ register}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ FL\_IF\ \ \ \ \ \ \ \ \ \ \ 0x00000200\ \ \ \ \ \ }\textcolor{comment}{//\ Interrupt\ Enable}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ Control\ Register\ flags}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CR0\_PE\ \ \ \ \ \ \ \ \ \ 0x00000001\ \ \ \ \ \ }\textcolor{comment}{//\ Protection\ Enable}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CR0\_WP\ \ \ \ \ \ \ \ \ \ 0x00010000\ \ \ \ \ \ }\textcolor{comment}{//\ Write\ Protect}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ CR0\_PG\ \ \ \ \ \ \ \ \ \ 0x80000000\ \ \ \ \ \ }\textcolor{comment}{//\ Paging}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ CR4\_PSE\ \ \ \ \ \ \ \ \ 0x00000010\ \ \ \ \ \ }\textcolor{comment}{//\ Page\ size\ extension}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ various\ segment\ selectors.}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SEG\_KCODE\ 1\ \ }\textcolor{comment}{//\ kernel\ code}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ SEG\_KDATA\ 2\ \ }\textcolor{comment}{//\ kernel\ data+stack}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SEG\_UCODE\ 3\ \ }\textcolor{comment}{//\ user\ code}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ SEG\_UDATA\ 4\ \ }\textcolor{comment}{//\ user\ data+stack}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ SEG\_TSS\ \ \ 5\ \ }\textcolor{comment}{//\ this\ process's\ task\ state}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ cpu-\/>gdt[NSEGS]\ holds\ the\ above\ segments.}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ NSEGS\ \ \ \ \ 6}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#ifndef\ \_\_ASSEMBLER\_\_}}
+\DoxyCodeLine{00025\ \textcolor{comment}{//\ Segment\ Descriptor}}
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsegdesc}{segdesc}}\ \{}
+\DoxyCodeLine{00027\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a021002a4cf151893b5b8034b09cc7530}{lim\_15\_0}}\ :\ 16;\ \ \textcolor{comment}{//\ Low\ bits\ of\ segment\ limit}}
+\DoxyCodeLine{00028\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_aaf95dd5b9105cf5729de49eb2542072a}{base\_15\_0}}\ :\ 16;\ \textcolor{comment}{//\ Low\ bits\ of\ segment\ base\ address}}
+\DoxyCodeLine{00029\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_aa5cff1f1ddfac386e2268108c8f5b6c2}{base\_23\_16}}\ :\ 8;\ \textcolor{comment}{//\ Middle\ bits\ of\ segment\ base\ address}}
+\DoxyCodeLine{00030\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_acb54ea5ee6d09cfcc8b4dd3e96e4ce5b}{type}}\ :\ 4;\ \ \ \ \ \ \ \textcolor{comment}{//\ Segment\ type\ (see\ STS\_\ constants)}}
+\DoxyCodeLine{00031\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_aacc67bb0857f0c77c1f8a5c9b8a1ac09}{s}}\ :\ 1;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0\ =\ system,\ 1\ =\ application}}
+\DoxyCodeLine{00032\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_ab22349cefd6990e4a9a1d93e42ee0c03}{dpl}}\ :\ 2;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Descriptor\ Privilege\ Level}}
+\DoxyCodeLine{00033\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a322a34a84a3815d35ebb3aa50c5a55e2}{p}}\ :\ 1;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Present}}
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_abbc27a39a2ad6e59faa2eca33d7dfa0c}{lim\_19\_16}}\ :\ 4;\ \ \textcolor{comment}{//\ High\ bits\ of\ segment\ limit}}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a6623d25de54a0a87d7a43ea4dfe7783f}{avl}}\ :\ 1;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unused\ (available\ for\ software\ use)}}
+\DoxyCodeLine{00036\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a5798904f15e8fb63d2dd37e8a2818f0a}{rsv1}}\ :\ 1;\ \ \ \ \ \ \ \textcolor{comment}{//\ Reserved}}
+\DoxyCodeLine{00037\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a08edbd480d21bfd147e304b6f5a3788f}{db}}\ :\ 1;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ 0\ =\ 16-\/bit\ segment,\ 1\ =\ 32-\/bit\ segment}}
+\DoxyCodeLine{00038\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a6af7593606fa1a1ff003b4a78facc8e0}{g}}\ :\ 1;\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Granularity:\ limit\ scaled\ by\ 4K\ when\ set}}
+\DoxyCodeLine{00039\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsegdesc_a164a6a2e75fc62e61daef3ddab7f3169}{base\_31\_24}}\ :\ 8;\ \textcolor{comment}{//\ High\ bits\ of\ segment\ base\ address}}
+\DoxyCodeLine{00040\ \};}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \textcolor{comment}{//\ Normal\ segment}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ SEG(type,\ base,\ lim,\ dpl)\ (struct\ segdesc)\ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\{\ ((lim)\ >>\ 12)\ \&\ 0xffff,\ (uint)(base)\ \&\ 0xffff,\ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\ \ ((uint)(base)\ >>\ 16)\ \&\ 0xff,\ type,\ 1,\ dpl,\ 1,\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\ \ (uint)(lim)\ >>\ 28,\ 0,\ 0,\ 1,\ 1,\ (uint)(base)\ >>\ 24\ \}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ SEG16(type,\ base,\ lim,\ dpl)\ (struct\ segdesc)\ \ \(\backslash\)}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\{\ (lim)\ \&\ 0xffff,\ (uint)(base)\ \&\ 0xffff,\ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\ \ ((uint)(base)\ >>\ 16)\ \&\ 0xff,\ type,\ 1,\ dpl,\ 1,\ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\ \ (uint)(lim)\ >>\ 16,\ 0,\ 0,\ 1,\ 0,\ (uint)(base)\ >>\ 24\ \}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ DPL\_USER\ \ \ \ 0x3\ \ \ \ \ }\textcolor{comment}{//\ User\ DPL}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{comment}{//\ Application\ segment\ type\ bits}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ STA\_X\ \ \ \ \ \ \ 0x8\ \ \ \ \ }\textcolor{comment}{//\ Executable\ segment}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ STA\_W\ \ \ \ \ \ \ 0x2\ \ \ \ \ }\textcolor{comment}{//\ Writeable\ (non-\/executable\ segments)}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ STA\_R\ \ \ \ \ \ \ 0x2\ \ \ \ \ }\textcolor{comment}{//\ Readable\ (executable\ segments)}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \textcolor{comment}{//\ System\ segment\ type\ bits}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ STS\_T32A\ \ \ \ 0x9\ \ \ \ \ }\textcolor{comment}{//\ Available\ 32-\/bit\ TSS}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ STS\_IG32\ \ \ \ 0xE\ \ \ \ \ }\textcolor{comment}{//\ 32-\/bit\ Interrupt\ Gate}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ STS\_TG32\ \ \ \ 0xF\ \ \ \ \ }\textcolor{comment}{//\ 32-\/bit\ Trap\ Gate}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \textcolor{comment}{//\ A\ virtual\ address\ 'la'\ has\ a\ three-\/part\ structure\ as\ follows:}}
+\DoxyCodeLine{00066\ \textcolor{comment}{//}}
+\DoxyCodeLine{00067\ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/10-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/10-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/12-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00068\ \textcolor{comment}{//\ |\ Page\ Directory\ |\ \ \ Page\ Table\ \ \ |\ Offset\ within\ Page\ \ |}}
+\DoxyCodeLine{00069\ \textcolor{comment}{//\ |\ \ \ \ \ \ Index\ \ \ \ \ |\ \ \ \ \ \ Index\ \ \ \ \ |\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ |}}
+\DoxyCodeLine{00070\ \textcolor{comment}{//\ +-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/+}}
+\DoxyCodeLine{00071\ \textcolor{comment}{//\ \ \(\backslash\)-\/-\/-\/\ PDX(va)\ -\/-\//\ \(\backslash\)-\/-\/-\/\ PTX(va)\ -\/-\//}}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \textcolor{comment}{//\ page\ directory\ index}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ PDX(va)\ \ \ \ \ \ \ \ \ (((uint)(va)\ >>\ PDXSHIFT)\ \&\ 0x3FF)}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{comment}{//\ page\ table\ index}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ PTX(va)\ \ \ \ \ \ \ \ \ (((uint)(va)\ >>\ PTXSHIFT)\ \&\ 0x3FF)}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{comment}{//\ construct\ virtual\ address\ from\ indexes\ and\ offset}}
+\DoxyCodeLine{00080\ \textcolor{preprocessor}{\#define\ PGADDR(d,\ t,\ o)\ ((uint)((d)\ <<\ PDXSHIFT\ |\ (t)\ <<\ PTXSHIFT\ |\ (o)))}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{comment}{//\ Page\ directory\ and\ page\ table\ constants.}}
+\DoxyCodeLine{00083\ \textcolor{preprocessor}{\#define\ NPDENTRIES\ \ \ \ \ \ 1024\ \ \ \ }\textcolor{comment}{//\ \#\ directory\ entries\ per\ page\ directory}}
+\DoxyCodeLine{00084\ \textcolor{preprocessor}{\#define\ NPTENTRIES\ \ \ \ \ \ 1024\ \ \ \ }\textcolor{comment}{//\ \#\ PTEs\ per\ page\ table}}
+\DoxyCodeLine{00085\ \textcolor{preprocessor}{\#define\ PGSIZE\ \ \ \ \ \ \ \ \ \ 4096\ \ \ \ }\textcolor{comment}{//\ bytes\ mapped\ by\ a\ page}}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \textcolor{preprocessor}{\#define\ PTXSHIFT\ \ \ \ \ \ \ \ 12\ \ \ \ \ \ }\textcolor{comment}{//\ offset\ of\ PTX\ in\ a\ linear\ address}}
+\DoxyCodeLine{00088\ \textcolor{preprocessor}{\#define\ PDXSHIFT\ \ \ \ \ \ \ \ 22\ \ \ \ \ \ }\textcolor{comment}{//\ offset\ of\ PDX\ in\ a\ linear\ address}}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#define\ PGROUNDUP(sz)\ \ (((sz)+PGSIZE-\/1)\ \&\ \string~(PGSIZE-\/1))}}
+\DoxyCodeLine{00091\ \textcolor{preprocessor}{\#define\ PGROUNDDOWN(a)\ (((a))\ \&\ \string~(PGSIZE-\/1))}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{comment}{//\ Page\ table/directory\ entry\ flags.}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\#define\ PTE\_P\ \ \ \ \ \ \ \ \ \ \ 0x001\ \ \ }\textcolor{comment}{//\ Present}}
+\DoxyCodeLine{00095\ \textcolor{preprocessor}{\#define\ PTE\_W\ \ \ \ \ \ \ \ \ \ \ 0x002\ \ \ }\textcolor{comment}{//\ Writeable}}
+\DoxyCodeLine{00096\ \textcolor{preprocessor}{\#define\ PTE\_U\ \ \ \ \ \ \ \ \ \ \ 0x004\ \ \ }\textcolor{comment}{//\ User}}
+\DoxyCodeLine{00097\ \textcolor{preprocessor}{\#define\ PTE\_PS\ \ \ \ \ \ \ \ \ \ 0x080\ \ \ }\textcolor{comment}{//\ Page\ Size}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \textcolor{comment}{//\ Address\ in\ page\ table\ or\ page\ directory\ entry}}
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#define\ PTE\_ADDR(pte)\ \ \ ((uint)(pte)\ \&\ \string~0xFFF)}}
+\DoxyCodeLine{00101\ \textcolor{preprocessor}{\#define\ PTE\_FLAGS(pte)\ \ ((uint)(pte)\ \&\ \ 0xFFF)}}
+\DoxyCodeLine{00102\ }
+\DoxyCodeLine{00103\ \textcolor{preprocessor}{\#ifndef\ \_\_ASSEMBLER\_\_}}
+\DoxyCodeLine{00104\ \textcolor{keyword}{typedef}\ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{mmu_8h_ab23e75f764f8314a83eaff23508c2ae5}{pte\_t}};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \textcolor{comment}{//\ Task\ state\ segment\ format}}
+\DoxyCodeLine{00107\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structtaskstate}{taskstate}}\ \{}
+\DoxyCodeLine{00108\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a31a48a737b004273004ba8473ab6b0ed}{link}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Old\ ts\ selector}}
+\DoxyCodeLine{00109\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a41b3e1d46a5068485eb6714974a979d6}{esp0}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Stack\ pointers\ and\ segment\ selectors}}
+\DoxyCodeLine{00110\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a574e97ea3fd87f314da88afec3c6f574}{ss0}};\ \ \ \ \ \ \ \ \textcolor{comment}{//\ \ \ after\ an\ increase\ in\ privilege\ level}}
+\DoxyCodeLine{00111\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a6b87ceb039ec11ccd265818673c53df5}{padding1}};}
+\DoxyCodeLine{00112\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structtaskstate_a7ec69acf5f95163bd1ca2548fb0c541a}{esp1}};}
+\DoxyCodeLine{00113\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_ac70c36414956cfee04c733a5b530d8ef}{ss1}};}
+\DoxyCodeLine{00114\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_ae1bd6ae664d5899c3e118c21a27ba065}{padding2}};}
+\DoxyCodeLine{00115\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structtaskstate_af206a117571ede3752b043e4e8cc6016}{esp2}};}
+\DoxyCodeLine{00116\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a573d8f57ef11630e782d8b7c924f28ce}{ss2}};}
+\DoxyCodeLine{00117\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a7989f7ea66e6e2100ef68c9e6964c231}{padding3}};}
+\DoxyCodeLine{00118\ \ \ \textcolor{keywordtype}{void}\ *\mbox{\hyperlink{structtaskstate_ac891b558913b4528fd2c9351c99da201}{cr3}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Page\ directory\ base}}
+\DoxyCodeLine{00119\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structtaskstate_ae2bd660dd957f328d583e9a193dd250e}{eip}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Saved\ state\ from\ last\ task\ switch}}
+\DoxyCodeLine{00120\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a03952bc66789a00063ed9081c84cf01e}{eflags}};}
+\DoxyCodeLine{00121\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a6242c9879e9f87d1bcf5dfb6f3da4774}{eax}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ More\ saved\ state\ (registers)}}
+\DoxyCodeLine{00122\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a71af7c05a336906ef36771132ff5e804}{ecx}};}
+\DoxyCodeLine{00123\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a093193d42fe11c7d51e81fb41bfc0a60}{edx}};}
+\DoxyCodeLine{00124\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a0ef705c1f37c5c541ec9b688352e7b74}{ebx}};}
+\DoxyCodeLine{00125\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structtaskstate_a9ee7c7c8cfe57f98eb72a6b8dd5342fa}{esp}};}
+\DoxyCodeLine{00126\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ *\mbox{\hyperlink{structtaskstate_af20357700cba78c6e3a77610dcd47fb7}{ebp}};}
+\DoxyCodeLine{00127\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_ab188878c1c090558d8d83a71282cc486}{esi}};}
+\DoxyCodeLine{00128\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structtaskstate_a32fc8c63c3843c7ea2a675158498a029}{edi}};}
+\DoxyCodeLine{00129\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_afcc56f9f9cba058c518a021babe00d9a}{es}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Even\ more\ saved\ state\ (segment\ selectors)}}
+\DoxyCodeLine{00130\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a9905f5108c60aab4b6e5c2a1ce1ce356}{padding4}};}
+\DoxyCodeLine{00131\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_aec68e08358623490628d50e0ff9448f4}{cs}};}
+\DoxyCodeLine{00132\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_ad462c3b654306417c32c78f42b5a9e42}{padding5}};}
+\DoxyCodeLine{00133\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_afdd8f3985ac7ae69fc67c19d65653f12}{ss}};}
+\DoxyCodeLine{00134\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a3885094380c4d991fa86d31fdf1b9683}{padding6}};}
+\DoxyCodeLine{00135\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_af5f19782df3eb439445274e08d9120f1}{ds}};}
+\DoxyCodeLine{00136\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a4c634b4b3cd489ca37979561394bf518}{padding7}};}
+\DoxyCodeLine{00137\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a4ce0e6f25b9721d7e2660c8840a0f9e3}{fs}};}
+\DoxyCodeLine{00138\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_ab3077e8c9fe9b50ff7caedeeac075472}{padding8}};}
+\DoxyCodeLine{00139\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a15529ac51461a168be78130042a740e7}{gs}};}
+\DoxyCodeLine{00140\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a58a780ba0664e4ff8741adbdaccbcdd5}{padding9}};}
+\DoxyCodeLine{00141\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a960e5d4a40dcafb35f32ec047c0ca147}{ldt}};}
+\DoxyCodeLine{00142\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a6f95dd6d0ae39afaaf5ee8671220b00b}{padding10}};}
+\DoxyCodeLine{00143\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_ad9d64e6139f851a3f8d2275f2748fae5}{t}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Trap\ on\ task\ switch}}
+\DoxyCodeLine{00144\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structtaskstate_a5ee57b190324239a5d88f7c02039901f}{iomb}};\ \ \ \ \ \ \ \textcolor{comment}{//\ I/O\ map\ base\ address}}
+\DoxyCodeLine{00145\ \};}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{comment}{//\ Gate\ descriptors\ for\ interrupts\ and\ traps}}
+\DoxyCodeLine{00148\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structgatedesc}{gatedesc}}\ \{}
+\DoxyCodeLine{00149\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a4f7268ba32b6a8b3963aa6d23e51af59}{off\_15\_0}}\ :\ 16;\ \ \ \textcolor{comment}{//\ low\ 16\ bits\ of\ offset\ in\ segment}}
+\DoxyCodeLine{00150\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a53e768c461dce9cc97048e7d19351af1}{cs}}\ :\ 16;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ code\ segment\ selector}}
+\DoxyCodeLine{00151\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a9b41bea284fe0922c440f4c253e926ff}{args}}\ :\ 5;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ \#\ args,\ 0\ for\ interrupt/trap\ gates}}
+\DoxyCodeLine{00152\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_ad11779f5ce40e53a8feb3dfdaf3f0ee5}{rsv1}}\ :\ 3;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ reserved(should\ be\ zero\ I\ guess)}}
+\DoxyCodeLine{00153\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a41d6e5fb9bb27699bdb7d729c67ff32c}{type}}\ :\ 4;\ \ \ \ \ \ \ \ \textcolor{comment}{//\ type(STS\_\{IG32,TG32\})}}
+\DoxyCodeLine{00154\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a54d731df342be3a775cc847a3dab1a53}{s}}\ :\ 1;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ must\ be\ 0\ (system)}}
+\DoxyCodeLine{00155\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a4c62f5618440769c78ed976cae23c13d}{dpl}}\ :\ 2;\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ descriptor(meaning\ new)\ privilege\ level}}
+\DoxyCodeLine{00156\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_a5f754b650dc96be286cbc74e69da6a81}{p}}\ :\ 1;\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Present}}
+\DoxyCodeLine{00157\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structgatedesc_af388a77c8f2a8a8c0bd1ca74a7dbaef7}{off\_31\_16}}\ :\ 16;\ \ \textcolor{comment}{//\ high\ bits\ of\ offset\ in\ segment}}
+\DoxyCodeLine{00158\ \};}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \textcolor{comment}{//\ Set\ up\ a\ normal\ interrupt/trap\ gate\ descriptor.}}
+\DoxyCodeLine{00161\ \textcolor{comment}{//\ -\/\ istrap:\ 1\ for\ a\ trap\ (=\ exception)\ gate,\ 0\ for\ an\ interrupt\ gate.}}
+\DoxyCodeLine{00162\ \textcolor{comment}{//\ \ \ interrupt\ gate\ clears\ FL\_IF,\ trap\ gate\ leaves\ FL\_IF\ alone}}
+\DoxyCodeLine{00163\ \textcolor{comment}{//\ -\/\ sel:\ Code\ segment\ selector\ for\ interrupt/trap\ handler}}
+\DoxyCodeLine{00164\ \textcolor{comment}{//\ -\/\ off:\ Offset\ in\ code\ segment\ for\ interrupt/trap\ handler}}
+\DoxyCodeLine{00165\ \textcolor{comment}{//\ -\/\ dpl:\ Descriptor\ Privilege\ Level\ -\/}}
+\DoxyCodeLine{00166\ \textcolor{comment}{//\ \ \ \ \ \ \ \ the\ privilege\ level\ required\ for\ software\ to\ invoke}}
+\DoxyCodeLine{00167\ \textcolor{comment}{//\ \ \ \ \ \ \ \ this\ interrupt/trap\ gate\ explicitly\ using\ an\ int\ instruction.}}
+\DoxyCodeLine{00168\ \textcolor{preprocessor}{\#define\ SETGATE(gate,\ istrap,\ sel,\ off,\ d)\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00169\ \textcolor{preprocessor}{\{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00170\ \textcolor{preprocessor}{\ \ (gate).off\_15\_0\ =\ (uint)(off)\ \&\ 0xffff;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00171\ \textcolor{preprocessor}{\ \ (gate).cs\ =\ (sel);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00172\ \textcolor{preprocessor}{\ \ (gate).args\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\ \ (gate).rsv1\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00174\ \textcolor{preprocessor}{\ \ (gate).type\ =\ (istrap)\ ?\ STS\_TG32\ :\ STS\_IG32;\ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00175\ \textcolor{preprocessor}{\ \ (gate).s\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00176\ \textcolor{preprocessor}{\ \ (gate).dpl\ =\ (d);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00177\ \textcolor{preprocessor}{\ \ (gate).p\ =\ 1;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00178\ \textcolor{preprocessor}{\ \ (gate).off\_31\_16\ =\ (uint)(off)\ >>\ 16;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \(\backslash\)}}
+\DoxyCodeLine{00179\ \textcolor{preprocessor}{\}}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

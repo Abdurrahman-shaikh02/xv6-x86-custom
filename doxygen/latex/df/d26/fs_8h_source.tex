@@ -1,0 +1,62 @@
+\doxysection{fs.\+h}
+\hypertarget{fs_8h_source}{}\label{fs_8h_source}\mbox{\hyperlink{fs_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ On-\/disk\ file\ system\ format.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ Both\ the\ kernel\ and\ user\ programs\ use\ this\ header\ file.}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ ROOTINO\ 1\ \ }\textcolor{comment}{//\ root\ i-\/number}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ BSIZE\ 512\ \ }\textcolor{comment}{//\ block\ size}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ Disk\ layout:}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ [\ boot\ block\ |\ super\ block\ |\ log\ |\ inode\ blocks\ |}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ free\ bit\ map\ |\ data\ blocks]}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ mkfs\ computes\ the\ super\ block\ and\ builds\ an\ initial\ file\ system.\ The}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ super\ block\ describes\ the\ disk\ layout:}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structsuperblock}{superblock}}\ \{}
+\DoxyCodeLine{00015\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_a7c6e4d6da139ecee74eb7816d5d44fa6}{size}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Size\ of\ file\ system\ image\ (blocks)}}
+\DoxyCodeLine{00016\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_a2a27a7cfb54689f0e1dcd1788d049218}{nblocks}};\ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ data\ blocks}}
+\DoxyCodeLine{00017\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_a355d2a1ebdc51f80820c23e69363cf42}{ninodes}};\ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ inodes.}}
+\DoxyCodeLine{00018\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_aea92ae872785fd4fb39b903d9157aac5}{nlog}};\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ log\ blocks}}
+\DoxyCodeLine{00019\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_a460268b28aced19797e8d7b84aa60ebf}{logstart}};\ \ \ \ \ \textcolor{comment}{//\ Block\ number\ of\ first\ log\ block}}
+\DoxyCodeLine{00020\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_adde361528f3905445974301b424611c1}{inodestart}};\ \ \ \textcolor{comment}{//\ Block\ number\ of\ first\ inode\ block}}
+\DoxyCodeLine{00021\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structsuperblock_a3c815dda5be6bda609389e76434171cc}{bmapstart}};\ \ \ \ \textcolor{comment}{//\ Block\ number\ of\ first\ free\ map\ block}}
+\DoxyCodeLine{00022\ \};}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ NDIRECT\ 12}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ NINDIRECT\ (BSIZE\ /\ sizeof(uint))}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ MAXFILE\ (NDIRECT\ +\ NINDIRECT)}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \textcolor{comment}{//\ On-\/disk\ inode\ structure}}
+\DoxyCodeLine{00029\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdinode}{dinode}}\ \{}
+\DoxyCodeLine{00030\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structdinode_abf6b2a8476a803284f1c927fb3b82259}{type}};\ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ File\ type}}
+\DoxyCodeLine{00031\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structdinode_aca8272002020f48219df175c986db257}{major}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Major\ device\ number\ (T\_DEV\ only)}}
+\DoxyCodeLine{00032\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structdinode_ae97965f85e7353313f85035e8fc63495}{minor}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Minor\ device\ number\ (T\_DEV\ only)}}
+\DoxyCodeLine{00033\ \ \ \textcolor{keywordtype}{short}\ \mbox{\hyperlink{structdinode_a105562253b461c11413c9a229ef15358}{nlink}};\ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Number\ of\ links\ to\ inode\ in\ file\ system}}
+\DoxyCodeLine{00034\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structdinode_a990ad8ddf5f8c051fbbe95cf550d2164}{size}};\ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Size\ of\ file\ (bytes)}}
+\DoxyCodeLine{00035\ \ \ \mbox{\hyperlink{types_8h_a91ad9478d81a7aaf2593e8d9c3d06a14}{uint}}\ \mbox{\hyperlink{structdinode_a705729b3a39c10c0ba6927fc5e4e0563}{addrs}}[\mbox{\hyperlink{fs_8h_acd38e9532d4b3623f844b93c012a8e06}{NDIRECT}}+1];\ \ \ \textcolor{comment}{//\ Data\ block\ addresses}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{comment}{//\ Inodes\ per\ block.}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ IPB\ \ \ \ \ \ \ \ \ \ \ (BSIZE\ /\ sizeof(struct\ dinode))}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{comment}{//\ Block\ containing\ inode\ i}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ IBLOCK(i,\ sb)\ \ \ \ \ ((i)\ /\ IPB\ +\ sb.inodestart)}}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \textcolor{comment}{//\ Bitmap\ bits\ per\ block}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ BPB\ \ \ \ \ \ \ \ \ \ \ (BSIZE*8)}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{comment}{//\ Block\ of\ free\ map\ containing\ bit\ for\ block\ b}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ BBLOCK(b,\ sb)\ (b/BPB\ +\ sb.bmapstart)}}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \textcolor{comment}{//\ Directory\ is\ a\ file\ containing\ a\ sequence\ of\ dirent\ structures.}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ DIRSIZ\ 14}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structdirent}{dirent}}\ \{}
+\DoxyCodeLine{00054\ \ \ \mbox{\hyperlink{types_8h_ab95f123a6c9bcfee6a343170ef8c5f69}{ushort}}\ \mbox{\hyperlink{structdirent_a68698c303a46d2a34232a2226629ac79}{inum}};}
+\DoxyCodeLine{00055\ \ \ \textcolor{keywordtype}{char}\ \mbox{\hyperlink{structdirent_a4e08a84dbac9b9f6a3e006151855d14d}{name}}[\mbox{\hyperlink{fs_8h_a48246fb9e5cb7f6a71ebc9ebc2f06562}{DIRSIZ}}];}
+\DoxyCodeLine{00056\ \};}
+\DoxyCodeLine{00057\ }
+
+\end{DoxyCode}

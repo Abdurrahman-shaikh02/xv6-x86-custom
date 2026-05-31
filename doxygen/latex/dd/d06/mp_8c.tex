@@ -1,0 +1,70 @@
+\doxysection{mp.\+c File Reference}
+\hypertarget{mp_8c}{}\label{mp_8c}\index{mp.c@{mp.c}}
+{\ttfamily \#include "{}types.\+h"{}}\newline
+{\ttfamily \#include "{}defs.\+h"{}}\newline
+{\ttfamily \#include "{}param.\+h"{}}\newline
+{\ttfamily \#include "{}memlayout.\+h"{}}\newline
+{\ttfamily \#include "{}mp.\+h"{}}\newline
+{\ttfamily \#include "{}x86.\+h"{}}\newline
+{\ttfamily \#include "{}mmu.\+h"{}}\newline
+{\ttfamily \#include "{}proc.\+h"{}}\newline
+Include dependency graph for mp.\+c\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{de/d9c/mp_8c__incl}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{mp_8c_a2fd0b66a17c5347541448ef906b7b2a2}{mpinit}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+struct \mbox{\hyperlink{structcpu}{cpu}} \mbox{\hyperlink{mp_8c_a6d2633e73724907b582dfe6938ed7bb9}{cpus}} \mbox{[}\mbox{\hyperlink{param_8h_a2c4561c4c17cde39101c4e7a40d4492a}{NCPU}}\mbox{]}
+\item 
+int \mbox{\hyperlink{mp_8c_a6201a0661c3d5b88df5f63529298eb48}{ncpu}}
+\item 
+\mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}} \mbox{\hyperlink{mp_8c_a619ae379337e3cb2397ee0b6b4fd8d6b}{ioapicid}}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Function Documentation}
+\Hypertarget{mp_8c_a2fd0b66a17c5347541448ef906b7b2a2}\label{mp_8c_a2fd0b66a17c5347541448ef906b7b2a2} 
+\index{mp.c@{mp.c}!mpinit@{mpinit}}
+\index{mpinit@{mpinit}!mp.c@{mp.c}}
+\doxysubsubsection{\texorpdfstring{mpinit()}{mpinit()}}
+{\footnotesize\ttfamily void mpinit (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Here is the call graph for this function\+:
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{dd/d06/mp_8c_a2fd0b66a17c5347541448ef906b7b2a2_cgraph}
+\end{center}
+\end{figure}
+
+
+\doxysubsection{Variable Documentation}
+\Hypertarget{mp_8c_a6d2633e73724907b582dfe6938ed7bb9}\label{mp_8c_a6d2633e73724907b582dfe6938ed7bb9} 
+\index{mp.c@{mp.c}!cpus@{cpus}}
+\index{cpus@{cpus}!mp.c@{mp.c}}
+\doxysubsubsection{\texorpdfstring{cpus}{cpus}}
+{\footnotesize\ttfamily struct \mbox{\hyperlink{structcpu}{cpu}} cpus\mbox{[}\mbox{\hyperlink{param_8h_a2c4561c4c17cde39101c4e7a40d4492a}{NCPU}}\mbox{]}}
+
+\Hypertarget{mp_8c_a619ae379337e3cb2397ee0b6b4fd8d6b}\label{mp_8c_a619ae379337e3cb2397ee0b6b4fd8d6b} 
+\index{mp.c@{mp.c}!ioapicid@{ioapicid}}
+\index{ioapicid@{ioapicid}!mp.c@{mp.c}}
+\doxysubsubsection{\texorpdfstring{ioapicid}{ioapicid}}
+{\footnotesize\ttfamily \mbox{\hyperlink{types_8h_a65f85814a8290f9797005d3b28e7e5fc}{uchar}} ioapicid}
+
+\Hypertarget{mp_8c_a6201a0661c3d5b88df5f63529298eb48}\label{mp_8c_a6201a0661c3d5b88df5f63529298eb48} 
+\index{mp.c@{mp.c}!ncpu@{ncpu}}
+\index{ncpu@{ncpu}!mp.c@{mp.c}}
+\doxysubsubsection{\texorpdfstring{ncpu}{ncpu}}
+{\footnotesize\ttfamily int ncpu}
+
