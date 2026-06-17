@@ -24,8 +24,12 @@ bootmain(void)
 
   elf = (struct elfhdr*)0x10000;  // scratch space
 
+  // NOTE: Read the following comments... i have made changes
+
   // Read 1st page off disk
   readseg((uchar*)elf, 4096, 0);
+  //readseg read x bytes from the disk at y offset from the 1st sector... (it by default adds a sector offset cuz kernel code starts from sector 1)
+  //So the above call is reading the 
 
   // Is this an ELF executable?
   if(elf->magic != ELF_MAGIC)
@@ -35,14 +39,21 @@ bootmain(void)
   ph = (struct proghdr*)((uchar*)elf + elf->phoff);
   eph = ph + elf->phnum;
   for(; ph < eph; ph++){
-    pa = (uchar*)ph->paddr;
-    readseg(pa, ph->filesz, ph->off);
+    //go through every entry in the program header table... and read every program accordingly...
+    pa = (uchar*)ph->paddr; //the address at which the program wants to be loaded
+    readseg(pa, ph->filesz, ph->off); //read the filesz bytes from its location in the elf(given by ph->off)
     if(ph->memsz > ph->filesz)
+      //if it wants more memory that the file size it is then concatenate zeros to fill up the extra required memory
+      //memsz tells how many bytes of memory it wants... filesz tells how big the program is
       stosb(pa + ph->filesz, 0, ph->memsz - ph->filesz);
   }
 
   // Call the entry point from the ELF header.
   // Does not return!
+  // NOTE: the value of elf->entry was set by the linker... (and will be read by the loader(the code that we are running rn)...)
+  // the linker knew that the entry symbol will be at this address when the loading gets complete...
+  // and it gives us the logical address(in the memory) of where to jump execution, now that the elf file has been loaded into the memory...
+  // Entry is in entry.S
   entry = (void(*)(void))(elf->entry);
   entry();
 }
@@ -70,7 +81,9 @@ readsect(void *dst, uint offset)
 
   // Read data.
   waitdisk();
-  insl(0x1F0, dst, SECTSIZE/4);
+  insl(0x1F0, dst, SECTSIZE/4);  
+  // NOTE: Why SECTSIZE/4 and not SECTSIZE ?
+  // Well we read a double word(32 bits) at a time...
 }
 
 // Read 'count' bytes at 'offset' from kernel into physical address 'pa'.
@@ -86,7 +99,8 @@ readseg(uchar* pa, uint count, uint offset)
   pa -= offset % SECTSIZE;
 
   // Translate from bytes to sectors; kernel starts at sector 1.
-  offset = (offset / SECTSIZE) + 1;
+  offset = (offset / SECTSIZE) + 1; // NOTE: why add plus one here ? Better to let the caller call with 512 offset...
+  //now offset represents no of sectors to be skipped from start...
 
   // If this is too slow, we could read lots of sectors at a time.
   // We'd write more to memory than asked, but it doesn't matter --

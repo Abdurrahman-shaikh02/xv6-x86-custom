@@ -53,7 +53,11 @@ seta20.2:
   # Complete the transition to 32-bit protected mode by using a long jmp
   # to reload %cs and %eip.  The segment descriptors are set up with no
   # translation, so that the mapping is still the identity mapping.
-  ljmp    $(SEG_KCODE<<3), $start32
+  # The first argument is the new value of CS reg and the second argument is the new ip value
+  ljmp    $(SEG_KCODE<<3), $start32 
+  # IMPORTANT: Why left shift by 3 ?
+  # Thats because every entry in the gdt is 8 bytes... that means the entry addresses are 0, 8, 16 and so on...
+  # So you dont need the final 3 bits... those 3 bits represent some flags...(2 for privilege level 1 for ldt or gdt selection)
 
 .code32  # Tell assembler to generate 32-bit code now.
 start32:
@@ -72,7 +76,8 @@ start32:
   call    bootmain
 
   # If bootmain returns (it shouldn't), trigger a Bochs
-  # breakpoint if running under Bochs, then loop.
+  # breakpoint if running under Bochs, then loop. 
+  # (THIS IS SPECIFIC TO BOCHS EMULATOR... IF ITS NOT BOCHS WE ARE USING THEN JUST DO THE INFINITE LOOP)
   movw    $0x8a00, %ax            # 0x8a00 -> port 0x8a00
   movw    %ax, %dx
   outw    %ax, %dx
@@ -85,10 +90,17 @@ spin:
 .p2align 2                                # force 4 byte alignment
 gdt:
   SEG_NULLASM                             # null seg
-  SEG_ASM(STA_X|STA_R, 0x0, 0xffffffff)   # code seg
-  SEG_ASM(STA_W, 0x0, 0xffffffff)         # data seg
+  SEG_ASM(STA_X|STA_R, 0x0, 0xffffffff)   # code seg (CS)
+  SEG_ASM(STA_W, 0x0, 0xffffffff)         # data seg (DS ES SS)
+# NOTE: We are setting code segment base and data segment base both as 0 and limits as FFFFFFFF which is 4GB
+# Meaning, segmentation is essentially turned off... any logical address is added to the base 0
+# This is called flat segmentation
+# Just a recap on how the descriptor table works:
+# The corresponding 16 bit segment register (CS ES DS SS) is used to index into the descriptor table...
+# This gives us the value of the base to be added to the logical address...
 
 gdtdesc:
   .word   (gdtdesc - gdt - 1)             # sizeof(gdt) - 1
   .long   gdt                             # address gdt
-
+# NOTE: Above are the contents that will go into the gdtr when the lgdt instruction is executed...
+# So the ldtr is 16 + 32 = 48 bits long... and it holds both the length and the address of the gdt

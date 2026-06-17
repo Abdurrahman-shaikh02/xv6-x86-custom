@@ -43,13 +43,13 @@ _start = V2P_WO(entry)
 # Entering xv6 on boot processor, with paging off.
 .globl entry
 entry:
-# NOTE: So entry just does some memory thing and then calls the kernels main function
+# NOTE: Entry just does some memory management and then calls the kernels main function
 
   # Turn on page size extension for 4Mbyte pages
   movl    %cr4, %eax
   orl     $(CR4_PSE), %eax
   movl    %eax, %cr4
-  # Set page directory
+  # Set page directory (page directory is the top level page table ... remember ?)
   movl    $(V2P_WO(entrypgdir)), %eax
   movl    %eax, %cr3
   # Turn on paging.
@@ -58,6 +58,9 @@ entry:
   movl    %eax, %cr0
 
   # Set up the stack pointer.
+  # NOTE: stack is declared below... at the end of the file
+  # stack is an uninitialized variabe of size KSTACKSIZE... then its there in the bss section... loaded by the loader...
+# QUESTION: Bruh hows this even working ?
   movl $(stack + KSTACKSIZE), %esp
 
   # Jump to main(), and switch to executing at
