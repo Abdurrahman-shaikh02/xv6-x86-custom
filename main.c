@@ -101,12 +101,16 @@ startothers(void)
 
 // NOTE: The 0th index and the final index are getting filled with a particular value...
 // That is 0 frame number
+// now if you see 512 pages of 4mb each that is 2GB... our limit that we set was 4GB remember ?
+// 2gb mapas 0 to 0x80000000... and the kernbase is 0x80000000... so 2gb has been mapped, the other 2gb isnt... 
+// QUESTION: IDK WHAT THE OTHER 2GB IS FOR... (a guess is that it is used for the kernel space... and we havent made any entries because users shouldnt be allowed to access those mem locations...)
 __attribute__((__aligned__(PGSIZE)))
 pde_t entrypgdir[NPDENTRIES] = {
   // Map VA's [0, 4MB) to PA's [0, 4MB)
   [0] = (0) | PTE_P | PTE_W | PTE_PS,
   // Map VA's [KERNBASE, KERNBASE+4MB) to PA's [0, 4MB)
   [KERNBASE>>PDXSHIFT] = (0) | PTE_P | PTE_W | PTE_PS,
+  // QUESTION: Why are we mapping the first and the last page to the same 0th frame?
 };
 
 //PAGEBREAK!

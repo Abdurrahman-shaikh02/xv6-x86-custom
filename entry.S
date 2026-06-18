@@ -45,7 +45,7 @@ _start = V2P_WO(entry)
 entry:
 # NOTE: Entry just does some memory management and then calls the kernels main function
 
-  # Turn on page size extension for 4Mbyte pages
+  # Turn on page size extension for 4Mbyte pages(initially we use 4MB paging)
   movl    %cr4, %eax
   orl     $(CR4_PSE), %eax
   movl    %eax, %cr4
@@ -59,8 +59,11 @@ entry:
 
   # Set up the stack pointer.
   # NOTE: stack is declared below... at the end of the file
-  # stack is an uninitialized variabe of size KSTACKSIZE... then its there in the bss section... loaded by the loader...
-# QUESTION: Bruh hows this even working ?
+  # stack is an uninitialized variable of size KSTACKSIZE... that means it just gets a KSTACKSIZE space in the bss section of the kernel...
+  # the actual address is decided by the linker ofc...
+  # IMPORTANT:	But which stack is this ? This is not a process kernel stack NO!
+  # This is a BOOT STACK that is temporarily used by the init functions...
+  # when the first process is created, that is when we get a brand new per process kernel stack
   movl $(stack + KSTACKSIZE), %esp
 
   # Jump to main(), and switch to executing at
