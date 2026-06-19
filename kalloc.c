@@ -47,7 +47,9 @@ void
 freerange(void *vstart, void *vend)
 {
   char *p;
-  p = (char*)PGROUNDUP((uint)vstart);
+  p = (char*)PGROUNDUP((uint)vstart);   
+  // NOTE: get the first address of the first "full" page in the given range
+  // might also round down vend... but honestly if you see the loops break condition below... you'll realise its not needed
   for(; p + PGSIZE <= (char*)vend; p += PGSIZE)
     kfree(p);
 }
@@ -66,11 +68,12 @@ kfree(char *v)
 
   // Fill with junk to catch dangling refs.
   memset(v, 1, PGSIZE);
-
+  
   if(kmem.use_lock)
     acquire(&kmem.lock);
-  r = (struct run*)v;
-  r->next = kmem.freelist;
+  r = (struct run*)v; // cooooooooooool...
+  // NOTE: The free page, itself contains a struct run at the beginning which is basically linked list node... which points to the next free page
+  r->next = kmem.freelist;  //kmem.freelist is the head of the list...
   kmem.freelist = r;
   if(kmem.use_lock)
     release(&kmem.lock);

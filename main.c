@@ -10,6 +10,9 @@ static void startothers(void);
 static void mpmain(void)  __attribute__((noreturn));
 extern pde_t *kpgdir;
 extern char end[]; // first address after kernel loaded from ELF file
+                   // IMPORTANT:: This value was set by the linker... the linker instructions that we gave in kernel.ld set this value
+                   // this is the first value that does not belong to the kernels image in the memory
+                   // IN xv6, the kernel loads only in one place... not many different places like other modern operating systems
 
 // Bootstrap processor starts running C code here.
 // Allocate a real stack and switch to it, first
@@ -17,7 +20,17 @@ extern char end[]; // first address after kernel loaded from ELF file
 int
 main(void)
 {
+  // IMPORTANT:----------------------------------------------------------------------------------------------------
+  // Initialization happens in two phases.
+  // 1. main() calls kinit1() while still using entrypgdir to place just
+  // the pages mapped by entrypgdir on free list. 
+  // (remember we had mapped the first page and the first kernel page to frame 0 in entry.S when we set up pdt?)
+  // 2. main() calls kinit2() with the rest of the physical pages
+  // after installing a full page table that maps them on all cores.
   kinit1(end, P2V(4*1024*1024)); // phys page allocator
+  // NOTE: so kinit maps the pages(4kb pages) in the virtual addr range[end = KERNBASE + smthng, KERNBASE+4096] on to the free store...
+  //---------------------------------------------------------------------------------------------------------------
+
   kvmalloc();      // kernel page table
   mpinit();        // detect other processors
   lapicinit();     // interrupt controller
@@ -99,18 +112,17 @@ startothers(void)
 // hence the __aligned__ attribute.
 // PTE_PS in a page directory entry enables 4Mbyte pages.
 
-// NOTE: The 0th index and the final index are getting filled with a particular value...
-// That is 0 frame number
-// now if you see 512 pages of 4mb each that is 2GB... our limit that we set was 4GB remember ?
-// 2gb mapas 0 to 0x80000000... and the kernbase is 0x80000000... so 2gb has been mapped, the other 2gb isnt... 
-// QUESTION: IDK WHAT THE OTHER 2GB IS FOR... (a guess is that it is used for the kernel space... and we havent made any entries because users shouldnt be allowed to access those mem locations...)
+// NOTE: The 0th index and the first page of kernel space are getting filled with a particular value... that is frame number 0
+// QUESTION: Why are we mapping the first page and the first kern page to the same 0th frame?
+// (just a guess : because the 2gb of the ram is made availabe to user programs... the addresses above KERNBASE are for kernel
+// and so the user processes cant really access those physical addresses...(if they try to access them then they are mapped to 
+// the same 2GB in the memory below KERNBASE ?)
 __attribute__((__aligned__(PGSIZE)))
-pde_t entrypgdir[NPDENTRIES] = {
+pde_t entrypgdir[NPDENTRIES] = {  //btw 1024 entries * 4MB = 4GB... (remember our limit of ffffffff in the gdt ?)
   // Map VA's [0, 4MB) to PA's [0, 4MB)
   [0] = (0) | PTE_P | PTE_W | PTE_PS,
   // Map VA's [KERNBASE, KERNBASE+4MB) to PA's [0, 4MB)
   [KERNBASE>>PDXSHIFT] = (0) | PTE_P | PTE_W | PTE_PS,
-  // QUESTION: Why are we mapping the first and the last page to the same 0th frame?
 };
 
 //PAGEBREAK!

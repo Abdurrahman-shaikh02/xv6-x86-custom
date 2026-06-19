@@ -8,7 +8,8 @@
 #define KERNBASE 0x80000000         // First kernel virtual address
 #define KERNLINK (KERNBASE+EXTMEM)  // Address where kernel is linked
 
-#define V2P(a) (((uint) (a)) - KERNBASE)
+#define V2P(a) (((uint) (a)) - KERNBASE)        //we are actually only mapping 2gb of physical memory... the virtual address space if 4gb
+                                                //after getting linear address from segmentation, we get the virtual addr remember ?
 #define P2V(a) ((void *)(((char *) (a)) + KERNBASE))
 
 #define V2P_WO(x) ((x) - KERNBASE)    // same as V2P, but without casts

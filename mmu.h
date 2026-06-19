@@ -87,8 +87,8 @@ struct segdesc {
 #define PTXSHIFT        12      // offset of PTX in a linear address
 #define PDXSHIFT        22      // offset of PDX in a linear address
 
-#define PGROUNDUP(sz)  (((sz)+PGSIZE-1) & ~(PGSIZE-1))
-#define PGROUNDDOWN(a) (((a)) & ~(PGSIZE-1))
+#define PGROUNDUP(sz)  (((sz)+PGSIZE-1) & ~(PGSIZE-1))  //add one page(4096-1 = 0x1111111111), then remove the last 12 bits(page offset)...
+#define PGROUNDDOWN(a) (((a)) & ~(PGSIZE-1))  //just remove the last 12 bits(page offset)
 
 // Page table/directory entry flags.
 #define PTE_P           0x001   // Present
