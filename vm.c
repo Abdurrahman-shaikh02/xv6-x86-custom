@@ -22,6 +22,14 @@ seginit(void)
   // because it would have to have DPL_USR, but the CPU forbids
   // an interrupt from CPL=0 to DPL=3.
   c = &cpus[cpuid()];
+  // NOTE: This is the actual global desciptor table that we will use...
+  // The one that we set up earlier was temporary... for bootstrapping purposes...
+  // Notice the privilege level difference...
+  // This means that when a trap happens, the cs and the data selectors(es, ss, ds... i think...) also have to be changed
+  // Nevertheless the actual base values are the same so it doesnt really make a difference linear addresswise
+  // just the privilege levels
+  // IMPORTANT: There is another descriptor a total of 5. See (Press Ctrl + ] on "SEG_TSS"). The Task Segment descriptor isn't set up here... its set up in switchuvm...
+  // QUESTION: Why ???
   c->gdt[SEG_KCODE] = SEG(STA_X|STA_R, 0, 0xffffffff, 0);
   c->gdt[SEG_KDATA] = SEG(STA_W, 0, 0xffffffff, 0);
   c->gdt[SEG_UCODE] = SEG(STA_X|STA_R, 0, 0xffffffff, DPL_USER);
@@ -66,11 +74,17 @@ mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm)
   a = (char*)PGROUNDDOWN((uint)va);
   last = (char*)PGROUNDDOWN(((uint)va) + size - 1);
   for(;;){
+    // NOTE: Walk the page directory and see if the pde(ie. the address of the page table) for the address "a" has been created... meaning if space (a page) has been allocated for the corresponding page table
+    // if not allocate a page for the page table... add the page directory entry 
+    // (just in case... the page directory is indexed by the last 10 bits(when counted from right) contains the address of the page table and then the page table is indexed using the bits [21:12]
+    // which contains the physical address... Also the page directory and each of the page tables occupy one page
+    // think 10 bits for indexing meaning 1k entries and each entry is 4 bytes so 4kb)
+    // and then return the address of the page TABLE entry corresponding to the address a
     if((pte = walkpgdir(pgdir, a, 1)) == 0)
       return -1;
     if(*pte & PTE_P)
       panic("remap");
-    *pte = pa | perm | PTE_P;
+    *pte = pa | perm | PTE_P;   //then set up the page TABLE entry
     if(a == last)
       break;
     a += PGSIZE;
@@ -121,12 +135,12 @@ setupkvm(void)
   pde_t *pgdir;
   struct kmap *k;
 
-  if((pgdir = (pde_t*)kalloc()) == 0)
+  if((pgdir = (pde_t*)kalloc()) == 0) //allocated a page.. that will be our page directory
     return 0;
-  memset(pgdir, 0, PGSIZE);
+  memset(pgdir, 0, PGSIZE);   //fill the entire space with zeroes
   if (P2V(PHYSTOP) > (void*)DEVSPACE)
     panic("PHYSTOP too high");
-  for(k = kmap; k < &kmap[NELEM(kmap)]; k++)
+  for(k = kmap; k < &kmap[NELEM(kmap)]; k++)  // NOTE: kmap gives us the mapping that we want to do... See supplimentary_material/xv6_vm_mappings.png
     if(mappages(pgdir, k->virt, k->phys_end - k->phys_start,
                 (uint)k->phys_start, k->perm) < 0) {
       freevm(pgdir);
@@ -141,7 +155,13 @@ void
 kvmalloc(void)
 {
   kpgdir = setupkvm();
+
   switchkvm();
+  // NOTE: Remember what we did earlier ? We set up a page directory table mapping the first 4MB of user and kernel address space to the first 4MB of the memory...
+  // This was done in entry.S... 
+  // IMPORTANT: Now we are changing this... Why ?
+  // Well the original pdt that we set up was just timepass... only for bootstrapping purposes... Now this is the real deal !
+  // Now look into supplimentary_material/xv6_vm_mappings.png for the kernel space mappings
 }
 
 // Switch h/w page table register to the kernel-only page table,
@@ -168,11 +188,11 @@ switchuvm(struct proc *p)
                                 sizeof(mycpu()->ts)-1, 0);
   mycpu()->gdt[SEG_TSS].s = 0;
   mycpu()->ts.ss0 = SEG_KDATA << 3;
-  mycpu()->ts.esp0 = (uint)p->kstack + KSTACKSIZE;
+  mycpu()->ts.esp0 = (uint)p->kstack + KSTACKSIZE;    // QUESTION: Why is the kernel stack starting at the very bottom ? what if the process was timer interrupted when it was already in a system call ?
   // setting IOPL=0 in eflags *and* iomb beyond the tss segment limit
   // forbids I/O instructions (e.g., inb and outb) from user space
   mycpu()->ts.iomb = (ushort) 0xFFFF;
-  ltr(SEG_TSS << 3);
+  ltr(SEG_TSS << 3);    //the task register to index and find the task state segment descriptor from the gdt
   lcr3(V2P(p->pgdir));  // switch to process's address space
   popcli();
 }

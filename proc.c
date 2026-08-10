@@ -323,8 +323,10 @@ void
 scheduler(void)
 {
   struct proc *p;
-  struct cpu *c = mycpu();
-  c->proc = 0;
+  struct cpu *c = mycpu();    // NOTE: mycpu() return a pointer to a struct cpu that describes the current core (on which the scheduler was invoked)
+                              // See struct cpu definition for more.
+
+  c->proc = 0;    // No process being run on the cpu right now.
   
   for(;;){
     // Enable interrupts on this processor.
@@ -332,6 +334,8 @@ scheduler(void)
 
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
+
+    // Start searching through the list of processes
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;
@@ -339,11 +343,11 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
-      c->proc = p;
+      c->proc = p;    //set the core's struct cpu's procs field to the current process' control block
       switchuvm(p);
       p->state = RUNNING;
 
-      swtch(&(c->scheduler), p->context);
+      swtch(&(c->scheduler), p->context);   // Pass the old context, new context
       switchkvm();
 
       // Process is done running for now.

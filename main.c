@@ -19,8 +19,9 @@ extern char end[]; // first address after kernel loaded from ELF file
 // doing some setup required for memory allocator to work.
 int
 main(void)
-{
-  // IMPORTANT:----------------------------------------------------------------------------------------------------
+{ 
+  //---------------------------------------------------------------------------------------------------------------
+  // IMPORTANT:
   // Initialization happens in two phases.
   // 1. main() calls kinit1() while still using entrypgdir to place just
   // the pages mapped by entrypgdir on free list. 
@@ -28,26 +29,50 @@ main(void)
   // 2. main() calls kinit2() with the rest of the physical pages
   // after installing a full page table that maps them on all cores.
   kinit1(end, P2V(4*1024*1024)); // phys page allocator
-  // NOTE: so kinit maps the pages(4kb pages) in the virtual addr range[end = KERNBASE + smthng, KERNBASE+4096] on to the free store...
-  //---------------------------------------------------------------------------------------------------------------
-
+  // NOTE: Remember that me mapped the first 4mb physical space to 0 to 4mb and KERNBASE to KERNBASE+ 4096
+  // so kinit1 links the remaining space (from end (marked by linker see above) till KERNBASE + 4096 which is just end to 4mb in physical mem) as 4kb spaces in a linked list...
+  // Now every call to kalloc and kfree will work
+  // --------------------------------------------------------------------------------------------------------------
+  //
+  // IMPORTANT: This function sets up the kernel page table. The entire address space 0 to 4gb is mapped onto the physical addess space
+  // as given in supplementary_material/xv6_vm_mappings.png.
+  // Note that it only sets up the page directory and the required page tables. It does not yet free them(thats done by kinit2)
   kvmalloc();      // kernel page table
+  //---------------------------------------------------------------------------------------------------------------
   mpinit();        // detect other processors
+  //---------------------------------------------------------------------------------------------------------------
   lapicinit();     // interrupt controller
+  //---------------------------------------------------------------------------------------------------------------
+  //
+  // IMPORTANT: This function sets up the proper global descriptor table. The one we set earlier was temporary.
   seginit();       // segment descriptors
+  //---------------------------------------------------------------------------------------------------------------
   picinit();       // disable pic
+  //---------------------------------------------------------------------------------------------------------------
   ioapicinit();    // another interrupt controller
+  //---------------------------------------------------------------------------------------------------------------
   consoleinit();   // console hardware
+  //---------------------------------------------------------------------------------------------------------------
   uartinit();      // serial port
+  //---------------------------------------------------------------------------------------------------------------
   pinit();         // process table
+  //---------------------------------------------------------------------------------------------------------------
   tvinit();        // trap vectors
+  //---------------------------------------------------------------------------------------------------------------
   binit();         // buffer cache
+  //---------------------------------------------------------------------------------------------------------------
   fileinit();      // file table
+  //---------------------------------------------------------------------------------------------------------------
   ideinit();       // disk 
+  //---------------------------------------------------------------------------------------------------------------
   startothers();   // start other processors
+  //---------------------------------------------------------------------------------------------------------------
   kinit2(P2V(4*1024*1024), P2V(PHYSTOP)); // must come after startothers()
+  //---------------------------------------------------------------------------------------------------------------
   userinit();      // first user process
+  //---------------------------------------------------------------------------------------------------------------
   mpmain();        // finish this processor's setup
+  //---------------------------------------------------------------------------------------------------------------
 }
 
 // Other CPUs jump here from entryother.S.
@@ -113,10 +138,11 @@ startothers(void)
 // PTE_PS in a page directory entry enables 4Mbyte pages.
 
 // NOTE: The 0th index and the first page of kernel space are getting filled with a particular value... that is frame number 0
-// QUESTION: Why are we mapping the first page and the first kern page to the same 0th frame?
+// IMPORTANT: Why are we mapping the first page and the first kern page to the same 0th frame?
 // (just a guess : because the 2gb of the ram is made availabe to user programs... the addresses above KERNBASE are for kernel
 // and so the user processes cant really access those physical addresses...(if they try to access them then they are mapped to 
 // the same 2GB in the memory below KERNBASE ?)
+// NO! its just that we need some basic pdt for bootstrapping purpose hence we are doing this... gets changed in kvmalloc()
 __attribute__((__aligned__(PGSIZE)))
 pde_t entrypgdir[NPDENTRIES] = {  //btw 1024 entries * 4MB = 4GB... (remember our limit of ffffffff in the gdt ?)
   // Map VA's [0, 4MB) to PA's [0, 4MB)
