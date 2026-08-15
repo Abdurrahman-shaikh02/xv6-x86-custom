@@ -143,6 +143,7 @@ startothers(void)
 // and so the user processes cant really access those physical addresses...(if they try to access them then they are mapped to 
 // the same 2GB in the memory below KERNBASE ?)
 // NO! its just that we need some basic pdt for bootstrapping purpose hence we are doing this... gets changed in kvmalloc()
+// NOTICE HOW PAGE DIRECTORY NEEDS TO BE ALIGNED WITH PAGE SIZE
 __attribute__((__aligned__(PGSIZE)))
 pde_t entrypgdir[NPDENTRIES] = {  //btw 1024 entries * 4MB = 4GB... (remember our limit of ffffffff in the gdt ?)
   // Map VA's [0, 4MB) to PA's [0, 4MB)

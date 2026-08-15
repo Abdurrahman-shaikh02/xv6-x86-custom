@@ -46,16 +46,16 @@ entry:
 # NOTE: Entry just does some memory management and then calls the kernels main function
 
   # Turn on page size extension for 4Mbyte pages(initially we use 4MB paging)
-  movl    %cr4, %eax
-  orl     $(CR4_PSE), %eax
-  movl    %eax, %cr4
+  # movl    %cr4, %eax
+  # orl     $(CR4_PSE), %eax
+  # movl    %eax, %cr4
   # Set page directory (page directory is the top level page table ... remember ?)
   movl    $(V2P_WO(entrypgdir)), %eax
   movl    %eax, %cr3
   # Turn on paging.
-  movl    %cr0, %eax
-  orl     $(CR0_PG|CR0_WP), %eax
-  movl    %eax, %cr0
+  # movl    %cr0, %eax
+  # orl     $(CR0_PG|CR0_WP), %eax
+  # movl    %eax, %cr0
 
   # Set up the stack pointer.
   # NOTE: stack is declared below... at the end of the file

@@ -70,6 +70,23 @@ start32:
   movw    %ax, %fs                # -> FS
   movw    %ax, %gs                # -> GS
 
+  # Turning on paging-------------------------------------------------------------------------------------------------
+  # Turn on page size extension for 4Mbyte pages(initially we use 4MB paging)
+  movl    %cr4, %eax
+  orl     $(CR4_PSE), %eax
+  movl    %eax, %cr4
+  # Set page directory (page directory is the top level page table ... remember ?)
+  movl    $pd, %eax
+  movl    (%eax), %eax
+  movl    %eax, 0
+  movl    $0, %eax
+  movl    %eax, %cr3
+  # Turn on paging.
+  movl    %cr0, %eax
+  orl     $(CR0_PG|CR0_WP), %eax
+  movl    %eax, %cr0
+  # -------------------------------------------------------------------------------------------------------------------
+
   # Set up the stack pointer and call into C.
 # NOTE: the code is above 0x7C00 and the stack grows below it... hence esp = 0x7C00
   movl    $start, %esp
@@ -104,3 +121,7 @@ gdtdesc:
   .long   gdt                             # address gdt
 # NOTE: Above are the contents that will go into the gdtr when the lgdt instruction is executed...
 # So the ldtr is 16 + 32 = 48 bits long... and it holds both the length and the address of the gdt
+
+
+pd:
+  .long 0x083
