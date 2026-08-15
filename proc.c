@@ -343,12 +343,17 @@ scheduler(void)
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
-      c->proc = p;    //set the core's struct cpu's procs field to the current process' control block
-      switchuvm(p);
+      c->proc = p;    //set the core's struct cpu procs field to the current process' control block
+      switchuvm(p);   
       p->state = RUNNING;
 
-      swtch(&(c->scheduler), p->context);   // Pass the old context, new context
-      switchkvm();
+      // IMPORTANT: BEFORE swtch we are in the scheduler code... We have only switched to the user process' address space... And therefore the c->scheduler didnt really save any context...
+      // swtch(..) : save the current context in c->scheduler and switch to the new context.
+      // After swtch() the execution will start in the user process. That is in the sched() function from where swtch was called.
+      swtch(&(c->scheduler), p->context); 
+
+      // IMPORTANT: Return after the old process' sched() calls swtch(..) and it switches to the scheduler context.
+      switchkvm(); 
 
       // Process is done running for now.
       // It should have changed its p->state before coming back.
@@ -381,7 +386,12 @@ sched(void)
   if(readeflags()&FL_IF)
     panic("sched interruptible");
   intena = mycpu()->intena;
+
+  // IMPORTANT: swtch(..) : save the current context in p->context and run the cpu->scheduler context.
+  // That means after this swtch() execution starts right after the swtch in the scheduler() code.
   swtch(&p->context, mycpu()->scheduler);
+
+  // IMPORTANT: Returns here when the schedulers swtch() switches to this process' context.
   mycpu()->intena = intena;
 }
 
