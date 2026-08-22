@@ -1,0 +1,89 @@
+execve("/usr/bin/dd", ["dd", "if=bootblock", "of=xv6.img"], 0x7ffefe3c1d40 /* 49 vars */) = 0
+brk(NULL)                               = 0x61d8fb506000
+mmap(NULL, 8192, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7544fcb54000
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda/lib64/glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda/lib64/glibc-hwcaps/x86-64-v3/", 0x7fff16f07c90, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda/lib64/glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda/lib64/glibc-hwcaps/x86-64-v2/", 0x7fff16f07c90, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/local/cuda/lib64/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/cuda/lib64/", 0x7fff16f07c90, 0) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v3/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "glibc-hwcaps/x86-64-v2/libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "libc.so.6", O_RDONLY|O_CLOEXEC) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=110351, ...}) = 0
+mmap(NULL, 110351, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7544fcb39000
+close(3)                                = 0
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+read(3, "\177ELF\2\1\1\3\0\0\0\0\0\0\0\0\3\0>\0\1\0\0\0\220\243\2\0\0\0\0\0"..., 832) = 832
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+fstat(3, {st_mode=S_IFREG|0755, st_size=2125328, ...}) = 0
+pread64(3, "\6\0\0\0\4\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0@\0\0\0\0\0\0\0"..., 784, 64) = 784
+mmap(NULL, 2170256, PROT_READ, MAP_PRIVATE|MAP_DENYWRITE, 3, 0) = 0x7544fc800000
+mmap(0x7544fc828000, 1605632, PROT_READ|PROT_EXEC, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x28000) = 0x7544fc828000
+mmap(0x7544fc9b0000, 323584, PROT_READ, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1b0000) = 0x7544fc9b0000
+mmap(0x7544fc9ff000, 24576, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_DENYWRITE, 3, 0x1fe000) = 0x7544fc9ff000
+mmap(0x7544fca05000, 52624, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_FIXED|MAP_ANONYMOUS, -1, 0) = 0x7544fca05000
+close(3)                                = 0
+mmap(NULL, 12288, PROT_READ|PROT_WRITE, MAP_PRIVATE|MAP_ANONYMOUS, -1, 0) = 0x7544fcb36000
+arch_prctl(ARCH_SET_FS, 0x7544fcb36740) = 0
+set_tid_address(0x7544fcb36a10)         = 28503
+set_robust_list(0x7544fcb36a20, 24)     = 0
+rseq(0x7544fcb37060, 0x20, 0, 0x53053053) = 0
+mprotect(0x7544fc9ff000, 16384, PROT_READ) = 0
+mprotect(0x61d8f357e000, 4096, PROT_READ) = 0
+mprotect(0x7544fcb94000, 8192, PROT_READ) = 0
+prlimit64(0, RLIMIT_STACK, NULL, {rlim_cur=8192*1024, rlim_max=RLIM64_INFINITY}) = 0
+munmap(0x7544fcb39000, 110351)          = 0
+rt_sigaction(SIGINT, NULL, {sa_handler=SIG_DFL, sa_mask=[], sa_flags=0}, 8) = 0
+rt_sigaction(SIGUSR1, {sa_handler=0x61d8f35719f0, sa_mask=[INT USR1], sa_flags=SA_RESTORER, sa_restorer=0x7544fc845330}, NULL, 8) = 0
+rt_sigaction(SIGINT, {sa_handler=0x61d8f35719e0, sa_mask=[INT USR1], sa_flags=SA_RESTORER|SA_NODEFER|SA_RESETHAND|0xffffffff00000000, sa_restorer=0x7544fc845330}, NULL, 8) = 0
+getrandom("\xc7\xdd\x34\x49\xe4\x3d\x47\x30", 8, GRND_NONBLOCK) = 8
+brk(NULL)                               = 0x61d8fb506000
+brk(0x61d8fb527000)                     = 0x61d8fb527000
+openat(AT_FDCWD, "/usr/lib/locale/locale-archive", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=5719296, ...}) = 0
+mmap(NULL, 5719296, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7544fc200000
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/share/locale/locale.alias", O_RDONLY|O_CLOEXEC) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=2996, ...}) = 0
+read(3, "# Locale name alias data base.\n#"..., 4096) = 2996
+read(3, "", 4096)                       = 0
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/share/locale/en_US.UTF-8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en_US.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en_US/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en.UTF-8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale/en/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en_US.UTF-8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en_US.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en_US/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en.UTF-8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en.utf8/LC_MESSAGES/coreutils.mo", O_RDONLY) = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/usr/share/locale-langpack/en/LC_MESSAGES/coreutils.mo", O_RDONLY) = 3
+fstat(3, {st_mode=S_IFREG|0644, st_size=613, ...}) = 0
+mmap(NULL, 613, PROT_READ, MAP_PRIVATE, 3, 0) = 0x7544fcb53000
+close(3)                                = 0
+openat(AT_FDCWD, "bootblock", O_RDONLY) = 3
+dup2(3, 0)                              = 0
+close(3)                                = 0
+lseek(0, 0, SEEK_CUR)                   = 0
+openat(AT_FDCWD, "xv6.img", O_WRONLY|O_CREAT|O_TRUNC, 0666) = 3
+dup2(3, 1)                              = 1
+close(3)                                = 0
+read(0, "\3721\300\216\330\216\300\216\320\344d\250\2u\372\260\321\346d\344d\250\2u\372\260\337\346`\17\1\26"..., 512) = 512
+write(1, "\3721\300\216\330\216\300\216\320\344d\250\2u\372\260\321\346d\344d\250\2u\372\260\337\346`\17\1\26"..., 512) = 512
+read(0, "", 512)                        = 0
+close(0)                                = 0
+close(1)                                = 0
+write(2, "1+0 records in\n1+0 records out\n", 311+0 records in
+1+0 records out
+) = 31
+write(2, "512 bytes copied, 0.000527559 s,"..., 41512 bytes copied, 0.000527559 s, 971 kB/s) = 41
+write(2, "\n", 1
+)                       = 1
+close(2)                                = 0
+exit_group(0)                           = ?
++++ exited with 0 +++
