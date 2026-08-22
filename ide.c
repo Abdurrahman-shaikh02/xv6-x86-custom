@@ -28,18 +28,48 @@
 // idequeue->qnext points to the next buf to be processed.
 // You must hold idelock while manipulating queue.
 
+// IMPORTANT: IDE Interface:
+// Control Register:
+//    Address 0x3F6 = 0x08 (0000 1RE0): R=reset,
+//                    E=0 means "enable interrupt"
+// Command Block Registers:
+//    Address 0x1F0 = Data Port
+//    Address 0x1F1 = Error
+//    Address 0x1F2 = Sector Count
+//    Address 0x1F3 = LBA low byte
+//    Address 0x1F4 = LBA mid byte
+//    Address 0x1F5 = LBA hi byte
+//    Address 0x1F6 = 1B1D TOP4LBA: B=LBA, D=drive
+//    Address 0x1F7 = Command/status
+// Status Register (Address 0x1F7):
+//      7    6     5     4   3    2     1     0
+//    BUSY READY FAULT SEEK DRQ CORR IDDEX ERROR
+// Error Register (Address 0x1F1): (check when ERROR==1)
+//     7   6   5   4   3    2    1    0
+//    BBK UNC MC IDNF MCR ABRT T0NF AMNF
+//    BBK = Bad Block
+//    UNC = Uncorrectable data error
+//    MC = Media Changed
+//    IDNF = ID mark Not Found
+//    MCR = Media Change Requested
+//    ABRT = Command aborted
+//    T0NF = Track 0 Not Found
+//    AMNF = Address Mark Not Found
+
 static struct spinlock idelock;
 static struct buf *idequeue;
 
 static int havedisk1;
 static void idestart(struct buf*);
 
-// Wait for IDE disk to become ready.
+// NOTE: Wait for IDE disk to become ready.
 static int
 idewait(int checkerr)
 {
+  // return zero if its not checkerr...
   int r;
 
+  // POLL until the ready bit is set and busy bit is reset.
   while(((r = inb(0x1f7)) & (IDE_BSY|IDE_DRDY)) != IDE_DRDY)
     ;
   if(checkerr && (r & (IDE_DF|IDE_ERR)) != 0)
@@ -47,6 +77,7 @@ idewait(int checkerr)
   return 0;
 }
 
+// called from main, in the beginning
 void
 ideinit(void)
 {
@@ -56,9 +87,10 @@ ideinit(void)
   ioapicenable(IRQ_IDE, ncpu - 1);
   idewait(0);
 
-  // Check if disk 1 is present
+  // NOTE: Check if disk 1 is present
   outb(0x1f6, 0xe0 | (1<<4));
   for(i=0; i<1000; i++){
+    // loop goes from 1 to 1000, the device must respond in that time
     if(inb(0x1f7) != 0){
       havedisk1 = 1;
       break;
@@ -73,14 +105,16 @@ ideinit(void)
 static void
 idestart(struct buf *b)
 {
+  // NOTE: Starts a queued request.
+
   if(b == 0)
     panic("idestart");
   if(b->blockno >= FSSIZE)
     panic("incorrect blockno");
   int sector_per_block =  BSIZE/SECTOR_SIZE;
   int sector = b->blockno * sector_per_block;
-  int read_cmd = (sector_per_block == 1) ? IDE_CMD_READ :  IDE_CMD_RDMUL;
-  int write_cmd = (sector_per_block == 1) ? IDE_CMD_WRITE : IDE_CMD_WRMUL;
+  int read_cmd = (sector_per_block == 1) ? IDE_CMD_READ :  IDE_CMD_RDMUL;   // dont know why...
+  int write_cmd = (sector_per_block == 1) ? IDE_CMD_WRITE : IDE_CMD_WRMUL;  // dont know why...
 
   if (sector_per_block > 7) panic("idestart");
 
@@ -99,7 +133,7 @@ idestart(struct buf *b)
   }
 }
 
-// Interrupt handler.
+// NOTE: Interrupt handler to run when the disk raises an interrupt
 void
 ideintr(void)
 {
@@ -121,7 +155,8 @@ ideintr(void)
   // Wake process waiting for this buf.
   b->flags |= B_VALID;
   b->flags &= ~B_DIRTY;
-  wakeup(b);
+  wakeup(b);  // QUESTION: How does this process sleeping on a blocking call work? Whats chan?
+              // And how exactly is the requesting process identified ?
 
   // Start disk on next buf in queue.
   if(idequeue != 0)
@@ -137,6 +172,8 @@ ideintr(void)
 void
 iderw(struct buf *b)
 {
+  // NOTE: enqueues the request and starts the request if thats the only request in the queue.
+
   struct buf **pp;
 
   if(!holdingsleep(&b->lock))
@@ -155,6 +192,8 @@ iderw(struct buf *b)
   *pp = b;
 
   // Start disk if necessary.
+  // (if its not the only request in the queue, then we already know that the one that is at the front has already been started and so we cant start...)
+  // if a request is already being serviced then the idestart on our request will be run by the ideintr handler... It calls idestart after wakeup
   if(idequeue == b)
     idestart(b);
 
