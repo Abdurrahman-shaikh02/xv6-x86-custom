@@ -283,6 +283,52 @@ create(char *path, short type, short major, short minor)
 }
 
 int
+sys_lseek(void){
+  //lseek body here
+  
+  //three arguments -> all are signed ints
+  int fd, offset, mode;
+  struct file * f;
+
+  //accept arguments using argints and the file pointer using argfd
+  //get corresponding FILE * using argfd
+  if(argfd(0, &fd, &f) < 0 || argint(1, &offset) < 0 || argint(2, &mode))
+    return -1;
+
+  //then get size,
+  uint sz = f->ip->size;
+  uint offset_new = 0;
+
+  //switch on last argument
+  switch(mode){
+    case SEEK_CUR:
+      //checking if new offset is < 0
+      if(offset < 0 && f->off < -offset){
+        return -1;
+      }
+      offset_new = f->off + (uint)offset;
+      break;
+    case SEEK_SET:
+      if(offset >= 0 && offset <= sz){
+        offset_new = (uint)offset;
+        break;
+      }
+      return -1;
+    case SEEK_END:
+      if(offset <= 0 && sz >= -offset){
+        offset_new = sz + (uint)offset;
+        break;
+      }
+      return -1;
+    default:
+      return -1;
+  }
+
+  //then change the file offset
+  return f->off = offset_new;
+}
+
+int
 sys_open(void)
 {
   char *path;
