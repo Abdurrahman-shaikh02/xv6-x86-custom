@@ -1,3 +1,6 @@
+// NOTE: Has declarations for functions that the user can call...
+// Just include this and use the xv6's + user library's facilities...
+
 struct stat;
 struct rtcdate;
 

@@ -1,3 +1,10 @@
+// NOTE: Defines the user level system call wrappers...
+// Pretty cleverly written I must say.
+// Puts the call number in the eax register,
+// then calls int 64,
+// then trapasm builds trap frame, then calls trap(),
+// which calls syscall() in syscall.c
+
 #include "syscall.h"
 #include "traps.h"
 

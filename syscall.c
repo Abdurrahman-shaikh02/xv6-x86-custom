@@ -7,6 +7,21 @@
 #include "x86.h"
 #include "syscall.h"
 
+// WHY: Why to use these functions ?
+// In one line, because we switched stacks. And the arguments are on the user stack and we are currently in the kernel stack.
+//
+// User Stack:
+// Return addr from user syscall wrapper.   <---    myproc->tf->esp
+// arg0
+// arg1
+// arg2
+//
+// Kernel Stack:
+// RA from sys_lseek()    <----    esp right now
+// RA from syscall()
+// ptr to trapframe (tf) (Btw this pointer was also stored in myproc->tf before making syscall from trap())
+// The trap frame itself (pushed by the trapasm and hardware together)
+
 // User code makes a system call with INT T_SYSCALL.
 // System call number in %eax.
 // Arguments on the stack, from the user call to the C
@@ -130,6 +145,9 @@ static int (*syscalls[])(void) = {
 [SYS_lseek]   sys_lseek,
 };
 
+// NOTE: Gets the value of the call number,
+// use it to index into the syscalls array to get the corresponding function pointer
+// and then call that.
 void
 syscall(void)
 {
