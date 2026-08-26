@@ -40,7 +40,8 @@ filealloc(void)
   return 0;
 }
 
-// Increment ref count for file f.
+// NOTE: Increment ref count for file f.
+// WTH! I thought it made a new file struct.
 struct file*
 filedup(struct file *f)
 {

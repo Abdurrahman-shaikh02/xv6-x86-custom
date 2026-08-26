@@ -66,9 +66,14 @@ myproc(void) {
 }
 
 //PAGEBREAK: 32
+// NOTE:
 // Look in the process table for an UNUSED proc.
 // If found, change state to EMBRYO and initialize
 // state required to run in the kernel.
+// (That is, allocate a new kernel stack for the process,
+// then make room trapframe, set pcb tf pointer,
+// push trapret return address
+// and then make context on the stack so that swtch can switch to this process later.)
 // Otherwise return 0.
 static struct proc*
 allocproc(void)
@@ -78,6 +83,7 @@ allocproc(void)
 
   acquire(&ptable.lock);
 
+  // Find the first available unused struct proc
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++)
     if(p->state == UNUSED)
       goto found;
@@ -87,7 +93,7 @@ allocproc(void)
 
 found:
   p->state = EMBRYO;
-  p->pid = nextpid++;
+  p->pid = nextpid++;     // IMPORTANT: PID of child is parent id + 1...
 
   release(&ptable.lock);
 
@@ -98,15 +104,17 @@ found:
   }
   sp = p->kstack + KSTACKSIZE;
 
-  // Leave room for trap frame.
-  sp -= sizeof *p->tf;
+  // NOTE: Leave room for trap frame. (havent copied it yet)
+  sp -= sizeof *p->tf;    // Yup, apparently this syntax is valid.
   p->tf = (struct trapframe*)sp;
 
-  // Set up new context to start executing at forkret,
+  // NOTE: Set up new context to start executing at forkret,
   // which returns to trapret.
   sp -= 4;
   *(uint*)sp = (uint)trapret;
 
+  // NOTE: Leave room for the context, so that swtch can switch to this process when the time comes...
+  // Also set the context eip to return in forkret which releases some lock
   sp -= sizeof *p->context;
   p->context = (struct context*)sp;
   memset(p->context, 0, sizeof *p->context);
@@ -174,6 +182,7 @@ growproc(int n)
   return 0;
 }
 
+// NOTE:
 // Create a new process copying p as the parent.
 // Sets up stack to return as if from system call.
 // Caller must set state of returned proc to RUNNABLE.
@@ -190,6 +199,7 @@ fork(void)
   }
 
   // Copy process state from proc.
+  // (Copies the entire process image... new page tables have to be allocated, new page frames need to be given... etc)
   if((np->pgdir = copyuvm(curproc->pgdir, curproc->sz)) == 0){
     kfree(np->kstack);
     np->kstack = 0;
@@ -198,7 +208,8 @@ fork(void)
   }
   np->sz = curproc->sz;
   np->parent = curproc;
-  *np->tf = *curproc->tf;
+  *np->tf = *curproc->tf;     // we had left space for the trapframe in the kstack in allocproc()
+                              // Now we copy the trapframe...
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
@@ -210,11 +221,11 @@ fork(void)
 
   safestrcpy(np->name, curproc->name, sizeof(curproc->name));
 
-  pid = np->pid;
+  pid = np->pid;    // the childs pid
 
   acquire(&ptable.lock);
 
-  np->state = RUNNABLE;
+  np->state = RUNNABLE;   // the childs state
 
   release(&ptable.lock);
 
