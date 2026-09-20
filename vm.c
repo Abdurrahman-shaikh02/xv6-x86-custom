@@ -28,7 +28,7 @@ seginit(void)
   // This means that when a trap happens, the cs and the data selectors(es, ss, ds... i think...) also have to be changed
   // Nevertheless the actual base values are the same so it doesnt really make a difference linear addresswise
   // just the privilege levels
-  // IMPORTANT: There is another descriptor a total of 5. See (Press Ctrl + ] on "SEG_TSS"). The Task Segment descriptor isn't set up here... its set up in switchuvm...
+  // IMPORTANT: There is another descriptor... a total of 5. See (Press Ctrl + ] on "SEG_TSS"). The Task Segment descriptor isn't set up here... its set up in switchuvm...
   // QUESTION: Why ???
   c->gdt[SEG_KCODE] = SEG(STA_X|STA_R, 0, 0xffffffff, 0);
   c->gdt[SEG_KDATA] = SEG(STA_W, 0, 0xffffffff, 0);

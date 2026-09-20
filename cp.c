@@ -26,7 +26,7 @@ int main(int argc, char *argv[]){
     write(dest, &c, 1);
   }
   
-  exit();   //it requires thissssssss whattttt ?! Apparently xv6 doesnt have a runtime library to which the value might return to...
+  //exit();   //it requires thissssssss whattttt ?! Apparently xv6 doesnt have a runtime library to which the value might return to...
             //Really need to see how execution works on this thing, no crt0 start script ?
 
 }
