@@ -73,7 +73,8 @@ myproc(void) {
 // (That is, allocate a new kernel stack for the process,
 // then make room trapframe, set pcb tf pointer,
 // push trapret return address
-// and then make context on the stack so that swtch can switch to this process later.)
+// and then make context (set the context to zero except the eip which becomes address of forkret())
+// on the stack so that swtch can switch to this process later.. and when it does it does so in forkret())
 // Otherwise return 0.
 static struct proc*
 allocproc(void)
@@ -93,7 +94,7 @@ allocproc(void)
 
 found:
   p->state = EMBRYO;
-  p->pid = nextpid++;     // IMPORTANT: PID of child is parent id + 1...
+  p->pid = nextpid++;
 
   release(&ptable.lock);
 
@@ -114,7 +115,7 @@ found:
   *(uint*)sp = (uint)trapret;
 
   // NOTE: Leave room for the context, so that swtch can switch to this process when the time comes...
-  // Also set the context eip to return in forkret which releases some lock
+  // Zero the context and set the context eip to return in forkret whose job is to release some lock
   sp -= sizeof *p->context;
   p->context = (struct context*)sp;
   memset(p->context, 0, sizeof *p->context);
@@ -129,15 +130,25 @@ void
 userinit(void)
 {
   struct proc *p;
-  extern char _binary_initcode_start[], _binary_initcode_size[];
+  extern char _binary_initcode_start[], _binary_initcode_size[];    // these are obtained by the linker.
+                                                                    // These are basically the locations in the kernel elf...(which is now in the memory)
+                                                                    // which contain the code of initcode.S
+                                                                    // QUESTION: Where are these declared ?
 
   p = allocproc();
   
   initproc = p;
   if((p->pgdir = setupkvm()) == 0)
     panic("userinit: out of memory?");
+
+  //initialize the user virtual memory... (that is below kernbase)
+  //that is take the init ka code & data and set its user virtual addresses....
+  // NOTE: _binary_initcode_start is the pointer to the code of initcode.S from the kernel elf. ie in the kernel virtual address space
+  // We want to copy that into the process' user virtual address space... (obviously so that it can run in user mode...)
   inituvm(p->pgdir, _binary_initcode_start, (int)_binary_initcode_size);
-  p->sz = PGSIZE;
+
+  // NOTE: set up the trap frame.
+  p->sz = PGSIZE; //init is only 4k... 
   memset(p->tf, 0, sizeof(*p->tf));
   p->tf->cs = (SEG_UCODE << 3) | DPL_USER;
   p->tf->ds = (SEG_UDATA << 3) | DPL_USER;
@@ -355,6 +366,8 @@ scheduler(void)
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
       c->proc = p;    //set the core's struct cpu procs field to the current process' control block
+
+      //switch to user virtual memory
       switchuvm(p);   
       p->state = RUNNING;
 

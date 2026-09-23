@@ -4,6 +4,9 @@
 #include "syscall.h"
 #include "traps.h"
 
+# IMPORTANT: 
+# initcode just execs the init.c program
+# for(;;) exit();
 
 # exec(init, argv)
 .globl start
@@ -14,7 +17,6 @@ start:
   movl $SYS_exec, %eax
   int $T_SYSCALL
 
-# for(;;) exit();
 exit:
   movl $SYS_exit, %eax
   int $T_SYSCALL

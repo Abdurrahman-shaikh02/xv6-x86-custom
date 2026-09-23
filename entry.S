@@ -51,6 +51,9 @@ entry:
   movl    %eax, %cr4
   # Set page directory (page directory is the top level page table ... remember ?)
   movl    $(V2P_WO(entrypgdir)), %eax
+  # NOTE: Why V2P ? -> well the kernel was linked starting from 2gb... that means the address of symbol entrypgdir will be 0x80... something... according to elf
+  # when you refer to entrypgdir the linker will refer to that 0x80... address.
+  # but the cr3 register will need a PHYSICAL address in it cuz it doesnt yet know how to do that translation
   movl    %eax, %cr3
   # Turn on paging.
   movl    %cr0, %eax

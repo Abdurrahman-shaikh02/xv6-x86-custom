@@ -71,6 +71,12 @@ main(void)
   //---------------------------------------------------------------------------------------------------------------
   kinit2(P2V(4*1024*1024), P2V(PHYSTOP)); // must come after startothers()
   //---------------------------------------------------------------------------------------------------------------
+  // IMPORTANT: Set the first user process init.
+  // Set up all the required fields in its pcb...
+  // Do the kernel virtual momory setup.
+  // Do the user virtual memory setup.
+  // Set the pc as RUNNABLE...
+  // init will run when the scheduler runs...
   userinit();      // first user process
   //---------------------------------------------------------------------------------------------------------------
   mpmain();        // finish this processor's setup

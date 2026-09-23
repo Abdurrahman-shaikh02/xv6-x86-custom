@@ -76,7 +76,8 @@ mappages(pde_t *pgdir, void *va, uint size, uint pa, int perm)
   for(;;){
     // NOTE: Walk the page directory and see if the pde(ie. the address of the page table) for the address "a" has been created... meaning if space (a page) has been allocated for the corresponding page table
     // if not allocate a page for the page table... add the page directory entry 
-    // (just in case... the page directory is indexed by the last 10 bits(when counted from right) contains the address of the page table and then the page table is indexed using the bits [21:12]
+    // (just in case... the page directory is indexed by the last 10 bits(when counted from right)
+    // contains the address of the page table and then the page table is indexed using the bits [21:12]
     // which contains the physical address... Also the page directory and each of the page tables occupy one page
     // think 10 bits for indexing meaning 1k entries and each entry is 4 bytes so 4kb)
     // and then return the address of the page TABLE entry corresponding to the address a
@@ -128,7 +129,8 @@ static struct kmap {
  { (void*)DEVSPACE, DEVSPACE,      0,         PTE_W}, // more devices
 };
 
-// Set up kernel part of a page table.
+// Set up kernel part of a page table ie 2gb onwards.
+// SETUPKernelVirtualMemory - setupkvm
 pde_t*
 setupkvm(void)
 {
@@ -184,11 +186,21 @@ switchuvm(struct proc *p)
     panic("switchuvm: no pgdir");
 
   pushcli();
+  // IMPORTANT:
+  // What exactly is the TSS?
+  // There is a per cpu data structure in the kernel memory caled struct cpu
+  // There is a struct taskstate in that.
+  // That struct is the TSS.
+  // Meaning its address is the base, its size if the limit of the task state segment
+  // QUESTION:
+  // Why are we doing the below set up... ie setting up the gate descriptor of the TSS everytime switchuvm is called ?
+  // I mean its not like the tss is changing right ? The TSS for each CPU will remain the same right ?
+  // Any specific reason or is it just because?
   mycpu()->gdt[SEG_TSS] = SEG16(STS_T32A, &mycpu()->ts,
                                 sizeof(mycpu()->ts)-1, 0);
   mycpu()->gdt[SEG_TSS].s = 0;
   mycpu()->ts.ss0 = SEG_KDATA << 3;
-  mycpu()->ts.esp0 = (uint)p->kstack + KSTACKSIZE;    // QUESTION: Why is the kernel stack starting at the very bottom ? what if the process was timer interrupted when it was already in a system call ?
+  mycpu()->ts.esp0 = (uint)p->kstack + KSTACKSIZE;    // NOTE: This is the stack to which the kernel will switch to when theres a trap
   // setting IOPL=0 in eflags *and* iomb beyond the tss segment limit
   // forbids I/O instructions (e.g., inb and outb) from user space
   mycpu()->ts.iomb = (ushort) 0xFFFF;
@@ -206,6 +218,8 @@ inituvm(pde_t *pgdir, char *init, uint sz)
 
   if(sz >= PGSIZE)
     panic("inituvm: more than a page");
+
+  // Init only needs one page...
   mem = kalloc();
   memset(mem, 0, PGSIZE);
   mappages(pgdir, 0, PGSIZE, V2P(mem), PTE_W|PTE_U);

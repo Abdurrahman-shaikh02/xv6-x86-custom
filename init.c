@@ -31,6 +31,13 @@ main(void)
       printf(1, "init: exec sh failed\n");
       exit();
     }
+
+    // NOTE: The init process keeps calling wait.
+    // When a process is over its return value needs to be sent to the parent.
+    // This is done by keeping the process as a zombie process.
+    // But if a parent dies, without calling wait then what?
+    // They are made a child of the init process.
+    // And here we have the init process just calling wait.
     while((wpid=wait()) >= 0 && wpid != pid)
       printf(1, "zombie!\n");
   }

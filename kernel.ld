@@ -3,7 +3,8 @@
 
 OUTPUT_FORMAT("elf32-i386", "elf32-i386", "elf32-i386")
 OUTPUT_ARCH(i386)
-ENTRY(_start)
+ENTRY(_start)  /* the entry field of the elf will be the value of the _start symbol...
+		  its declared and initialized in entry.S */
 
 SECTIONS
 {
