@@ -189,7 +189,7 @@ growproc(int n)
       return -1;
   }
   curproc->sz = sz;
-  switchuvm(curproc);
+  switchuvm(curproc); // NOTE: This must be done so that the cr3 register gets reloaded and the TLB gets refreshed
   return 0;
 }
 

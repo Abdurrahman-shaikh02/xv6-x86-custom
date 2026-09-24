@@ -29,14 +29,17 @@ main(void)
   // 2. main() calls kinit2() with the rest of the physical pages
   // after installing a full page table that maps them on all cores.
   kinit1(end, P2V(4*1024*1024)); // phys page allocator
-  // NOTE: Remember that me mapped the first 4mb physical space to 0 to 4mb and KERNBASE to KERNBASE+ 4096
+  // NOTE: Remember that me mapped the first 4mb physical space to 0 to 4mb and KERNBASE to KERNBASE + 4MB
   // so kinit1 links the remaining space (from end (marked by linker see above) till KERNBASE + 4096 which is just end to 4mb in physical mem) as 4kb spaces in a linked list...
   // Now every call to kalloc and kfree will work
   // --------------------------------------------------------------------------------------------------------------
   //
   // IMPORTANT: This function sets up the kernel page table. The entire address space 0 to 4gb is mapped onto the physical addess space
   // as given in supplementary_material/xv6_vm_mappings.png.
-  // Note that it only sets up the page directory and the required page tables. It does not yet free them(thats done by kinit2)
+  // Before this we were using the temporary entrypgdir and had access only to the first 4mb...
+  // Now the actualkernel table has been set up which maps the entire physical memory of 0 to PHYSTOP 
+  // to the virtual addresses KERNBASE to KERNBASE + PHYSTOP.
+  // there are no mappings from va 0 to 2gb yet... the kernel will do that for each process when required...(fork exec init etc)
   kvmalloc();      // kernel page table
   //---------------------------------------------------------------------------------------------------------------
   mpinit();        // detect other processors

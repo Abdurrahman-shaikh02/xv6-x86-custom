@@ -97,6 +97,7 @@ argstr(int n, char **pp)
   return fetchstr(addr, pp);
 }
 
+// NOTE: The job of every sys_... is to fetch the arguments from the user stack and then call the actual system call function with those arguments
 extern int sys_chdir(void);
 extern int sys_close(void);
 extern int sys_dup(void);
