@@ -95,17 +95,19 @@ trap(struct trapframe *tf)
   //PAGEBREAK: 13
   default:
     if(myproc() == 0 || (tf->cs&3) == 0){
-      // In kernel, it must be our mistake.
+      // In kernel, it must be our mistake. Executed some int x instruction... for some invalid x or maybe some exception...
       cprintf("unexpected trap %d from cpu %d eip %x (cr2=0x%x)\n",
               tf->trapno, cpuid(), tf->eip, rcr2());
       panic("trap");
     }
     // In user space, assume process misbehaved.
+    // NOTE: How can this ever happen? I think if it does int x where x is anything other than T_SYSCALL, then it will cause int 13 which is general protection fault.
+    // Thus this must be some exception (like zero division...) or unlikely but not impossible, it could be some bad hardware interrupt...
     cprintf("pid %d %s: trap %d err %d on cpu %d "
             "eip 0x%x addr 0x%x--kill proc\n",
             myproc()->pid, myproc()->name, tf->trapno,
             tf->err, cpuid(), tf->eip, rcr2());
-    myproc()->killed = 1;
+    myproc()->killed = 1;   // note that this process must be killed and cleaned up
   }
 
   // Force process exit if it has been killed and is in user space.

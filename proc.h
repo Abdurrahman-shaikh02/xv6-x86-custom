@@ -9,7 +9,12 @@ struct cpu {
   struct taskstate ts;         // Used by x86 to find stack for interrupt (the per process kernel stack)
   struct segdesc gdt[NSEGS];   // x86 global descriptor table
   volatile uint started;       // Has the CPU started?
-  int ncli;                    // Depth of pushcli nesting.
+  int ncli;                    // NOTE: Depth of pushcli nesting. (how many pushcli()s have been called ?)
+                               // But, wherever pushcli() has been called, popcli() also has been called immediately EXCEPT where the lock acquire and release are...
+                               // In acquire(), pushcli() is called and acquire() returns...
+                               // In release(), popcli() has been called....
+                               // So basically whenever the ncli is really consulted anywhere in the kernel code, it basically shows the number of locks held... 
+                               
   int intena;                  // Were interrupts enabled before pushcli?
   struct proc *proc;           // The process running on this cpu or null
 };
@@ -56,7 +61,7 @@ struct proc {
                                // It doesnt always hold the current context.
                                // It only holds the context when the process is switched out.
 
-  void *chan;                  // If non-zero, sleeping on chan
+  void *chan;                  // If non-zero, sleeping on chan... (when the status is WAITING, this field is non zero and points to something that tells us what it is waiting for)
   int killed;                  // If non-zero, have been killed
   struct file *ofile[NOFILE];  // Open files
   struct inode *cwd;           // Current directory

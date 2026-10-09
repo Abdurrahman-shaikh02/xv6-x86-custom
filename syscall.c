@@ -34,7 +34,8 @@ fetchint(uint addr, int *ip)
 {
   struct proc *curproc = myproc();
 
-  if(addr >= curproc->sz || addr+4 > curproc->sz)
+  if(addr >= curproc->sz || addr+4 > curproc->sz)     // before using the addr as a pointer, check if it lies in the users address space.
+                                                      // the user could have changed to an invalid esp and doing something malicious
     return -1;
   *ip = *(int*)(addr);
   return 0;
@@ -78,7 +79,10 @@ argptr(int n, char **pp, int size)
  
   if(argint(n, &i) < 0)
     return -1;
-  if(size < 0 || (uint)i >= curproc->sz || (uint)i+size > curproc->sz)
+  if(size < 0 || (uint)i >= curproc->sz || (uint)i+size > curproc->sz)    // check if the pointer is a valid pointer in the user's address space
+                                                                          // if its not and the kernel dereferences it, it will cause a seg fault (kernel mode seg fualt)
+                                                                          // and it will go into trap and get handled there... except in our code it checks whether the execution was in kernel mode
+                                                                          // if yes, ie the page fault was in kernel then it calls panic... (see default label in trap())
     return -1;
   *pp = (char*)i;
   return 0;

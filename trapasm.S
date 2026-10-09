@@ -20,7 +20,7 @@ alltraps:
   pushl %gs
   pushal
   
-  # Set up data segments.
+  # Set up data segments. (ss was set to SEG_KDATA through the TSS.ss entry by the hardware but the cs and es havent been set to SEG_KDATA yet...)
   movw $(SEG_KDATA<<3), %ax
   movw %ax, %ds
   movw %ax, %es

@@ -27,14 +27,16 @@
 #include "buf.h"
 
 struct {
-  struct spinlock lock;
+  struct spinlock lock;   // protecting the bcache
   struct buf buf[NBUF];
 
   // Linked list of all buffers, through prev/next.
   // head.next is most recently used.
+  // head.tail is the least recently used.
   struct buf head;
 } bcache;
 
+// called once in main
 void
 binit(void)
 {
@@ -43,21 +45,21 @@ binit(void)
   initlock(&bcache.lock, "bcache");
 
 //PAGEBREAK!
-  // Create linked list of buffers
+  // Create a CIRCULAR DOUBLY LINKED list of buffers
   bcache.head.prev = &bcache.head;
   bcache.head.next = &bcache.head;
   for(b = bcache.buf; b < bcache.buf+NBUF; b++){
     b->next = bcache.head.next;
     b->prev = &bcache.head;
-    initsleeplock(&b->lock, "buffer");
+    initsleeplock(&b->lock, "buffer");    // also initialize the per buf lock
     bcache.head.next->prev = b;
     bcache.head.next = b;
   }
 }
 
-// Look through buffer cache for block on device dev.
+// NOTE: Look through buffer cache for block on device dev.
 // If not found, allocate a buffer.
-// In either case, return locked buffer.
+// In either case, return LOCKED buffer.
 static struct buf*
 bget(uint dev, uint blockno)
 {
@@ -65,7 +67,7 @@ bget(uint dev, uint blockno)
 
   acquire(&bcache.lock);
 
-  // Is the block already cached?
+  // NOTE: Is the block already cached? If yes, increment refcnt and return that buf
   for(b = bcache.head.next; b != &bcache.head; b = b->next){
     if(b->dev == dev && b->blockno == blockno){
       b->refcnt++;
@@ -75,7 +77,7 @@ bget(uint dev, uint blockno)
     }
   }
 
-  // Not cached; recycle an unused buffer.
+  // NOTE: Not cached; recycle an unused buffer ie refcnt = 0 AND B_DIRTY = 0 FROM THE TAIL of the list
   // Even if refcnt==0, B_DIRTY indicates a buffer is in use
   // because log.c has modified it but not yet committed it.
   for(b = bcache.head.prev; b != &bcache.head; b = b->prev){
@@ -92,30 +94,32 @@ bget(uint dev, uint blockno)
   panic("bget: no buffers");
 }
 
-// Return a locked buf with the contents of the indicated block.
+// Return a LOCKED buf with the contents of the indicated block.
 struct buf*
 bread(uint dev, uint blockno)
 {
   struct buf *b;
 
   b = bget(dev, blockno);
-  if((b->flags & B_VALID) == 0) {
+  if((b->flags & B_VALID) == 0) {     // If its invalid that means it was an empty buf and we need to read it in from the disk
     iderw(b);
   }
   return b;
 }
 
-// Write b's contents to disk.  Must be locked.
+// Write b's contents to disk.  Must be LOCKED.
 void
 bwrite(struct buf *b)
 {
   if(!holdingsleep(&b->lock))
     panic("bwrite");
-  b->flags |= B_DIRTY;
+  b->flags |= B_DIRTY;    // set it dirty so idewr() knows that its a write operation
   iderw(b);
 }
 
-// Release a locked buffer.
+
+// NOTE: Called when you are done using the buf and want to release it
+// Release a LOCKED buffer.
 // Move to the head of the MRU list.
 void
 brelse(struct buf *b)

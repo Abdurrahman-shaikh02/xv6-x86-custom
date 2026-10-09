@@ -35,7 +35,7 @@ argfd(int n, int *pfd, struct file **pf)
   return 0;
 }
 
-// Allocate a file descriptor for the given file.
+// NOTE: Allocate the lowest free file descriptor for the given file.
 // Takes over file reference from caller on success.
 static int
 fdalloc(struct file *f)
@@ -251,7 +251,7 @@ create(char *path, short type, short major, short minor)
   if((ip = dirlookup(dp, name, 0)) != 0){
     iunlockput(dp);
     ilock(ip);
-    if(type == T_FILE && ip->type == T_FILE)
+    if(type == T_FILE && ip->type == T_FILE)      // if the file already existed then return that inode pointer itself
       return ip;
     iunlockput(ip);
     return 0;
@@ -267,9 +267,9 @@ create(char *path, short type, short major, short minor)
   iupdate(ip);
 
   if(type == T_DIR){  // Create . and .. entries.
-    dp->nlink++;  // for ".."
+    dp->nlink++;      // for ".."
     iupdate(dp);
-    // No ip->nlink++ for ".": avoid cyclic ref count.
+    // NOTE: No ip->nlink++ for ".": avoid cyclic ref count. Oh so "." doesnt add to the nlink count...
     if(dirlink(ip, ".", ip->inum) < 0 || dirlink(ip, "..", dp->inum) < 0)
       panic("create dots");
   }
@@ -284,7 +284,6 @@ create(char *path, short type, short major, short minor)
 
 int
 sys_lseek(void){
-  //lseek body here
   
   //three arguments -> all are signed ints
   int fd, offset, mode;
@@ -336,11 +335,12 @@ sys_open(void)
   struct file *f;
   struct inode *ip;
 
-  if(argstr(0, &path) < 0 || argint(1, &omode) < 0)
+  if(argstr(0, &path) < 0 || argint(1, &omode) < 0)       // get the arguments
     return -1;
 
-  begin_op();
+  begin_op();       // the following code uses iput, so must be inside a transaction
 
+  // if the O_CREAT flag is set then we need to create the file.
   if(omode & O_CREATE){
     ip = create(path, T_FILE, 0, 0);
     if(ip == 0){
@@ -348,19 +348,19 @@ sys_open(void)
       return -1;
     }
   } else {
-    if((ip = namei(path)) == 0){
+    if((ip = namei(path)) == 0){    // parse the file path and find its inode.
       end_op();
       return -1;
     }
     ilock(ip);
-    if(ip->type == T_DIR && omode != O_RDONLY){
+    if(ip->type == T_DIR && omode != O_RDONLY){           // do not allow writes to a directory! if its a directory you are trying to open, then it must strictly be for reading.
       iunlockput(ip);
       end_op();
       return -1;
     }
   }
 
-  if((f = filealloc()) == 0 || (fd = fdalloc(f)) < 0){
+  if((f = filealloc()) == 0 || (fd = fdalloc(f)) < 0){    // allocate an empty struct file, set a pointer to the struct file in the pcb array ofile
     if(f)
       fileclose(f);
     iunlockput(ip);
@@ -370,6 +370,7 @@ sys_open(void)
   iunlock(ip);
   end_op();
 
+  // complete the rest of the entries of the struct file.
   f->type = FD_INODE;
   f->ip = ip;
   f->off = 0;

@@ -56,13 +56,13 @@
 //    T0NF = Track 0 Not Found
 //    AMNF = Address Mark Not Found
 
-static struct spinlock idelock;
+static struct spinlock idelock;   // so this lock protects the idequeue
 static struct buf *idequeue;
 
-static int havedisk1;
+static int havedisk1;   //this variable is set to 1 if theres a second hard disk... in ideinit()
 static void idestart(struct buf*);
 
-// NOTE: Wait for IDE disk to become ready.
+// NOTE: Wait for IDE disk to become ready and THEN return.
 static int
 idewait(int checkerr)
 {
@@ -77,13 +77,13 @@ idewait(int checkerr)
   return 0;
 }
 
-// called from main, in the beginning
+// called only once from main, in the beginning
 void
 ideinit(void)
 {
   int i;
 
-  initlock(&idelock, "ide");
+  initlock(&idelock, "ide");    // initialize the lock that protect the idequeue
   ioapicenable(IRQ_IDE, ncpu - 1);
   idewait(0);
 
@@ -105,7 +105,7 @@ ideinit(void)
 static void
 idestart(struct buf *b)
 {
-  // NOTE: Starts a queued request.
+  // NOTE: Starts operation of the buf passed to it
 
   if(b == 0)
     panic("idestart");
@@ -125,6 +125,8 @@ idestart(struct buf *b)
   outb(0x1f4, (sector >> 8) & 0xff);
   outb(0x1f5, (sector >> 16) & 0xff);
   outb(0x1f6, 0xe0 | ((b->dev&1)<<4) | ((sector>>24)&0x0f));
+
+  // NOTE: iderw has checked the flags... if dirty then its a write operation if not its a read operation
   if(b->flags & B_DIRTY){
     outb(0x1f7, write_cmd);
     outsl(0x1f0, b->data, BSIZE/4);
@@ -143,22 +145,25 @@ ideintr(void)
   acquire(&idelock);
 
   if((b = idequeue) == 0){
+    // QUESTION: Why is this here? If the intr was for some operation then the queue wouldnt be empty?
+    // Can the disk controller unnecessarily cause hardware interrupts ?
     release(&idelock);
     return;
   }
-  idequeue = b->qnext;
 
-  // Read data if needed.
+  idequeue = b->qnext;    // advance in the queue
+
+  // Read data from the disk controller memory into the RAM(buf) if it was a read operation
   if(!(b->flags & B_DIRTY) && idewait(1) >= 0)
     insl(0x1f0, b->data, BSIZE/4);
 
   // Wake process waiting for this buf.
-  b->flags |= B_VALID;
-  b->flags &= ~B_DIRTY;
+  b->flags |= B_VALID;    //set valid bit... regardless of whether it was read or write, the valid bit = 1
+  b->flags &= ~B_DIRTY;   //reset dirty bit... regardless of whether it was read or write, the dirty bit = 1
   wakeup(b);  // QUESTION: How does this process sleeping on a blocking call work? Whats chan?
               // And how exactly is the requesting process identified ?
 
-  // Start disk on next buf in queue.
+  // Start disk on next buf in queue if the queue is not empty.
   if(idequeue != 0)
     idestart(idequeue);
 
@@ -172,15 +177,18 @@ ideintr(void)
 void
 iderw(struct buf *b)
 {
-  // NOTE: enqueues the request and starts the request if thats the only request in the queue.
+  // NOTE:The device driver is the bridge between the device controller and the OS,
+  // so it has to understand how the OS internally uses the data (struct buf)
+  // and it also has to understand how the disk controller works (whatever protocol)
+  // This function enqueues the request and starts the request if thats the only request in the queue.
 
   struct buf **pp;
 
   if(!holdingsleep(&b->lock))
     panic("iderw: buf not locked");
-  if((b->flags & (B_VALID|B_DIRTY)) == B_VALID)
+  if((b->flags & (B_VALID|B_DIRTY)) == B_VALID)   // if its not dirty but valid means its an error
     panic("iderw: nothing to do");
-  if(b->dev != 0 && !havedisk1)
+  if(b->dev != 0 && !havedisk1)                   // if device no = 1 and we dont have a second disk then error
     panic("iderw: ide disk 1 not present");
 
   acquire(&idelock);  //DOC:acquire-lock
@@ -192,7 +200,8 @@ iderw(struct buf *b)
   *pp = b;
 
   // Start disk if necessary.
-  // (if its not the only request in the queue, then we already know that the one that is at the front has already been started and so we cant start...)
+  // NOTE:
+  // if b is the only buf in the queue then it means that there was no buf in the queue before, and that the disk is free and thus we need to idestart() the operation
   // if a request is already being serviced then the idestart on our request will be run by the ideintr handler... It calls idestart after wakeup
   if(idequeue == b)
     idestart(b);

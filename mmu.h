@@ -167,8 +167,8 @@ struct gatedesc {
 //        this interrupt/trap gate explicitly using an int instruction.
 
 // NOTE: COOOOOL this is how you write a multiline macro in C...
-
-#define SETGATE(gate, istrap, sel, off, d)                \
+// Btw, istrap means that the IF flag isnt cleared when this interrupt occurs
+#define SETGATE(gate, istrap, sel, off, d)                \ 
 {                                                         \
   (gate).off_15_0 = (uint)(off) & 0xffff;                 \
   (gate).cs = (sel);                                      \

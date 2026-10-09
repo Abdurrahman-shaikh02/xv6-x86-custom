@@ -12,6 +12,7 @@
 void
 initlock(struct spinlock *lk, char *name)
 {
+  // NOTE: Each lock must first be initialized...
   lk->name = name;
   lk->locked = 0;
   lk->cpu = 0;
@@ -26,16 +27,18 @@ acquire(struct spinlock *lk)
 {
   pushcli(); // disable interrupts to avoid deadlock.
   if(holding(lk))
-    panic("acquire");
+    panic("acquire");   
+  //if the current cpu is already holding the lock and its trying to acquire the lock again then we have a problem
+  // QUESTION: Why the current cpu ? I dont understand... Any other process that was running might have acquired the lock...? Whats the problem ?
 
-  // The xchg is atomic.
+  // The xchg is atomic. Actually acquire the lock
   while(xchg(&lk->locked, 1) != 0)
     ;
 
   // Tell the C compiler and the processor to not move loads or stores
   // past this point, to ensure that the critical section's memory
   // references happen after the lock is acquired.
-  __sync_synchronize();
+  __sync_synchronize();   // A "compiler directive"
 
   // Record info about lock acquisition for debugging.
   lk->cpu = mycpu();
@@ -47,7 +50,7 @@ void
 release(struct spinlock *lk)
 {
   if(!holding(lk))
-    panic("release");
+    panic("release");   // if you are not holding and then have called release then its a problem
 
   lk->pcs[0] = 0;
   lk->cpu = 0;
@@ -74,7 +77,10 @@ getcallerpcs(void *v, uint pcs[])
   uint *ebp;
   int i;
 
-  ebp = (uint*)v - 2;
+  // QUESTION: Okay i get what this is doing
+  // Its traversing the chain of frame pointers to get the function call sequence...
+  // but i still want to dry run it and see it working...
+  ebp = (uint*)v - 2;   //
   for(i = 0; i < 10; i++){
     if(ebp == 0 || ebp < (uint*)KERNBASE || ebp == (uint*)0xffffffff)
       break;
@@ -91,16 +97,15 @@ holding(struct spinlock *lock)
 {
   int r;
   pushcli();
-  r = lock->locked && lock->cpu == mycpu();
+  r = lock->locked && lock->cpu == mycpu();   //return true if the current cpu is already holding a lock
   popcli();
   return r;
 }
 
 
 // Pushcli/popcli are like cli/sti except that they are matched:
-// it takes two popcli to undo two pushcli.  Also, if interrupts
+// eg: it takes two popcli to undo two pushcli.  Also, if interrupts
 // are off, then pushcli, popcli leaves them off.
-
 void
 pushcli(void)
 {
@@ -109,18 +114,19 @@ pushcli(void)
   eflags = readeflags();
   cli();
   if(mycpu()->ncli == 0)
-    mycpu()->intena = eflags & FL_IF;
-  mycpu()->ncli += 1;
+    mycpu()->intena = eflags & FL_IF;   // save the flag only if its the first pushcli
+  mycpu()->ncli += 1;   // ncli field effectively saves how many pushcli()s have happened. (go to its comment in struct cpu)
 }
 
 void
 popcli(void)
 {
+  // NOTE: Decrement ncli, if its zero that means all pushcli()s have been undone... restore the interrupt flag depending on intena value.
   if(readeflags()&FL_IF)
-    panic("popcli - interruptible");
+    panic("popcli - interruptible");    // if the flag is set then calling popcli is wrong
   if(--mycpu()->ncli < 0)
     panic("popcli");
   if(mycpu()->ncli == 0 && mycpu()->intena)
-    sti();
+    sti();      // if interrupt was enabled before the first cli only then set IF
 }
 

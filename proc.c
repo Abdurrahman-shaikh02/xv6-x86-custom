@@ -401,9 +401,9 @@ sched(void)
   int intena;
   struct proc *p = myproc();
 
-  if(!holding(&ptable.lock))
+  if(!holding(&ptable.lock))      // checks if you are holding the ptable lock... YOU MUST!
     panic("sched ptable.lock");
-  if(mycpu()->ncli != 1)
+  if(mycpu()->ncli != 1)          // and you must be only holding the ptable lock thats IT! (general OS rule, dont block while holding a lock...)
     panic("sched locks");
   if(p->state == RUNNING)
     panic("sched running");
@@ -455,6 +455,9 @@ forkret(void)
 void
 sleep(void *chan, struct spinlock *lk)
 {
+  // IMPORTANT: We were holding lk lock and now we want to save chan to mycpu()->chan and go to sleep
+  // (We identify what a process is waiting for when SLEEPING using the value at chan)
+  
   struct proc *p = myproc();
   
   if(p == 0)
@@ -463,7 +466,7 @@ sleep(void *chan, struct spinlock *lk)
   if(lk == 0)
     panic("sleep without lk");
 
-  // Must acquire ptable.lock in order to
+  // IMPORTANT: Must acquire ptable.lock in order to
   // change p->state and then call sched.
   // Once we hold ptable.lock, we can be
   // guaranteed that we won't miss any wakeup
@@ -473,8 +476,14 @@ sleep(void *chan, struct spinlock *lk)
     acquire(&ptable.lock);  //DOC: sleeplock1
     release(lk);
   }
+  // IMPORTANT: I know we said that do not go to sleep while holding a lock... The rule seems to get violated here when we call sched...
+  // But it isnt... 
+  // Think of it this way, sched() causes the scheduler to run on its own stack...
+  // If you look at the code of scheduler() then you will realise that in order for it to run it must hold the ptable lock...
+  // So we are just acquiring that lock and asking the scheduler to continue wherever it left off.
+
   // Go to sleep.
-  p->chan = chan;
+  p->chan = chan;     //let chan point to something which tells us what this process is waiting for.
   p->state = SLEEPING;
 
   sched();
@@ -482,7 +491,7 @@ sleep(void *chan, struct spinlock *lk)
   // Tidy up.
   p->chan = 0;
 
-  // Reacquire original lock.
+  // NOTE: Now that we have been woken up, Reacquire original lock and also let go of ptable lock.
   if(lk != &ptable.lock){  //DOC: sleeplock2
     release(&ptable.lock);
     acquire(lk);
@@ -490,7 +499,7 @@ sleep(void *chan, struct spinlock *lk)
 }
 
 //PAGEBREAK!
-// Wake up all processes sleeping on chan.
+// NOTE: Wake up ALL processes sleeping on chan.
 // The ptable lock must be held.
 static void
 wakeup1(void *chan)
@@ -502,7 +511,7 @@ wakeup1(void *chan)
       p->state = RUNNABLE;
 }
 
-// Wake up all processes sleeping on chan.
+// Wake up ALL processes sleeping on chan.
 void
 wakeup(void *chan)
 {
