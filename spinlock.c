@@ -34,11 +34,10 @@ acquire(struct spinlock *lk)
   // The xchg is atomic. Actually acquire the lock
   while(xchg(&lk->locked, 1) != 0)
     ;
-
-  // Tell the C compiler and the processor to not move loads or stores
+// Tell the C compiler and the processor to not move loads or stores
   // past this point, to ensure that the critical section's memory
   // references happen after the lock is acquired.
-  __sync_synchronize();   // A "compiler directive"
+  //__sync_synchronize();   // A "compiler directive"
 
   // Record info about lock acquisition for debugging.
   lk->cpu = mycpu();

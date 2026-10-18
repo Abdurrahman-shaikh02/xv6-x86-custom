@@ -475,10 +475,10 @@ sys_pipe(void)
 
   if(argptr(0, (void*)&fd, 2*sizeof(fd[0])) < 0)
     return -1;
-  if(pipealloc(&rf, &wf) < 0)
+  if(pipealloc(&rf, &wf) < 0)     // create a pipe object in the kernel
     return -1;
   fd0 = -1;
-  if((fd0 = fdalloc(rf)) < 0 || (fd1 = fdalloc(wf)) < 0){
+  if((fd0 = fdalloc(rf)) < 0 || (fd1 = fdalloc(wf)) < 0){   // put descriptors to those two struct files in the process' ofile table
     if(fd0 >= 0)
       myproc()->ofile[fd0] = 0;
     fileclose(rf);

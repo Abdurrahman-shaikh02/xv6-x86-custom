@@ -11,14 +11,15 @@
 #define PIPESIZE 512
 
 struct pipe {
-  struct spinlock lock;
+  struct spinlock lock;   // protects the pipe... either the writer or the reader !
   char data[PIPESIZE];
-  uint nread;     // number of bytes read
-  uint nwrite;    // number of bytes written
-  int readopen;   // read fd is still open
-  int writeopen;  // write fd is still open
+  uint nread;             // number of bytes read
+  uint nwrite;            // number of bytes written
+  int readopen;           // read fd is still open?
+  int writeopen;          // write fd is still open?
 };
 
+// Create a pipe.
 int
 pipealloc(struct file **f0, struct file **f1)
 {
@@ -80,19 +81,19 @@ pipewrite(struct pipe *p, char *addr, int n)
 {
   int i;
 
-  acquire(&p->lock);
+  acquire(&p->lock);                              // acquire the lock first
   for(i = 0; i < n; i++){
-    while(p->nwrite == p->nread + PIPESIZE){  //DOC: pipewrite-full
-      if(p->readopen == 0 || myproc()->killed){
+    while(p->nwrite == p->nread + PIPESIZE){      // if the buffer is full
+      if(p->readopen == 0 || myproc()->killed){   // if the read end is closed then pipewrite will fail
         release(&p->lock);
         return -1;
       }
-      wakeup(&p->nread);
-      sleep(&p->nwrite, &p->lock);  //DOC: pipewrite-sleep
+      wakeup(&p->nread);                          // wake up any reader that might be sleeping on the pipe...
+      sleep(&p->nwrite, &p->lock);                // DOC: pipewrite-sleep on nwrite!
     }
-    p->data[p->nwrite++ % PIPESIZE] = addr[i];
+    p->data[p->nwrite++ % PIPESIZE] = addr[i];    // copy one byte at a time and after each byte check if the buffer got full... if yes then block
   }
-  wakeup(&p->nread);  //DOC: pipewrite-wakeup1
+  wakeup(&p->nread);                              //DOC: pipewrite-wakeup1 because we are done writing... wake up all readers that might be sleeping
   release(&p->lock);
   return n;
 }
@@ -102,20 +103,20 @@ piperead(struct pipe *p, char *addr, int n)
 {
   int i;
 
-  acquire(&p->lock);
-  while(p->nread == p->nwrite && p->writeopen){  //DOC: pipe-empty
+  acquire(&p->lock);                              // first acquire the lock
+  while(p->nread == p->nwrite && p->writeopen){   // if the write end is open and the buffer is empty then piperead must block
     if(myproc()->killed){
       release(&p->lock);
       return -1;
     }
-    sleep(&p->nread, &p->lock); //DOC: piperead-sleep
+    sleep(&p->nread, &p->lock);                   //DOC: piperead-sleep on nread!
   }
-  for(i = 0; i < n; i++){  //DOC: piperead-copy
+  for(i = 0; i < n; i++){                         //DOC: piperead-copy
     if(p->nread == p->nwrite)
       break;
     addr[i] = p->data[p->nread++ % PIPESIZE];
   }
-  wakeup(&p->nwrite);  //DOC: piperead-wakeup
+  wakeup(&p->nwrite);                             //DOC: piperead-wakeup
   release(&p->lock);
   return i;
 }
