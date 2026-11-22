@@ -469,10 +469,11 @@ sleep(void *chan, struct spinlock *lk)
   // IMPORTANT: Must acquire ptable.lock in order to
   // change p->state and then call sched.
   // Once we hold ptable.lock, we can be
-  // guaranteed that we won't miss any wakeup
+  // GUARANTEED THAT WE WONT MISS ANY WAKEUP
   // (wakeup runs with ptable.lock locked),
   // so it's okay to release lk.
-  if(lk != &ptable.lock){  //DOC: sleeplock0
+  // SO XV6 DOESNT HAVE THE LOST WAKEUP PROBLEM
+  if(lk != &ptable.lock){  //DOC: sleeplock0    this is to prevent a self deadlock
     acquire(&ptable.lock);  //DOC: sleeplock1
     release(lk);
   }

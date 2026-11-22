@@ -249,6 +249,14 @@ iupdate(struct inode *ip)
 // THIS DOES NOT READ INODE FROM THE DISK.
 // In either case, return without holding the inode lock.
 // (Almost like bget in bio.c)
+// WHY: Why does this not return the locked inode? Like bget returns a locked buf...
+// Why this seperation?
+// See namex()
+// it traverses a pathname...
+// and it locks inode, gets the next inode, unlocks inode and repeat.
+// if iget was going to acquire lock as well
+// then a/b/./././c would result in a deadlock
+// becuase here while holding lock on inode of b it would attempt to acquire it again
 static struct inode*
 iget(uint dev, uint inum)
 {

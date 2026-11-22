@@ -91,7 +91,8 @@ bget(uint dev, uint blockno)
       return b;
     }
   }
-  panic("bget: no buffers");
+  panic("bget: no buffers");    // QUESTION: Why would we not sleep and then later wake up when there is a buf available ?
+                                // It will lead to many deadlocks... Definitely something to think about.
 }
 
 // Return a LOCKED buf with the contents of the indicated block.

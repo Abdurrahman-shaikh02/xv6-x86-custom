@@ -37,7 +37,12 @@ acquire(struct spinlock *lk)
 // Tell the C compiler and the processor to not move loads or stores
   // past this point, to ensure that the critical section's memory
   // references happen after the lock is acquired.
-  //__sync_synchronize();   // A "compiler directive"
+  __sync_synchronize();   // A "compiler directive"
+  // IMPORTANT: This directive here is coincidently redundant here because the compiler is anyway not free to reorder things here....
+  // the holding(lk) and xchg(lk->locked) use the same data so they must retain order
+  // mycpu() is a black box... during compilation of this file the compiler doesnt know what mycpu does
+  // so it anyway cannot reorder things beyond the mycpu() call
+  // Also xchg by hardware design is a full fence(a barrier by default in hardware) and even the processor(out of order) cannot move instructions across that instructions
 
   // Record info about lock acquisition for debugging.
   lk->cpu = mycpu();
@@ -60,6 +65,11 @@ release(struct spinlock *lk)
   // Both the C compiler and the hardware may re-order loads and
   // stores; __sync_synchronize() tells them both not to.
   __sync_synchronize();
+  // IMPORTANT: Here the holding(lk) and the lines after use the same data so no reordering...
+  // and popcli is a black box so again no reordering
+  // But lk->pcs[0] = 0; lk->cpu = 0; and (mov... lk->locked) are accessing different data.
+  // So without the directive, the compiler is free to reorder these three instructions.
+  // Thus the __sync_synchronize is REQUIRED here.
 
   // Release the lock, equivalent to lk->locked = 0.
   // This code can't use a C assignment, since it might
