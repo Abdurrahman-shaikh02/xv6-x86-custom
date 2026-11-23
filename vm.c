@@ -194,7 +194,7 @@ switchuvm(struct proc *p)
   // Meaning its address is the base, its size if the limit of the task state segment
   // QUESTION:
   // Why are we doing the below set up... ie setting up the gate descriptor of the TSS everytime switchuvm is called ?
-  // I mean its not like the tss is changing right ? The TSS for each CPU will remain the same right ?
+  // I mean its not like the tss is changing right ? The TSS for each CPU will remain the same right? Just need to change the esp and iomb no?
   // Any specific reason or is it just because?
   mycpu()->gdt[SEG_TSS] = SEG16(STS_T32A, &mycpu()->ts,
                                 sizeof(mycpu()->ts)-1, 0);

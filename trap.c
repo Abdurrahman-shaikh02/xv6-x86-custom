@@ -33,7 +33,7 @@ tvinit(void)
 // WHY: the system call is getting set up specially...Why ?
 // So the DPL here is only for the hardware to know whether this SOFTWARE interrupt is callable from the current privilege level.
 // If yes then if we're moving from kernel to user switch to kernel stack, else dont switch and just jump build trap frame...
-// If not then raise a General Protection fault hardare exception.
+// If not then raise a General Protection fault hardware exception.
 
   initlock(&tickslock, "time");
 

@@ -28,11 +28,19 @@ struct {
 // the pages mapped by entrypgdir on free list.
 // 2. main() calls kinit2() with the rest of the physical pages
 // after installing a full page table that maps them on all cores.
+// IMPORTANT: Why this split?
+// This early,
+// we need memory (for example to set up the kernel pagetable so that we are able to access the whole physical address space)
+// but for those we need pages... -> BOOTSTRAP problemo -- fixed by making available the first 4mb
+// But now we need other CPUS to start up... they start in real mode, and they use entrypagdir which only maps the low 4mb
+// freeing the rest of the memory right now means that the list being lifo it will give a high memory page when they call kalloc
+// but entrypgdir doesnt map the higher pages. so FAULT!
+// So : use the first 4 mb to get the other cpus running, and ONLY THEN free the remaining memory (THATS WHY KINIT2 must come after startothers)
 void
 kinit1(void *vstart, void *vend)
 {
   initlock(&kmem.lock, "kmem");
-  kmem.use_lock = 0;
+  kmem.use_lock = 0;    // IMPORTANT: This early we do not have others cpus running, thus struct cpus havent been setup. So cant use locks yet.
   freerange(vstart, vend);
 }
 

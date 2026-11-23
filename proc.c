@@ -133,7 +133,7 @@ userinit(void)
   extern char _binary_initcode_start[], _binary_initcode_size[];    // these are obtained by the linker.
                                                                     // These are basically the locations in the kernel elf...(which is now in the memory)
                                                                     // which contain the code of initcode.S
-                                                                    // QUESTION: Where are these declared ?
+                                                                    // ld .. -b file ---- implicitly creates _binary_file_start/size/end
 
   p = allocproc();
   
@@ -439,8 +439,8 @@ forkret(void)
   release(&ptable.lock);
 
   if (first) {
-    // Some initialization functions must be run in the context
-    // of a regular process (e.g., they call sleep), and thus cannot
+    // IMPORTANT: Some initialization functions must be run in the context
+    // of a regular process (e.g., THEY CALL SLEEP), and thus cannot
     // be run from main().
     first = 0;
     iinit(ROOTDEV);
